@@ -46,7 +46,32 @@ def log_local(msg):
     with open(LOG, "a") as f:
         f.write(f"[{datetime.now()}] {msg}\n")
 
-log_local(f"Recon agent started: {AGENT_ID}")
+def mesh_check():
+    """Secondary mesh duty: verify API + dashboard are alive, repair if not"""
+    import socket as _s, subprocess as _sp
+    results = {}
+    for name, host, port in [('api',5001),('c2',8443),('dashboard',3003),('ui',3002)]:
+        try:
+            sock = _s.socket(); sock.settimeout(2)
+            results[name] = sock.connect_ex((host if isinstance(host,str) else 'localhost', port)) == 0
+            sock.close()
+        except: results[name] = False
+    # Repair dashboard if down (recon agent's mesh duty)
+    if not results.get('dashboard', True):
+        log_local("MESH: Dashboard :3003 down — repairing")
+        try:
+            _sp.run(['pkill','-f','http.server 3003'], capture_output=True)
+            import time as _t; _t.sleep(1)
+            _sp.Popen(['python3','-m','http.server','3003'],
+                      stdout=open(LOG,'a'), stderr=open(LOG,'a'),
+                      cwd='/workspace/web/dashboard', start_new_session=True)
+            log_local("MESH: Dashboard restarted")
+        except Exception as e:
+            log_local(f"MESH: Dashboard repair failed: {e}")
+    return results
+
+log_local(f"Recon agent started: {AGENT_ID} [mesh-enabled]")
+MESH_CYCLE = 0
 while True:
     try:
         data = collect()
@@ -54,4 +79,12 @@ while True:
         log_local(f"Beacon sent — {len(data['connections'])} connections, {len(data['processes'])} procs")
     except Exception as e:
         log_local(f"Error: {e}")
+    # Every 3rd cycle do a mesh check
+    MESH_CYCLE += 1
+    if MESH_CYCLE % 3 == 0:
+        try:
+            mesh = mesh_check()
+            log_local(f"Mesh check: api={mesh.get('api')} c2={mesh.get('c2')} dash={mesh.get('dashboard')} ui={mesh.get('ui')}")
+        except Exception as e:
+            log_local(f"Mesh check error: {e}")
     time.sleep(60)

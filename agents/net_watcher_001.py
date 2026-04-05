@@ -39,7 +39,37 @@ def log_local(msg):
     with open(LOG, "a") as f:
         f.write(f"[{datetime.now()}] {msg}\n")
 
-log_local(f"Network watcher started: {AGENT_ID}")
+def mesh_watch_services():
+    """Secondary mesh duty: net_watcher checks C2 + autonomous loop"""
+    import socket as _s, subprocess as _sp
+    # Check C2
+    try:
+        sock = _s.socket(); sock.settimeout(2)
+        c2_ok = sock.connect_ex(('localhost', 8443)) == 0
+        sock.close()
+    except: c2_ok = False
+    if not c2_ok:
+        log_local("MESH: C2 :8443 down — triggering supervisor restart")
+        try:
+            _sp.run(['supervisorctl','restart','8443_python'], capture_output=True, timeout=10)
+            log_local("MESH: C2 restart triggered")
+        except: pass
+    # Check autonomous loop process
+    result = _sp.run(['pgrep','-f','autonomous_loop.py'], capture_output=True, text=True)
+    if not result.stdout.strip():
+        log_local("MESH: Autonomous loop dead — respawning")
+        try:
+            _sp.Popen(['python3','/workspace/swarm/autonomous_loop.py'],
+                      stdout=open('/workspace/logs/autonomous_loop.log','a'),
+                      stderr=open('/workspace/logs/autonomous_loop.log','a'),
+                      cwd='/workspace', start_new_session=True)
+            log_local("MESH: Autonomous loop respawned")
+        except Exception as e:
+            log_local(f"MESH: Loop respawn failed: {e}")
+    return {'c2': c2_ok}
+
+log_local(f"Network watcher started: {AGENT_ID} [mesh-enabled]")
+SCAN_CYCLE = 0
 while True:
     try:
         hosts = scan_hosts()
@@ -50,4 +80,12 @@ while True:
         log_local(f"Scan complete: {len(hosts)} hosts, {len(new)} new")
     except Exception as e:
         log_local(f"Error: {e}")
+    # Every 6th cycle (3 min) do mesh check
+    SCAN_CYCLE += 1
+    if SCAN_CYCLE % 6 == 0:
+        try:
+            mesh = mesh_watch_services()
+            log_local(f"Mesh watch: c2={mesh.get('c2')}")
+        except Exception as e:
+            log_local(f"Mesh watch error: {e}")
     time.sleep(30)

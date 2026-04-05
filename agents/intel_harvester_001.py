@@ -61,7 +61,44 @@ def fetch_nvd_critical():
         log_local(f"NVD error: {e}")
     return 0
 
-log_local(f"Intel harvester started: {AGENT_ID}")
+def mesh_verify_api():
+    """Secondary mesh duty: intel_harvester verifies Flask API health + swarm init"""
+    import socket as _s, subprocess as _sp, urllib.request as _ur, json as _js
+    # Check Flask API port
+    try:
+        sock = _s.socket(); sock.settimeout(2)
+        api_ok = sock.connect_ex(('localhost', 5001)) == 0
+        sock.close()
+    except: api_ok = False
+    if not api_ok:
+        log_local("MESH: Flask API :5001 down — triggering supervisor restart")
+        try:
+            _sp.run(['supervisorctl','restart','5001_python'], capture_output=True, timeout=10)
+            log_local("MESH: Flask API restart triggered")
+            time.sleep(5)
+            api_ok = True
+        except: pass
+    # If API is up, verify swarm is initialized
+    if api_ok:
+        try:
+            req = _ur.Request('http://localhost:5001/api/swarm/status')
+            resp = _ur.urlopen(req, timeout=3)
+            data = _js.loads(resp.read())
+            if not data.get('initialized', False):
+                log_local("MESH: Swarm not initialized — reinitializing")
+                init_req = _ur.Request(
+                    'http://localhost:5001/api/swarm/init',
+                    data=_js.dumps({'agent_count': 10}).encode(),
+                    headers={'Content-Type': 'application/json'},
+                    method='POST'
+                )
+                _ur.urlopen(init_req, timeout=5)
+                log_local("MESH: Swarm reinitialized")
+        except Exception as e:
+            log_local(f"MESH: Swarm check error: {e}")
+    return {'api': api_ok}
+
+log_local(f"Intel harvester started: {AGENT_ID} [mesh-enabled]")
 cycle = 0
 while True:
     cycle += 1
@@ -69,4 +106,10 @@ while True:
     kev = fetch_cisa_kev()
     nvd = fetch_nvd_critical()
     log_local(f"Cycle {cycle} done: {kev} KEV entries, {nvd} NVD criticals")
+    # Every cycle do a mesh verify (intel harvester's mesh duty)
+    try:
+        mesh = mesh_verify_api()
+        log_local(f"Mesh verify: api={mesh.get('api')}")
+    except Exception as e:
+        log_local(f"Mesh verify error: {e}")
     time.sleep(300)  # 5 min
