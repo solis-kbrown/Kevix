@@ -1,0 +1,16 @@
+{
+  "agent_id": "vnc_agent_127_0_0_1_5901_1775411552",
+  "type": "vnc_agent",
+  "target": "127.0.0.1:5901",
+  "method": "vnc_probe",
+  "success": true,
+  "data": {
+    "banner": "RFB 003.008",
+    "security_types": [
+      2
+    ],
+    "requires_auth": true,
+    "novnc_accessible": true,
+    "novnc_url": "http://127.0.0.1:6080"
+  }
+}

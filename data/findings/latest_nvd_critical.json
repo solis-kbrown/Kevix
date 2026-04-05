@@ -1,0 +1,127 @@
+{
+  "source": "NVD",
+  "pulled_at": "2026-04-05T10:53:41.138411",
+  "total_critical_30days": 370,
+  "vulnerabilities": [
+    {
+      "cve_id": "CVE-2018-25187",
+      "cvss": 8.2,
+      "published": "2026-03-06",
+      "description": "Tina4 Stack 1.0.3 contains multiple vulnerabilities allowing unauthenticated attackers to access sensitive database files and execute SQL injection attacks. Attackers can directly request the kim.db database file to retrieve user credentials and password hashes, or inject SQL code through the menu e"
+    },
+    {
+      "cve_id": "CVE-2018-25199",
+      "cvss": 8.2,
+      "published": "2026-03-06",
+      "description": "OOP CMS BLOG 1.0 contains SQL injection vulnerabilities that allow unauthenticated attackers to execute arbitrary SQL queries by injecting malicious code through multiple parameters. Attackers can inject SQL commands via the search parameter in search.php, pageid parameter in page.php, and id parame"
+    },
+    {
+      "cve_id": "CVE-2026-29075",
+      "cvss": 8.3,
+      "published": "2026-03-06",
+      "description": "Mesa is an open-source Python library for agent-based modeling, simulating complex systems and exploring emergent behaviors. In version 3.5.0 and prior, checking out of untrusted code in benchmarks.yml workflow may lead to code execution in privileged runner. This issue has been patched via commit c"
+    },
+    {
+      "cve_id": "CVE-2026-28514",
+      "cvss": 9.8,
+      "published": "2026-03-06",
+      "description": "Rocket.Chat is an open-source, secure, fully customizable communications platform. Prior to versions 7.8.6, 7.9.8, 7.10.7, 7.11.4, 7.12.4, 7.13.3, and 8.0.0, a critical authentication bypass vulnerability exists in Rocket.Chat's account service used in the ddp-streamer micro service that allows an a"
+    },
+    {
+      "cve_id": "CVE-2026-30831",
+      "cvss": 9.8,
+      "published": "2026-03-06",
+      "description": "Rocket.Chat is an open-source, secure, fully customizable communications platform. Prior to versions 7.10.8, 7.11.5, 7.12.5, 7.13.4, 8.0.2, 8.1.1, and 8.2.0, authentication vulnerabilities exist in Rocket.Chat's enterprise DDP Streamer service. The Account.login method exposed through the DDP Stream"
+    },
+    {
+      "cve_id": "CVE-2026-25070",
+      "cvss": 9.8,
+      "published": "2026-03-07",
+      "description": "XikeStor SKS8310-8X Network Switch firmware versions 1.04.B07 and prior contain an OS command injection vulnerability in the /goform/PingTestSet endpoint that allows unauthenticated remote attackers to execute arbitrary operating system commands. Attackers can inject malicious commands through the d"
+    },
+    {
+      "cve_id": "CVE-2026-25072",
+      "cvss": 9.8,
+      "published": "2026-03-07",
+      "description": "XikeStor SKS8310-8X Network Switch firmware versions 1.04.B07 and prior contain a predictable session identifier vulnerability in the /goform/SetLogin endpoint that allows remote attackers to hijack authenticated sessions. Attackers can predict session identifiers using insufficiently random cookie "
+    },
+    {
+      "cve_id": "CVE-2026-30821",
+      "cvss": 9.8,
+      "published": "2026-03-07",
+      "description": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.0.13, the /api/v1/attachments/:chatflowId/:chatId endpoint is listed in WHITELIST_URLS, allowing unauthenticated access to the file upload API. While the server validates uploads based on the "
+    },
+    {
+      "cve_id": "CVE-2026-30824",
+      "cvss": 9.8,
+      "published": "2026-03-07",
+      "description": "Flowise is a drag & drop user interface to build a customized large language model flow. Prior to version 3.0.13, the NVIDIA NIM router (/api/v1/nvidia-nim/*) is whitelisted in the global authentication middleware, allowing unauthenticated access to privileged container management and token generati"
+    },
+    {
+      "cve_id": "CVE-2026-29067",
+      "cvss": 8.1,
+      "published": "2026-03-07",
+      "description": "ZITADEL is an open source identity management platform. From version 4.0.0-rc.1 to 4.7.0, a potential vulnerability exists in ZITADEL's password reset mechanism in login V2. ZITADEL utilizes the Forwarded or X-Forwarded-Host header from incoming requests to construct the URL for the password reset c"
+    },
+    {
+      "cve_id": "CVE-2026-29186",
+      "cvss": 7.7,
+      "published": "2026-03-07",
+      "description": "Backstage is an open framework for building developer portals. Prior to version 1.14.3, this is a configuration bypass vulnerability that enables arbitrary code execution. The @backstage/plugin-techdocs-node package uses an allowlist to filter dangerous MkDocs configuration keys during the documenta"
+    },
+    {
+      "cve_id": "CVE-2026-28678",
+      "cvss": 8.1,
+      "published": "2026-03-07",
+      "description": "DSA Study Hub is an interactive educational web application. Prior to commit d527fba, the user authentication system in server/routes/auth.js was found to be vulnerable to Insufficiently Protected Credentials. Authentication tokens (JWTs) were stored in HTTP cookies without cryptographic protection "
+    },
+    {
+      "cve_id": "CVE-2026-30860",
+      "cvss": 9.9,
+      "published": "2026-03-07",
+      "description": "WeKnora is an LLM-powered framework designed for deep document understanding and semantic retrieval. Prior to version 0.2.12, a remote code execution (RCE) vulnerability exists in the application's database query functionality. The validation system fails to recursively inspect child nodes within Po"
+    },
+    {
+      "cve_id": "CVE-2026-30863",
+      "cvss": 9.8,
+      "published": "2026-03-07",
+      "description": "Parse Server is an open source backend that can be deployed to any infrastructure that can run Node.js. Prior to versions 8.6.10 and 9.5.0-alpha.11, the Google, Apple, and Facebook authentication adapters use JWT verification to validate identity tokens. When the adapter's audience configuration opt"
+    },
+    {
+      "cve_id": "CVE-2026-30909",
+      "cvss": 9.8,
+      "published": "2026-03-08",
+      "description": "Crypt::NaCl::Sodium versions through 2.002 for Perl has potential integer overflows.\n\nbin2hex, encrypt, aes256gcm_encrypt_afternm and seal functions do not check that output size will be less than SIZE_MAX, which could lead to integer wraparound causing an undersized output buffer.\n\nEncountering thi"
+    },
+    {
+      "cve_id": "CVE-2026-3696",
+      "cvss": 7.3,
+      "published": "2026-03-08",
+      "description": "A vulnerability was found in Totolink N300RH 6..1c.1353_B20190305. The affected element is the function setWiFiWpsConfig of the file /cgi-bin/cstecgi.cgi of the component CGI Handler. Performing a manipulation results in os command injection. The attack can be initiated remotely. The exploit has bee"
+    },
+    {
+      "cve_id": "CVE-2026-3703",
+      "cvss": 9.8,
+      "published": "2026-03-08",
+      "description": "A flaw has been found in Wavlink NU516U1 251208. This affects the function sub_401A10 of the file /cgi-bin/login.cgi. Executing a manipulation of the argument ipaddr can lead to out-of-bounds write. The attack may be performed from remote. The exploit has been published and may be used. Upgrading th"
+    },
+    {
+      "cve_id": "CVE-2026-3705",
+      "cvss": 7.3,
+      "published": "2026-03-08",
+      "description": "A vulnerability was found in code-projects Simple Flight Ticket Booking System 1.0. This issue affects some unknown processing of the file /Adminsearch.php. The manipulation of the argument flightno results in sql injection. It is possible to launch the attack remotely. The exploit has been made pub"
+    },
+    {
+      "cve_id": "CVE-2026-3708",
+      "cvss": 7.3,
+      "published": "2026-03-08",
+      "description": "A security flaw has been discovered in code-projects Simple Flight Ticket Booking System 1.0. The impacted element is an unknown function of the file /login.php. Performing a manipulation of the argument Username results in sql injection. The attack may be initiated remotely. The exploit has been re"
+    },
+    {
+      "cve_id": "CVE-2026-3709",
+      "cvss": 7.3,
+      "published": "2026-03-08",
+      "description": "A weakness has been identified in code-projects Simple Flight Ticket Booking System 1.0. This affects an unknown function of the file /register.php. Executing a manipulation of the argument Username can lead to sql injection. The attack may be launched remotely. The exploit has been made available t"
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "snapshot_id": "swarm_persist",
+  "timestamp": "2026-04-05T09:12:24.958093",
+  "agent_states": {
+    "leader": "rp0",
+    "count": 3
+  },
+  "config_state": {},
+  "operation_state": {},
+  "metadata": {}
+}

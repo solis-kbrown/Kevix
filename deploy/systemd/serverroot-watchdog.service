@@ -1,0 +1,17 @@
+[Unit]
+Description=ServerRoot.net Watchdog & Auto-Recovery
+After=network.target serverroot-api.service serverroot-ui.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/serverroot
+ExecStart=/usr/bin/python3 automation/watchdog.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/serverroot/watchdog.log
+StandardError=append:/var/log/serverroot/watchdog.log
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

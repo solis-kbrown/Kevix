@@ -1,0 +1,16 @@
+{
+  "agent_id": "vnc_agent_172_28_137_134_5901_1775411553",
+  "type": "vnc_agent",
+  "target": "172.28.137.134:5901",
+  "method": "vnc_probe",
+  "success": true,
+  "data": {
+    "banner": "RFB 003.008",
+    "security_types": [
+      2
+    ],
+    "requires_auth": true,
+    "novnc_accessible": true,
+    "novnc_url": "http://172.28.137.134:6080"
+  }
+}

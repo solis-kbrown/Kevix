@@ -1,0 +1,17 @@
+[Unit]
+Description=ServerRoot.net C2 Server
+After=network.target serverroot-api.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/serverroot
+ExecStart=/usr/bin/python3 run_c2_server.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/serverroot/c2.log
+StandardError=append:/var/log/serverroot/c2.log
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,10 @@
+{
+  "snapshot_id": "snap2",
+  "timestamp": "2026-04-05T09:12:24.952514",
+  "agent_states": {
+    "x": 1
+  },
+  "config_state": {},
+  "operation_state": {},
+  "metadata": {}
+}

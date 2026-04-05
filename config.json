@@ -1,0 +1,81 @@
+{
+  "c2": {
+    "host": "0.0.0.0",
+    "port": 8443,
+    "max_connections": 100
+  },
+  "scanner": {
+    "default_ports": "21,22,23,25,53,80,110,111,135,139,143,443,445,993,995,1723,3389,5900,8080,8443,8888",
+    "scan_timeout": 300,
+    "max_hosts_per_scan": 512,
+    "deep_scan_enabled": true,
+    "deep_scan_timeout": 600,
+    "ai_confidence_threshold": 0.7
+  },
+  "ai": {
+    "enabled": true,
+    "openrouter_api_key": "",
+    "model": "anthropic/claude-3.5-sonnet",
+    "temperature": 0.3,
+    "max_tokens": 4000,
+    "enable_exploit_generation": true,
+    "enable_vulnerability_analysis": true,
+    "timeout": 300,
+    "max_retries": 3
+  },
+  "exploitation": {
+    "auto_exploit": false,
+    "max_targets": null,
+    "exploit_timeout": 60,
+    "verify_success": true,
+    "deploy_agent": true,
+    "enable_intelligent_engine": true,
+    "max_exploit_attempts": 3,
+    "search_exploit_databases": true
+  },
+  "agent": {
+    "sleep_time": 30,
+    "heartbeat_interval": 60,
+    "persistence": true,
+    "stealth_mode": false,
+    "enable_propagation": false,
+    "max_propagation_depth": 2,
+    "intelligence_sharing": true,
+    "discovery_enabled": true
+  },
+  "detection": {
+    "banner_grabbing": true,
+    "http_fingerprinting": true,
+    "service_enumeration": true,
+    "misconfiguration_detection": true,
+    "default_credential_detection": true,
+    "cve_matching": true
+  },
+  "recorder": {
+    "db_path": "data/recorder.db",
+    "record_all_attempts": true,
+    "capture_evidence": true,
+    "chain_of_custody": true,
+    "export_format": "json"
+  },
+  "database": {
+    "intel_db": "data/intel.db",
+    "c2_db": "data/c2_database.db",
+    "backup_enabled": true,
+    "backup_interval": 3600,
+    "recorder_db_path": "data/recorder.db"
+  },
+  "logging": {
+    "level": "INFO",
+    "log_dir": "logs",
+    "log_to_file": true,
+    "log_to_console": true
+  },
+  "reporting": {
+    "auto_generate": true,
+    "include_poc": true,
+    "format": "json",
+    "generate_access_reports": true,
+    "export_session_data": true
+  }
+}

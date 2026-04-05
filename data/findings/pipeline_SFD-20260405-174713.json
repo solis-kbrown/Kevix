@@ -1,0 +1,51 @@
+{
+  "run_id": "SFD-20260405-174713",
+  "start_time": "2026-04-05T17:47:13.659347",
+  "targets_scanned": [
+    {
+      "ip": "127.0.0.1",
+      "open_ports": 8,
+      "ports": [
+        5001,
+        2222,
+        5901,
+        6080,
+        3002,
+        8080,
+        22,
+        8443
+      ]
+    },
+    {
+      "ip": "172.28.137.134",
+      "open_ports": 7,
+      "ports": [
+        5901,
+        22,
+        3002,
+        6080,
+        5001,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "172.28.0.1",
+      "open_ports": 0,
+      "ports": []
+    }
+  ],
+  "vulnerabilities_found": [],
+  "agents_deployed": [],
+  "summary": {
+    "run_id": "SFD-20260405-174713",
+    "targets_scanned": 3,
+    "total_open_ports": 15,
+    "vulnerabilities_found": 0,
+    "auto_exploitable": 0,
+    "agents_deployed": 0,
+    "successful_deployments": 0,
+    "failed_deployments": 0
+  },
+  "end_time": "2026-04-05T17:47:29.697816"
+}

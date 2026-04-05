@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ServerRoot.net — Network Diagram & Stack</title>
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --surface: #111827;
+    --surface2: #1a2236;
+    --border: #1e3a5f;
+    --accent: #00d4ff;
+    --accent2: #7c3aed;
+    --accent3: #10b981;
+    --accent4: #f59e0b;
+    --danger: #ef4444;
+    --text: #e2e8f0;
+    --text-muted: #64748b;
+    --text-dim: #94a3b8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, monospace; min-height: 100vh; }
+  
+  header { background: linear-gradient(135deg, #0a0e1a 0%, #111827 50%, #0d1b2a 100%);
+    border-bottom: 1px solid var(--border); padding: 24px 40px; display: flex; align-items: center; gap: 16px; }
+  header .logo { font-size: 28px; font-weight: 900; color: var(--accent); letter-spacing: 2px; }
+  header .subtitle { color: var(--text-dim); font-size: 14px; }
+  header .badge { background: var(--accent3); color: #000; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-left: auto; }
+
+  nav { display: flex; gap: 0; background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 40px; overflow-x: auto; }
+  nav a { padding: 14px 20px; color: var(--text-dim); text-decoration: none; font-size: 13px; font-weight: 500; border-bottom: 2px solid transparent; white-space: nowrap; cursor: pointer; }
+  nav a:hover, nav a.active { color: var(--accent); border-bottom-color: var(--accent); }
+  
+  .page { display: none; padding: 32px 40px; max-width: 1400px; margin: 0 auto; }
+  .page.active { display: block; }
+  
+  h2 { font-size: 22px; color: var(--accent); margin-bottom: 24px; display: flex; align-items: center; gap: 10px; }
+  h3 { font-size: 16px; color: var(--text); margin-bottom: 12px; }
+  
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .grid4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 16px; }
+  @media(max-width: 900px) { .grid2,.grid3,.grid4 { grid-template-columns: 1fr; } }
+  
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .card.accent { border-color: var(--accent); }
+  .card.success { border-color: var(--accent3); }
+  .card.warning { border-color: var(--accent4); }
+  .card.danger { border-color: var(--danger); }
+  .card.purple { border-color: var(--accent2); }
+  
+  .stat { text-align: center; }
+  .stat .val { font-size: 36px; font-weight: 800; color: var(--accent); }
+  .stat .val.green { color: var(--accent3); }
+  .stat .val.purple { color: var(--accent2); }
+  .stat .val.orange { color: var(--accent4); }
+  .stat .lbl { font-size: 12px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Network Diagram */
+  .net-diagram { background: var(--surface2); border: 1px solid var(--border); border-radius: 16px; padding: 40px; margin-bottom: 24px; overflow-x: auto; }
+  .net-diagram svg { max-width: 100%; }
+  
+  /* Topology nodes */
+  .topo { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .topo-row { display: flex; align-items: center; justify-content: center; gap: 40px; margin: 10px 0; }
+  .node { background: var(--surface2); border: 2px solid var(--border); border-radius: 12px; padding: 14px 20px; text-align: center; min-width: 140px; position: relative; }
+  .node.internet { border-color: var(--accent4); background: rgba(245,158,11,0.08); }
+  .node.dns { border-color: var(--accent); background: rgba(0,212,255,0.08); }
+  .node.vm1 { border-color: var(--accent3); background: rgba(16,185,129,0.08); }
+  .node.vm2 { border-color: var(--accent2); background: rgba(124,58,237,0.08); }
+  .node.client { border-color: var(--text-muted); background: rgba(100,116,139,0.08); }
+  .node.service { border-color: var(--border); background: var(--surface); min-width: 120px; padding: 10px 14px; }
+  .node-icon { font-size: 28px; margin-bottom: 6px; }
+  .node-label { font-size: 13px; font-weight: 700; color: var(--text); }
+  .node-sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .node-ip { font-size: 11px; color: var(--accent); font-family: monospace; margin-top: 4px; }
+  
+  .arrow-down { text-align: center; color: var(--accent); font-size: 20px; line-height: 1; }
+  .arrow-lr { color: var(--accent2); font-size: 20px; }
+  .connector { width: 2px; height: 30px; background: var(--accent); margin: 0 auto; }
+  .connector.purple { background: var(--accent2); }
+  .connector.green { background: var(--accent3); }
+  
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-top: 10px; }
+  .svc-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 8px; text-align: center; }
+  .svc-chip .port { font-size: 13px; font-weight: 700; color: var(--accent); font-family: monospace; }
+  .svc-chip .name { font-size: 10px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Stack table */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--surface2); color: var(--text-muted); padding: 10px 14px; text-align: left; font-size: 11px; text-transform: uppercase; letter-spacing: 1px; border-bottom: 1px solid var(--border); }
+  td { padding: 11px 14px; border-bottom: 1px solid rgba(30,58,95,0.5); vertical-align: top; }
+  tr:hover td { background: rgba(0,212,255,0.03); }
+  .tag { display: inline-block; background: rgba(0,212,255,0.1); color: var(--accent); border-radius: 4px; padding: 2px 8px; font-size: 11px; font-weight: 600; margin: 2px; }
+  .tag.green { background: rgba(16,185,129,0.1); color: var(--accent3); }
+  .tag.purple { background: rgba(124,58,237,0.1); color: var(--accent2); }
+  .tag.orange { background: rgba(245,158,11,0.1); color: var(--accent4); }
+  .tag.red { background: rgba(239,68,68,0.1); color: var(--danger); }
+
+  .status-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+  .status-dot.green { background: var(--accent3); box-shadow: 0 0 6px var(--accent3); }
+  .status-dot.yellow { background: var(--accent4); }
+  .status-dot.red { background: var(--danger); }
+
+  code { background: rgba(0,212,255,0.08); color: var(--accent); padding: 2px 6px; border-radius: 4px; font-family: monospace; font-size: 12px; }
+
+  .module-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 8px; }
+  .module-chip { background: var(--surface2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; display: flex; align-items: center; gap: 8px; }
+  .module-chip .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent3); flex-shrink: 0; box-shadow: 0 0 6px var(--accent3); }
+  .module-chip .mname { font-size: 12px; color: var(--text); font-family: monospace; }
+  
+  .flow { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+  .flow-step { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 12px; font-size: 12px; color: var(--text); }
+  .flow-arrow { color: var(--accent); font-size: 16px; }
+  
+  .progress-bar { background: var(--surface2); border-radius: 4px; height: 6px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent3), var(--accent)); }
+</style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<header>
+  <div>
+    <div class="logo">⚡ SERVERROOT.NET</div>
+    <div class="subtitle">AI-Powered Security Operations Platform — v2.0.0-Enterprise</div>
+  </div>
+  <div class="badge">✅ PRODUCTION READY</div>
+</header>
+
+<nav>
+  <a class="active" onclick="showPage('network')">🌐 Network Diagram</a>
+  <a onclick="showPage('stack')">📦 Stack</a>
+  <a onclick="showPage('modules')">🔧 Modules</a>
+  <a onclick="showPage('ports')">🔌 Ports & Services</a>
+  <a onclick="showPage('automation')">⚙️ Automation</a>
+  <a onclick="showPage('openrouter')">🧠 OpenRouter AI</a>
+</nav>
+
+<!-- NETWORK DIAGRAM PAGE -->
+<div class="page active" id="page-network">
+  <h2>🌐 Network Topology</h2>
+  
+  <div class="net-diagram">
+    <div class="topo">
+
+      <!-- Internet -->
+      <div class="topo-row">
+        <div class="node internet" style="min-width:300px">
+          <div class="node-icon">🌐</div>
+          <div class="node-label">Internet / Users</div>
+          <div class="node-sub">Clients, Operators, Targets</div>
+        </div>
+      </div>
+      <div class="arrow-down">↓</div>
+
+      <!-- DNS -->
+      <div class="topo-row">
+        <div class="node dns" style="min-width:340px">
+          <div class="node-icon">🔍</div>
+          <div class="node-label">DNS: serverroot.net</div>
+          <div class="node-sub">A → VM1 &nbsp;|&nbsp; A → VM2 (Round-robin HA)</div>
+          <div class="node-ip">MX → mail.serverroot.net (kevix@serverroot.net)</div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:center;gap:120px;margin:10px 0">
+        <div class="connector green"></div>
+        <div class="connector purple"></div>
+      </div>
+
+      <!-- VM1 and VM2 -->
+      <div class="topo-row" style="align-items:flex-start">
+
+        <!-- VM1 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div class="node vm1" style="min-width:260px">
+            <div class="node-icon">🖥️</div>
+            <div class="node-label" style="color:#10b981">VM1 — PRIMARY</div>
+            <div class="node-sub">Business Tier — x86_64</div>
+            <div class="node-ip">IP: <VM1_IP> · eth0</div>
+          </div>
+          <div class="services-grid" style="min-width:260px">
+            <div class="svc-chip"><div class="port">:80</div><div class="name">Nginx HTTP</div></div>
+            <div class="svc-chip"><div class="port">:443</div><div class="name">Nginx HTTPS</div></div>
+            <div class="svc-chip"><div class="port" style="color:#10b981">:5001</div><div class="name">REST API</div></div>
+            <div class="svc-chip"><div class="port">:8443</div><div class="name">C2 Server</div></div>
+            <div class="svc-chip"><div class="port">:3000</div><div class="name">Next.js UI</div></div>
+            <div class="svc-chip"><div class="port">:22</div><div class="name">SSH</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);text-align:center">
+            🐍 Python 3.11 · Node 20 · SQLite
+          </div>
+        </div>
+
+        <!-- Sync arrow -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;margin-top:40px">
+          <div class="arrow-lr">⟺</div>
+          <div style="font-size:10px;color:var(--text-muted);text-align:center">State Sync<br>rsync :22</div>
+        </div>
+
+        <!-- VM2 -->
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+          <div class="node vm2" style="min-width:260px">
+            <div class="node-icon">🖥️</div>
+            <div class="node-label" style="color:#7c3aed">VM2 — SECONDARY</div>
+            <div class="node-sub">Business Tier — x86_64</div>
+            <div class="node-ip">IP: <VM2_IP> · eth0</div>
+          </div>
+          <div class="services-grid" style="min-width:260px">
+            <div class="svc-chip"><div class="port">:80</div><div class="name">Nginx HTTP</div></div>
+            <div class="svc-chip"><div class="port">:443</div><div class="name">Nginx HTTPS</div></div>
+            <div class="svc-chip"><div class="port" style="color:#7c3aed">:5001</div><div class="name">REST API</div></div>
+            <div class="svc-chip"><div class="port">:8443</div><div class="name">C2 Server</div></div>
+            <div class="svc-chip"><div class="port">:3000</div><div class="name">Next.js UI</div></div>
+            <div class="svc-chip"><div class="port">:22</div><div class="name">SSH</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);text-align:center">
+            🐍 Python 3.11 · Node 20 · SQLite
+          </div>
+        </div>
+
+      </div>
+
+      <div style="display:flex;justify-content:center;gap:40px;margin:10px 0">
+        <div class="connector green"></div>
+        <div class="connector purple"></div>
+      </div>
+
+      <!-- Shared Data -->
+      <div class="topo-row">
+        <div class="node" style="border-color:#f59e0b;background:rgba(245,158,11,0.06);min-width:340px">
+          <div class="node-icon">💾</div>
+          <div class="node-label">Shared State (Optional NFS/S3)</div>
+          <div class="node-sub">data/snapshots · data/intel · data/recordings</div>
+        </div>
+      </div>
+
+      <div class="arrow-down">↕</div>
+
+      <!-- External Services -->
+      <div class="topo-row">
+        <div class="node" style="border-color:#7c3aed;background:rgba(124,58,237,0.08);min-width:380px">
+          <div class="node-icon">🧠</div>
+          <div class="node-label">OpenRouter API (External)</div>
+          <div class="node-sub">DeepSeek R1 · Claude Sonnet · GPT-4 · Gemini · +50 models</div>
+          <div class="node-ip">api.openrouter.ai — HTTPS :443</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Stats Row -->
+  <div class="grid4">
+    <div class="card stat accent"><div class="val">2</div><div class="lbl">VMs (HA)</div></div>
+    <div class="card stat success"><div class="val green">100%</div><div class="lbl">Tests Passing</div></div>
+    <div class="card stat"><div class="val purple">109</div><div class="lbl">Python Files</div></div>
+    <div class="card stat warning"><div class="val orange">18</div><div class="lbl">LOLBins</div></div>
+  </div>
+</div>
+
+<!-- STACK PAGE -->
+<div class="page" id="page-stack">
+  <h2>📦 Full Technology Stack</h2>
+
+  <div class="grid2" style="margin-bottom:20px">
+    <div class="card accent">
+      <h3>🐍 Backend (Python)</h3>
+      <table>
+        <tr><th>Component</th><th>Technology</th><th>Version</th></tr>
+        <tr><td>Runtime</td><td>CPython</td><td><span class="tag">3.11.14</span></td></tr>
+        <tr><td>Web Framework</td><td>Flask</td><td><span class="tag">3.0+</span></td></tr>
+        <tr><td>WebSocket</td><td>Flask-SocketIO</td><td><span class="tag">5.3+</span></td></tr>
+        <tr><td>CORS</td><td>Flask-CORS</td><td><span class="tag">6.0</span></td></tr>
+        <tr><td>HTTP Client</td><td>Requests + aiohttp</td><td><span class="tag green">Installed</span></td></tr>
+        <tr><td>Crypto</td><td>cryptography</td><td><span class="tag">46.0</span></td></tr>
+        <tr><td>SSH</td><td>Paramiko</td><td><span class="tag">4.0</span></td></tr>
+        <tr><td>Network Scan</td><td>python-nmap</td><td><span class="tag">0.7.1</span></td></tr>
+        <tr><td>System Monitor</td><td>psutil</td><td><span class="tag">7.2</span></td></tr>
+        <tr><td>Database</td><td>SQLite3 (built-in)</td><td><span class="tag green">Built-in</span></td></tr>
+        <tr><td>AI</td><td>OpenRouter (via requests)</td><td><span class="tag purple">Configurable</span></td></tr>
+      </table>
+    </div>
+    <div class="card success">
+      <h3>⚛️ Frontend (Next.js)</h3>
+      <table>
+        <tr><th>Component</th><th>Technology</th><th>Version</th></tr>
+        <tr><td>Runtime</td><td>Node.js</td><td><span class="tag">20.20.1</span></td></tr>
+        <tr><td>Framework</td><td>Next.js</td><td><span class="tag green">14+</span></td></tr>
+        <tr><td>UI Library</td><td>React</td><td><span class="tag green">18+</span></td></tr>
+        <tr><td>Styling</td><td>Tailwind CSS</td><td><span class="tag">3+</span></td></tr>
+        <tr><td>Charts</td><td>Recharts</td><td><span class="tag">2+</span></td></tr>
+        <tr><td>Icons</td><td>@heroicons/react</td><td><span class="tag">2+</span></td></tr>
+        <tr><td>HTTP</td><td>Axios</td><td><span class="tag">1+</span></td></tr>
+        <tr><td>WebSocket</td><td>socket.io-client</td><td><span class="tag">4+</span></td></tr>
+        <tr><td>Dates</td><td>date-fns</td><td><span class="tag">3+</span></td></tr>
+        <tr><td>Type Safety</td><td>TypeScript</td><td><span class="tag">5+</span></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid3">
+    <div class="card">
+      <h3>🏗️ Infrastructure</h3>
+      <table>
+        <tr><th>Layer</th><th>Tech</th></tr>
+        <tr><td>OS</td><td><code>Debian Linux 6.1</code></td></tr>
+        <tr><td>Reverse Proxy</td><td><code>Nginx</code></td></tr>
+        <tr><td>Process Mgr</td><td><code>Supervisor / systemd</code></td></tr>
+        <tr><td>VPN/Tunnel</td><td><code>Psiphon</code></td></tr>
+        <tr><td>VNC</td><td><code>x11vnc / noVNC</code></td></tr>
+        <tr><td>IDE</td><td><code>code-server (VS Code)</code></td></tr>
+        <tr><td>DB</td><td><code>SQLite (5 databases)</code></td></tr>
+      </table>
+    </div>
+    <div class="card purple">
+      <h3>🧠 AI Models (via OpenRouter)</h3>
+      <table>
+        <tr><th>Model</th><th>Use Case</th></tr>
+        <tr><td>DeepSeek R1</td><td><span class="tag purple">Exploit logic</span></td></tr>
+        <tr><td>Claude Sonnet</td><td><span class="tag purple">Analysis</span></td></tr>
+        <tr><td>GPT-4o</td><td><span class="tag purple">Research</span></td></tr>
+        <tr><td>Gemini 1.5</td><td><span class="tag purple">Recon</span></td></tr>
+        <tr><td>Llama 3.1</td><td><span class="tag purple">Fallback</span></td></tr>
+        <tr><td>Mistral</td><td><span class="tag purple">Fast tasks</span></td></tr>
+      </table>
+    </div>
+    <div class="card warning">
+      <h3>🔒 Security Stack</h3>
+      <table>
+        <tr><th>Layer</th><th>Implementation</th></tr>
+        <tr><td>Input Validation</td><td><code>InputValidator</code></td></tr>
+        <tr><td>Encryption</td><td><code>EncryptionManager</code></td></tr>
+        <tr><td>Circuit Breaker</td><td><code>CircuitBreaker</code></td></tr>
+        <tr><td>Rate Limiting</td><td><code>SafetyGuardrails</code></td></tr>
+        <tr><td>Error Tracking</td><td><code>ErrorTracker</code></td></tr>
+        <tr><td>Stealth Ops</td><td><code>18 LOLBins + MemFS</code></td></tr>
+        <tr><td>TLS (planned)</td><td><code>Let's Encrypt / Nginx</code></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MODULES PAGE -->
+<div class="page" id="page-modules">
+  <h2>🔧 Module Architecture (109 Python files)</h2>
+
+  <div style="display:flex;flex-direction:column;gap:20px">
+
+    <div class="card accent">
+      <h3>🎯 Entry Point</h3>
+      <div class="flow">
+        <div class="flow-step">iroperator.py<br><small>ServerRootOperator</small></div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">start_operation()</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">enable_stealth_mode()</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">autonomous_defense_campaign()</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-step">stop_operation()</div>
+      </div>
+    </div>
+
+    <div class="grid3">
+      <div class="card">
+        <h3>🕵️ Agent Layer (agent/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot"></div><div class="mname">enhanced_agent</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">autonomous_swarm_agent</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">ai_intelligence</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">ai_orchestrator</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">multi_vector_explorer</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">ai_strategy_engine</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">platform_detector</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">stealth_engine</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">swarm_coordinator</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">error_handler</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">performance_engine</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">reliability_engine</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">resource_manager</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">reporting_engine</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">security_hardening</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">persistence_helper</div></div>
+          <div class="module-chip"><div class="dot"></div><div class="mname">deployment_manager</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>💥 Exploit Layer (exploits/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">exploit_executor</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">intelligent_exploit_engine</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">aggressive_exploit_engine</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">failproof_engine</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">ai_assistant</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">vuln_intel</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">advanced_detection</div></div>
+          <div class="module-chip"><div class="dot" style="background:#ef4444"></div><div class="mname">comprehensive_recorder</div></div>
+        </div>
+        <h3 style="margin-top:14px">🎯 Platform Exploits (agent/exploits/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#f59e0b"></div><div class="mname">windows_exploits</div></div>
+          <div class="module-chip"><div class="dot" style="background:#f59e0b"></div><div class="mname">linux_exploits</div></div>
+          <div class="module-chip"><div class="dot" style="background:#f59e0b"></div><div class="mname">router_exploits</div></div>
+          <div class="module-chip"><div class="dot" style="background:#f59e0b"></div><div class="mname">vpn_exploits</div></div>
+          <div class="module-chip"><div class="dot" style="background:#f59e0b"></div><div class="mname">virtualization_exploits</div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>👻 Stealth Layer (stealth/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#7c3aed"></div><div class="mname">memory_operations</div></div>
+          <div class="module-chip"><div class="dot" style="background:#7c3aed"></div><div class="mname">lolbin_executor</div></div>
+          <div class="module-chip"><div class="dot" style="background:#7c3aed"></div><div class="mname">stealth_deployment</div></div>
+        </div>
+        <h3 style="margin-top:14px">🔬 Scanner (scanner/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#00d4ff"></div><div class="mname">network_scanner</div></div>
+          <div class="module-chip"><div class="dot" style="background:#00d4ff"></div><div class="mname">vulnerabilityScanner</div></div>
+        </div>
+        <h3 style="margin-top:14px">📡 C2 (c2/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#10b981"></div><div class="mname">c2/server.py</div></div>
+        </div>
+        <h3 style="margin-top:14px">🛡️ Guardrails (guardrails/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#10b981"></div><div class="mname">safety_guardrails</div></div>
+        </div>
+        <h3 style="margin-top:14px">🔬 Research (ai_research/)</h3>
+        <div class="module-list">
+          <div class="module-chip"><div class="dot" style="background:#7c3aed"></div><div class="mname">research_engine</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PORTS PAGE -->
+<div class="page" id="page-ports">
+  <h2>🔌 Ports & Services Map</h2>
+  <div class="grid2">
+    <div class="card">
+      <h3>Production Ports (VM)</h3>
+      <table>
+        <tr><th>Port</th><th>Service</th><th>Protocol</th><th>Notes</th></tr>
+        <tr><td><code>22</code></td><td>SSH</td><td>TCP</td><td><span class="tag green">Mgmt only</span></td></tr>
+        <tr><td><code>80</code></td><td>Nginx HTTP</td><td>TCP</td><td>Redirects to 443</td></tr>
+        <tr><td><code>443</code></td><td>Nginx HTTPS</td><td>TCP</td><td><span class="tag green">Public</span></td></tr>
+        <tr><td><code>3000</code></td><td>Next.js UI</td><td>TCP</td><td>Behind Nginx</td></tr>
+        <tr><td><code>5001</code></td><td>Flask REST API</td><td>TCP</td><td><span class="tag green">Core API</span></td></tr>
+        <tr><td><code>8443</code></td><td>C2 Server</td><td>TCP</td><td>Agent comms</td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Dev Environment Ports (Sandbox)</h3>
+      <table>
+        <tr><th>Port</th><th>Service</th><th>Process</th></tr>
+        <tr><td><code>5001</code></td><td>API Server</td><td>run_api_server.py</td></tr>
+        <tr><td><code>5000</code></td><td>Nginx proxy</td><td>nginx</td></tr>
+        <tr><td><code>3222</code></td><td>Nginx proxy</td><td>nginx</td></tr>
+        <tr><td><code>4000</code></td><td>code-server (IDE)</td><td>node</td></tr>
+        <tr><td><code>5901</code></td><td>VNC</td><td>x11vnc</td></tr>
+        <tr><td><code>6080</code></td><td>noVNC (browser)</td><td>websockify</td></tr>
+        <tr><td><code>8002</code></td><td>Browser API</td><td>browser_api.py</td></tr>
+        <tr><td><code>8080</code></td><td>App server</td><td>server.py</td></tr>
+        <tr><td><code>18080/81</code></td><td>Psiphon tunnel</td><td>psiphon</td></tr>
+      </table>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Firewall Rules (UFW)</h3>
+    <pre style="background:var(--surface2);padding:16px;border-radius:8px;font-size:12px;color:var(--accent3);overflow-x:auto">
+# Required open ports
+ufw allow 22/tcp    # SSH management
+ufw allow 80/tcp    # HTTP (redirect to HTTPS)
+ufw allow 443/tcp   # HTTPS public traffic
+ufw allow 5001/tcp  # API server (may proxy via nginx)
+ufw allow 8443/tcp  # C2 server (agent communications)
+
+# Between VMs only (for sync)
+ufw allow from <VM2_IP> to any port 22  # Peer sync via rsync
+    </pre>
+  </div>
+</div>
+
+<!-- AUTOMATION PAGE -->
+<div class="page" id="page-automation">
+  <h2>⚙️ Automation & Maintenance</h2>
+  <div class="grid3">
+    <div class="card accent">
+      <h3>🐕 Watchdog (automation/watchdog.py)</h3>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">Monitors and auto-restarts all services every 15 seconds</p>
+      <ul style="font-size:12px;color:var(--text-muted);list-style:none;display:flex;flex-direction:column;gap:6px">
+        <li>✓ HTTP health checks on API endpoints</li>
+        <li>✓ Process alive checks</li>
+        <li>✓ Auto-restart with backoff (max 10x)</li>
+        <li>✓ CPU/RAM/disk threshold alerts</li>
+        <li>✓ Log rotation (>50MB)</li>
+        <li>✓ JSON status output</li>
+      </ul>
+      <code style="display:block;margin-top:12px">python3 automation/watchdog.py</code>
+    </div>
+    <div class="card success">
+      <h3>📅 Scheduler (automation/scheduler.py)</h3>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">8 scheduled recurring maintenance tasks</p>
+      <table style="font-size:12px">
+        <tr><td>Health report</td><td><span class="tag green">every 60s</span></td></tr>
+        <tr><td>Backup data</td><td><span class="tag">every 1h</span></td></tr>
+        <tr><td>Sync to peer</td><td><span class="tag">every 5min</span></td></tr>
+        <tr><td>Update intel DB</td><td><span class="tag">every 2h</span></td></tr>
+        <tr><td>Rotate session logs</td><td><span class="tag">every 1h</span></td></tr>
+        <tr><td>Cleanup old logs</td><td><span class="tag">daily</span></td></tr>
+        <tr><td>Cleanup old scans</td><td><span class="tag">daily</span></td></tr>
+      </table>
+    </div>
+    <div class="card warning">
+      <h3>🩹 Self-Healer (automation/self_healer.py)</h3>
+      <p style="font-size:13px;color:var(--text-dim);margin-bottom:12px">7 automated healing conditions, runs every 30s</p>
+      <ul style="font-size:12px;color:var(--text-muted);list-style:none;display:flex;flex-direction:column;gap:6px">
+        <li>✓ Missing directories → auto-create</li>
+        <li>✓ Corrupt SQLite DBs → backup & rebuild</li>
+        <li>✓ API unresponsive → auto-restart</li>
+        <li>✓ Disk full → purge .pyc + old backups</li>
+        <li>✓ Memory high → GC + log top procs</li>
+        <li>✓ Oversized logs → rotate</li>
+        <li>✓ Missing config → recreate defaults</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Cron Schedule (auto-installed by deploy/setup_vm.sh)</h3>
+    <pre style="background:var(--surface2);padding:16px;border-radius:8px;font-size:12px;color:var(--accent3)">
+*/5  * * * *  python3 automation/self_healer.py   # Health/heal every 5min
+0    2 * * *  scheduler.py --task backup_data     # Daily backup 2am
+0    3 * * 0  scheduler.py --task cleanup_logs    # Weekly cleanup 3am Sun
+0    * * * *  scheduler.py --task health_report   # Hourly health report
+*/10 * * * *  scheduler.py --task sync_to_peer    # Peer sync every 10min</pre>
+  </div>
+</div>
+
+<!-- OPENROUTER AI PAGE -->
+<div class="page" id="page-openrouter">
+  <h2>🧠 OpenRouter AI Integration</h2>
+  <div class="grid2">
+    <div class="card purple">
+      <h3>What an OpenRouter API Key Unlocks</h3>
+      <table>
+        <tr><th>Module</th><th>Without Key</th><th>With Key</th></tr>
+        <tr><td><code>AIExploitAssistant</code></td><td>Rule-based</td><td><span class="tag purple">LLM-powered exploits</span></td></tr>
+        <tr><td><code>IntelligentExploitEngine</code></td><td>Static DB lookup</td><td><span class="tag purple">Dynamic AI chaining</span></td></tr>
+        <tr><td><code>AIResearchEngine</code></td><td>Offline only</td><td><span class="tag purple">Live CVE research</span></td></tr>
+        <tr><td><code>AIOrchestrator</code></td><td>Degraded</td><td><span class="tag purple">Multi-model routing</span></td></tr>
+        <tr><td><code>MultiVectorExplorer</code></td><td>Single path</td><td><span class="tag purple">AI-guided multi-vector</span></td></tr>
+        <tr><td><code>AggressiveExploitEngine</code></td><td>Known exploits only</td><td><span class="tag purple">Zero-day search</span></td></tr>
+        <tr><td><code>AIStrategyEngine</code></td><td>Off</td><td><span class="tag purple">Full strategy planning</span></td></tr>
+        <tr><td>SuperNinja (me)</td><td>Static analysis</td><td><span class="tag purple">Real-time AI reasoning</span></td></tr>
+      </table>
+    </div>
+    <div class="card">
+      <h3>How to Get an OpenRouter Key</h3>
+      <ol style="font-size:13px;color:var(--text-dim);display:flex;flex-direction:column;gap:10px;padding-left:18px">
+        <li>Go to <strong style="color:var(--accent)">openrouter.ai</strong></li>
+        <li>Sign up / log in</li>
+        <li>Go to <strong>Keys</strong> → <strong>Create Key</strong></li>
+        <li>Name it <code>serverroot-prod</code></li>
+        <li>Add credits ($5–$20 for extensive use)</li>
+        <li>Copy the key (starts with <code>sk-or-v1-...</code>)</li>
+        <li>Add to <code>.env</code>: <code>OPENROUTER_API_KEY=sk-or-v1-...</code></li>
+        <li>Restart services: <code>bash deploy/start_all.sh</code></li>
+      </ol>
+      <div style="margin-top:16px;padding:12px;background:rgba(124,58,237,0.08);border-radius:8px;border:1px solid var(--accent2)">
+        <div style="font-size:12px;color:var(--text-muted)">💡 Cost estimate: ~$0.001–0.01 per AI operation. $10 credit = thousands of exploit analyses.</div>
+      </div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h3>Setting the API Key (once you have it)</h3>
+    <pre style="background:var(--surface2);padding:16px;border-radius:8px;font-size:12px;color:var(--accent3)">
+# On each VM, edit /opt/serverroot/.env:
+nano /opt/serverroot/.env
+
+# Add/update this line:
+OPENROUTER_API_KEY=sk-or-v1-your-key-here
+
+# Restart services to pick it up:
+systemctl restart serverroot-api
+# OR (dev environment):
+bash deploy/start_all.sh</pre>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
