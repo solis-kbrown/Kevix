@@ -1,0 +1,19 @@
+{
+  "cycle": 72,
+  "duration_s": 4.8,
+  "targets": [
+    "172.28.137.134",
+    "127.0.0.1",
+    "172.28.0.1",
+    "172.28.64.1",
+    "172.28.100.1",
+    "172.28.200.1"
+  ],
+  "hosts_with_open_ports": 2,
+  "vulnerabilities_found": 18,
+  "auto_exploitable": 10,
+  "agents_deployed_this_cycle": 10,
+  "total_deployed_all_time": 220,
+  "total_vulns_all_time": 1296,
+  "timestamp": "2026-04-05T21:24:24.618735"
+}

@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent_45_33_32_178_80_ADMIN-EXPOSED_1775431159",
+  "target": "45.33.32.178:80",
+  "vuln_id": "ADMIN-EXPOSED",
+  "deploy_time": "2026-04-05T23:19:19.103049",
+  "success": true,
+  "data": {
+    "status": 200,
+    "server": "Apache/2.4.25 (Debian)",
+    "content_length": 5467,
+    "title": "Log In &lsaquo; No Ego PH &#8212; WordPress"
+  }
+}

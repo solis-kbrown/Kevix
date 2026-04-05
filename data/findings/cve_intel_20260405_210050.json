@@ -1,0 +1,105 @@
+{
+  "timestamp": "2026-04-05T21:00:50.011065",
+  "cves": [
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-3502",
+      "description": "TrueConf Client contains a download of code without integrity check vulnerability. An attacker who is able to influence the update delivery path can substitute a tampered update payload. If the payloa",
+      "vendor": "TrueConf",
+      "product": "Client",
+      "date_added": "2026-04-02",
+      "due_date": "2026-04-16",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-5281",
+      "description": "Google Dawn contains an use-after-free vulnerability that could allow a remote attacker who had compromised the renderer process to execute arbitrary code via a crafted HTML page. This vulnerability c",
+      "vendor": "Google",
+      "product": "Dawn",
+      "date_added": "2026-04-01",
+      "due_date": "2026-04-15",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-3055",
+      "description": "Citrix NetScaler ADC (formerly Citrix ADC), NetScaler Gateway (formerly Citrix Gateway) and NetScaler ADC FIPS and NDcPP contain an out-of-bounds reads vulnerability when configured as a SAML IDP lead",
+      "vendor": "Citrix",
+      "product": "NetScaler",
+      "date_added": "2026-03-30",
+      "due_date": "2026-04-02",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-53521",
+      "description": "F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.",
+      "vendor": "F5",
+      "product": "BIG-IP",
+      "date_added": "2026-03-27",
+      "due_date": "2026-03-30",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-33634",
+      "description": "Aquasecurity Trivy contains an embedded malicious code vulnerability that could allow an attacker to gain access to everything in the CI/CD environment, including all tokens, SSH keys, cloud credentia",
+      "vendor": "Aquasecurity",
+      "product": "Trivy",
+      "date_added": "2026-03-26",
+      "due_date": "2026-04-09",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-33017",
+      "description": "Langflow contains a code injection vulnerability that could allow building public flows without requiring authentication.",
+      "vendor": "Langflow",
+      "product": "Langflow",
+      "date_added": "2026-03-25",
+      "due_date": "2026-04-08",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-32432",
+      "description": "Craft CMS contains a code injection vulnerability that allows a remote attacker to execute arbitrary code.",
+      "vendor": "Craft CMS",
+      "product": "Craft CMS",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-54068",
+      "description": "Laravel Livewire contain a code injection vulnerability that could allow unauthenticated attackers to achieve remote command execution in specific scenarios.",
+      "vendor": "Laravel",
+      "product": "Livewire",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-43510",
+      "description": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain an improper locking vulnerability that could allow a malicious application to cause unexpected changes in memory shared between processes.",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-43520",
+      "description": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain a classic buffer overflow vulnerability which could allow a malicious application to cause unexpected system termination or write kernel m",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    }
+  ]
+}

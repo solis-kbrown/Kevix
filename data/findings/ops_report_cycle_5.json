@@ -1,17 +1,17 @@
 {
   "cycle": 5,
-  "timestamp": "2026-04-05T11:12:52.149340",
-  "scan_duration_seconds": 101.33208918571472,
+  "timestamp": "2026-04-05T19:32:17.141926",
+  "scan_duration_seconds": 99.46660900115967,
   "swarm": {
-    "active_agents": 10,
-    "successful_operations": 274,
+    "active_agents": 40,
+    "successful_operations": 158,
     "targets_scanned": 0,
-    "total_agents": 10,
-    "total_operations": 357,
-    "uptime_seconds": 3929,
+    "total_agents": 40,
+    "total_operations": 199,
+    "uptime_seconds": 1185,
     "vulnerabilities_found": 0
   },
-  "cves_collected": 5,
+  "cves_collected": 20,
   "threat_feeds": [],
   "status": "operational"
 }

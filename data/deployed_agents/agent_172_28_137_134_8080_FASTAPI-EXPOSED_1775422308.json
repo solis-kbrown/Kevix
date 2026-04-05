@@ -1,0 +1,12 @@
+{
+  "agent_id": "agent_172_28_137_134_8080_FASTAPI-EXPOSED_1775422308",
+  "target": "172.28.137.134:8080",
+  "vuln_id": "FASTAPI-EXPOSED",
+  "deploy_time": "2026-04-05T20:51:48.434075",
+  "success": true,
+  "data": {
+    "api_paths": [
+      "/auth"
+    ]
+  }
+}

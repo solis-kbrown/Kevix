@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent_104_16_0_129_8443_HTTPS-ALT-OPEN_1775431378",
+  "target": "104.16.0.129:8443",
+  "vuln_id": "HTTPS-ALT-OPEN",
+  "deploy_time": "2026-04-05T23:22:58.083946",
+  "success": true,
+  "data": {
+    "status": 400,
+    "server": "cloudflare",
+    "content_length": 253,
+    "title": "400 The plain HTTP request was sent to HTTPS port"
+  }
+}

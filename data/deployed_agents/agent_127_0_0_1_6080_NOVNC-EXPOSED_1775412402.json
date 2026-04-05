@@ -1,0 +1,11 @@
+{
+  "agent_id": "agent_127_0_0_1_6080_NOVNC-EXPOSED_1775412402",
+  "target": "127.0.0.1:6080",
+  "vuln_id": "NOVNC-EXPOSED",
+  "deploy_time": "2026-04-05T18:06:42.710125",
+  "success": true,
+  "data": {
+    "vnc_banner": "RFB 003.008",
+    "novnc_url": "http://127.0.0.1:6080"
+  }
+}

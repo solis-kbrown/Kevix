@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent_45_33_32_216_80_PHPMYADMIN-OPEN_1775431248",
+  "target": "45.33.32.216:80",
+  "vuln_id": "PHPMYADMIN-OPEN",
+  "deploy_time": "2026-04-05T23:20:48.962427",
+  "success": true,
+  "data": {
+    "status": 200,
+    "server": "Apache/2.4.18 (Ubuntu)",
+    "content_length": 10333,
+    "title": "phpMyAdmin"
+  }
+}

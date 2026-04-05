@@ -1,0 +1,718 @@
+{
+  "cycle": 2,
+  "duration_s": 114.4,
+  "target_range": "['104.16.0.0/24', '104.17.0.0/24']",
+  "targets_generated": 60,
+  "live_hosts": 60,
+  "hosts_with_open_ports": 60,
+  "vulnerabilities_found": 120,
+  "auto_exploitable": 120,
+  "agents_deployed_this_cycle": 120,
+  "total_deployed_all_time": 121,
+  "total_vulns_all_time": 127,
+  "scan_results": [
+    {
+      "ip": "104.16.0.220",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.202",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.112",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.248",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.140",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.64",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.40",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.127",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.242",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.103",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.226",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.208",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.234",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.66",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.212",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.91",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.193",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.170",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.235",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.160",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.178",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.22",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.133",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.79",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.161",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.129",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.5",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.187",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.77",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.16.0.56",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.202",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.67",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.119",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.116",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.14",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.24",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.111",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.219",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.1",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.46",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.196",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.245",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.235",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.211",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.171",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.115",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.185",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.80",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.225",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.123",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.53",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.38",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.199",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.157",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.251",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.189",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.139",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.201",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.124",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    },
+    {
+      "ip": "104.17.0.178",
+      "ports": [
+        80,
+        443,
+        8080,
+        8443
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "host": "104.16.0.220",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.220",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.202",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.202",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.112",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.112",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.248",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.248",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.140",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.140",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.64",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.64",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.40",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.40",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.127",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.127",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.242",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.242",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.103",
+      "port": 8080,
+      "vuln_id": "HTTP-ALT-OPEN",
+      "description": "HTTP alternate port \u2014 potential admin panel",
+      "cvss": 5.5,
+      "auto_exploit": true
+    },
+    {
+      "host": "104.16.0.103",
+      "port": 8443,
+      "vuln_id": "HTTPS-ALT-OPEN",
+      "description": "HTTPS alternate port open",
+      "cvss": 5.0,
+      "auto_exploit": true
+    }
+  ],
+  "timestamp": "2026-04-05T23:22:58.416785"
+}

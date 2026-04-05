@@ -1,0 +1,319 @@
+{
+  "cycle": 1,
+  "duration_s": 71.1,
+  "target_range": "['45.33.32.0/24']",
+  "targets_generated": 30,
+  "live_hosts": 14,
+  "hosts_with_open_ports": 14,
+  "vulnerabilities_found": 33,
+  "auto_exploitable": 12,
+  "agents_deployed_this_cycle": 12,
+  "total_deployed_all_time": 12,
+  "total_vulns_all_time": 33,
+  "scan_results": [
+    {
+      "ip": "45.33.32.160",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.15",
+      "ports": [
+        22,
+        80,
+        443,
+        3306
+      ]
+    },
+    {
+      "ip": "45.33.32.220",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.128",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.178",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.147",
+      "ports": [
+        22,
+        80,
+        443,
+        3306
+      ]
+    },
+    {
+      "ip": "45.33.32.205",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.26",
+      "ports": [
+        80
+      ]
+    },
+    {
+      "ip": "45.33.32.52",
+      "ports": [
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.240",
+      "ports": [
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.45",
+      "ports": [
+        22,
+        53,
+        80,
+        110,
+        143,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.18",
+      "ports": [
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.101",
+      "ports": [
+        22
+      ]
+    },
+    {
+      "ip": "45.33.32.80",
+      "ports": [
+        80,
+        443
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "host": "45.33.32.160",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.15",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.15",
+      "port": 3306,
+      "vuln_id": "MYSQL-EXPOSED",
+      "description": "MySQL internet-exposed \u2014 credential attack",
+      "cvss": 8.5,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.15",
+      "port": 443,
+      "vuln_id": "PHPINFO-EXPOSED",
+      "description": "phpinfo() exposed at /phpinfo.php",
+      "cvss": 6.5,
+      "auto_exploit": false,
+      "url": "https://45.33.32.15:443/phpinfo.php",
+      "status_code": 200,
+      "server": "Apache/2.4.10 (Debian)"
+    },
+    {
+      "host": "45.33.32.220",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.128",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.178",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.178",
+      "port": 80,
+      "vuln_id": "ADMIN-EXPOSED",
+      "description": "Admin panel accessible at /admin",
+      "cvss": 7.5,
+      "auto_exploit": true,
+      "url": "http://45.33.32.178:80/admin",
+      "status_code": 200,
+      "server": "Apache/2.4.25 (Debian)"
+    },
+    {
+      "host": "45.33.32.178",
+      "port": 80,
+      "vuln_id": "WORDPRESS-LOGIN",
+      "description": "WordPress login exposed at /wp-login.php",
+      "cvss": 5.0,
+      "auto_exploit": false,
+      "url": "http://45.33.32.178:80/wp-login.php",
+      "status_code": 200,
+      "server": "Apache/2.4.25 (Debian)"
+    },
+    {
+      "host": "45.33.32.178",
+      "port": 443,
+      "vuln_id": "ADMIN-EXPOSED",
+      "description": "Admin panel accessible at /admin",
+      "cvss": 7.5,
+      "auto_exploit": true,
+      "url": "https://45.33.32.178:443/admin",
+      "status_code": 200,
+      "server": "Apache/2.4.25 (Debian)"
+    },
+    {
+      "host": "45.33.32.178",
+      "port": 443,
+      "vuln_id": "WORDPRESS-LOGIN",
+      "description": "WordPress login exposed at /wp-login.php",
+      "cvss": 5.0,
+      "auto_exploit": false,
+      "url": "https://45.33.32.178:443/wp-login.php",
+      "status_code": 200,
+      "server": "Apache/2.4.25 (Debian)"
+    },
+    {
+      "host": "45.33.32.147",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.147",
+      "port": 3306,
+      "vuln_id": "MYSQL-EXPOSED",
+      "description": "MySQL internet-exposed \u2014 credential attack",
+      "cvss": 8.5,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.147",
+      "port": 80,
+      "vuln_id": "PHPINFO-EXPOSED",
+      "description": "phpinfo() exposed at /phpinfo.php",
+      "cvss": 6.5,
+      "auto_exploit": false,
+      "url": "http://45.33.32.147:80/phpinfo.php",
+      "status_code": 200,
+      "server": "Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.4.16"
+    },
+    {
+      "host": "45.33.32.147",
+      "port": 443,
+      "vuln_id": "PHPINFO-EXPOSED",
+      "description": "phpinfo() exposed at /phpinfo.php",
+      "cvss": 6.5,
+      "auto_exploit": false,
+      "url": "https://45.33.32.147:443/phpinfo.php",
+      "status_code": 200,
+      "server": "Apache/2.4.6 (CentOS) OpenSSL/1.0.2k-fips PHP/5.4.16"
+    },
+    {
+      "host": "45.33.32.205",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.205",
+      "port": 443,
+      "vuln_id": "ENV-EXPOSED",
+      "description": "Env file exposed \u2014 credentials leak at /.env",
+      "cvss": 9.5,
+      "auto_exploit": true,
+      "url": "https://45.33.32.205:443/.env",
+      "status_code": 200,
+      "server": "nginx/1.22.1"
+    },
+    {
+      "host": "45.33.32.205",
+      "port": 443,
+      "vuln_id": "ADMIN-EXPOSED",
+      "description": "Admin panel accessible at /admin",
+      "cvss": 7.5,
+      "auto_exploit": true,
+      "url": "https://45.33.32.205:443/admin",
+      "status_code": 200,
+      "server": "nginx/1.22.1"
+    },
+    {
+      "host": "45.33.32.205",
+      "port": 443,
+      "vuln_id": "TOMCAT-MANAGER",
+      "description": "Tomcat Manager exposed at /manager/html",
+      "cvss": 9.5,
+      "auto_exploit": true,
+      "url": "https://45.33.32.205:443/manager/html",
+      "status_code": 200,
+      "server": "nginx/1.22.1"
+    },
+    {
+      "host": "45.33.32.205",
+      "port": 443,
+      "vuln_id": "CONSOLE-EXPOSED",
+      "description": "Debug console exposed \u2014 RCE risk at /console",
+      "cvss": 9.0,
+      "auto_exploit": true,
+      "url": "https://45.33.32.205:443/console",
+      "status_code": 200,
+      "server": "nginx/1.22.1"
+    }
+  ],
+  "timestamp": "2026-04-05T23:19:21.160253"
+}

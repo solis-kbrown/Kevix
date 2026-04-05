@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ServerRoot.net — Live Operations Dashboard</title>
+<style>
+  :root {
+    --bg: #0a0e1a; --bg2: #0f1629; --bg3: #141d35;
+    --border: #1e2d4a; --border2: #2a3f6a;
+    --green: #00ff88; --red: #ff3366; --yellow: #ffd700;
+    --blue: #00aaff; --purple: #aa00ff; --cyan: #00ffff;
+    --text: #c8d8f0; --text2: #6a8ab0; --white: #ffffff;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:'Courier New',monospace; overflow-x:hidden; }
+
+  /* TOP BAR */
+  .topbar {
+    background:var(--bg2); border-bottom:1px solid var(--border2);
+    padding:10px 20px; display:flex; align-items:center; justify-content:space-between;
+    position:sticky; top:0; z-index:100;
+  }
+  .topbar-logo { display:flex; align-items:center; gap:12px; }
+  .logo-icon { width:36px; height:36px; background:linear-gradient(135deg,#0066ff,#00ff88);
+    border-radius:8px; display:flex; align-items:center; justify-content:center;
+    font-size:18px; box-shadow:0 0 15px #0066ff55; }
+  .logo-text h1 { font-size:16px; color:var(--white); letter-spacing:2px; }
+  .logo-text p  { font-size:10px; color:var(--blue); letter-spacing:3px; }
+  .topbar-status { display:flex; gap:20px; align-items:center; }
+  .status-pill {
+    padding:4px 12px; border-radius:20px; font-size:11px; font-weight:bold;
+    border:1px solid; display:flex; align-items:center; gap:6px;
+  }
+  .status-pill.green { color:var(--green); border-color:var(--green); background:#00ff8811; }
+  .status-pill.red   { color:var(--red);   border-color:var(--red);   background:#ff336611; }
+  .status-pill.yellow{ color:var(--yellow);border-color:var(--yellow);background:#ffd70011; }
+  .pulse { width:8px; height:8px; border-radius:50%; animation:pulse 1.2s infinite; }
+  .pulse.green  { background:var(--green); box-shadow:0 0 6px var(--green); }
+  .pulse.red    { background:var(--red);   box-shadow:0 0 6px var(--red); }
+  .pulse.yellow { background:var(--yellow);box-shadow:0 0 6px var(--yellow); }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.3)} }
+  #clock { font-size:12px; color:var(--text2); font-family:'Courier New',monospace; }
+
+  /* MAIN LAYOUT */
+  .main { padding:16px; display:grid; gap:16px; }
+
+  /* STAT CARDS ROW */
+  .stats-row { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; }
+  .stat-card {
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:10px; padding:16px 12px; text-align:center;
+    position:relative; overflow:hidden; transition:border-color 0.3s;
+  }
+  .stat-card:hover { border-color:var(--border2); }
+  .stat-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  }
+  .stat-card.green::before  { background:var(--green); box-shadow:0 0 8px var(--green); }
+  .stat-card.red::before    { background:var(--red);   box-shadow:0 0 8px var(--red); }
+  .stat-card.blue::before   { background:var(--blue);  box-shadow:0 0 8px var(--blue); }
+  .stat-card.yellow::before { background:var(--yellow);box-shadow:0 0 8px var(--yellow); }
+  .stat-card.purple::before { background:var(--purple);box-shadow:0 0 8px var(--purple); }
+  .stat-card.cyan::before   { background:var(--cyan);  box-shadow:0 0 8px var(--cyan); }
+  .stat-val { font-size:28px; font-weight:bold; margin:6px 0; }
+  .stat-val.green  { color:var(--green); }
+  .stat-val.red    { color:var(--red); }
+  .stat-val.blue   { color:var(--blue); }
+  .stat-val.yellow { color:var(--yellow); }
+  .stat-val.purple { color:var(--purple); }
+  .stat-val.cyan   { color:var(--cyan); }
+  .stat-lbl { font-size:10px; color:var(--text2); letter-spacing:1px; text-transform:uppercase; }
+  .stat-sub { font-size:9px; color:var(--text2); margin-top:4px; }
+
+  /* PANELS */
+  .panels-row { display:grid; grid-template-columns:1fr 1fr 1fr; gap:16px; }
+  .panels-row2 { display:grid; grid-template-columns:2fr 1fr; gap:16px; }
+  .panel {
+    background:var(--bg2); border:1px solid var(--border);
+    border-radius:10px; overflow:hidden;
+  }
+  .panel-header {
+    padding:10px 16px; background:var(--bg3); border-bottom:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .panel-header h3 { font-size:12px; color:var(--white); letter-spacing:2px; text-transform:uppercase; }
+  .panel-header span { font-size:10px; color:var(--text2); }
+  .panel-body { padding:12px; max-height:280px; overflow-y:auto; }
+  .panel-body::-webkit-scrollbar { width:4px; }
+  .panel-body::-webkit-scrollbar-track { background:var(--bg); }
+  .panel-body::-webkit-scrollbar-thumb { background:var(--border2); border-radius:2px; }
+
+  /* AGENT TABLE */
+  .agent-row {
+    display:grid; grid-template-columns:20px 1fr 80px 80px 60px;
+    gap:8px; padding:6px 8px; border-radius:6px;
+    font-size:11px; align-items:center;
+    border-bottom:1px solid var(--border);
+  }
+  .agent-row:last-child { border-bottom:none; }
+  .agent-row:hover { background:var(--bg3); }
+  .agent-dot { width:8px; height:8px; border-radius:50%; }
+  .agent-dot.active  { background:var(--green); box-shadow:0 0 6px var(--green); animation:pulse 2s infinite; }
+  .agent-dot.idle    { background:var(--yellow); }
+  .agent-dot.offline { background:var(--red); }
+  .agent-name { color:var(--text); font-family:'Courier New',monospace; }
+  .agent-type { color:var(--blue); font-size:10px; }
+  .agent-target { color:var(--text2); font-size:10px; text-align:center; }
+  .agent-ops { color:var(--green); text-align:center; }
+  .tag {
+    padding:2px 6px; border-radius:4px; font-size:9px; font-weight:bold;
+    text-align:center; letter-spacing:1px;
+  }
+  .tag.active  { background:#00ff8822; color:var(--green); border:1px solid var(--green); }
+  .tag.idle    { background:#ffd70022; color:var(--yellow); border:1px solid var(--yellow); }
+  .tag.offline { background:#ff336622; color:var(--red);   border:1px solid var(--red); }
+
+  /* VULN LIST */
+  .vuln-item {
+    display:flex; align-items:center; gap:8px;
+    padding:6px 0; border-bottom:1px solid var(--border);
+    font-size:11px;
+  }
+  .vuln-item:last-child { border-bottom:none; }
+  .cvss-badge {
+    padding:2px 6px; border-radius:4px; font-size:10px; font-weight:bold;
+    min-width:36px; text-align:center;
+  }
+  .cvss-critical { background:#ff336633; color:#ff3366; border:1px solid #ff3366; }
+  .cvss-high     { background:#ff880033; color:#ff8800; border:1px solid #ff8800; }
+  .cvss-medium   { background:#ffd70033; color:#ffd700; border:1px solid #ffd700; }
+  .cvss-low      { background:#00ff8833; color:#00ff88; border:1px solid #00ff88; }
+  .vuln-host { color:var(--cyan); min-width:110px; }
+  .vuln-id   { color:var(--yellow); font-family:'Courier New',monospace; }
+  .vuln-desc { color:var(--text2); font-size:10px; flex:1; }
+
+  /* LIVE FEED */
+  .feed-item {
+    display:flex; gap:8px; padding:5px 0;
+    border-bottom:1px solid var(--border);
+    font-size:11px; align-items:flex-start;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+  .feed-item:last-child { border-bottom:none; }
+  .feed-time { color:var(--text2); min-width:60px; font-size:10px; }
+  .feed-icon { min-width:16px; }
+  .feed-msg  { color:var(--text); flex:1; line-height:1.4; }
+  .feed-msg.success { color:var(--green); }
+  .feed-msg.warn    { color:var(--yellow); }
+  .feed-msg.error   { color:var(--red); }
+  .feed-msg.info    { color:var(--blue); }
+  .feed-msg.deploy  { color:var(--purple); }
+  .feed-msg.scan    { color:var(--cyan); }
+
+  /* INTEL FEED */
+  .intel-item {
+    padding:8px; background:var(--bg3); border-radius:6px;
+    margin-bottom:6px; border-left:3px solid var(--red);
+    font-size:11px;
+  }
+  .intel-item.kev    { border-left-color:var(--red); }
+  .intel-item.nvd    { border-left-color:var(--orange,#ff6600); }
+  .intel-cve { color:var(--yellow); font-weight:bold; }
+  .intel-desc { color:var(--text); margin-top:2px; }
+  .intel-meta { color:var(--text2); font-size:10px; margin-top:3px; display:flex; gap:12px; }
+
+  /* CHART */
+  .chart-container { padding:12px; height:160px; position:relative; }
+  canvas { width:100%; height:100%; }
+
+  /* CYCLE STATUS */
+  .cycle-status {
+    background:var(--bg3); border:1px solid var(--border2);
+    border-radius:8px; padding:12px 16px; margin-bottom:12px;
+    display:grid; grid-template-columns:repeat(4,1fr); gap:12px;
+  }
+  .cycle-stat { text-align:center; }
+  .cycle-val { font-size:20px; font-weight:bold; color:var(--cyan); }
+  .cycle-lbl { font-size:9px; color:var(--text2); letter-spacing:1px; margin-top:2px; }
+
+  /* PROGRESS BAR */
+  .progress-bar { background:var(--bg); border-radius:4px; height:6px; overflow:hidden; margin-top:6px; }
+  .progress-fill { height:100%; border-radius:4px; transition:width 0.5s; }
+  .progress-fill.green  { background:linear-gradient(90deg,#00cc66,#00ff88); }
+  .progress-fill.red    { background:linear-gradient(90deg,#cc0033,#ff3366); }
+  .progress-fill.blue   { background:linear-gradient(90deg,#0066cc,#00aaff); }
+
+  /* NETWORK MAP */
+  #network-map { width:100%; height:200px; position:relative; background:var(--bg3);
+    border-radius:8px; overflow:hidden; }
+  .node {
+    position:absolute; width:10px; height:10px; border-radius:50%;
+    transform:translate(-50%,-50%);
+  }
+  .node.self   { background:var(--blue); box-shadow:0 0 12px var(--blue); width:14px; height:14px; }
+  .node.target { background:var(--green); box-shadow:0 0 8px var(--green); animation:pulse 2s infinite; }
+  .node.vuln   { background:var(--red);  box-shadow:0 0 8px var(--red); animation:pulse 1s infinite; }
+  .node-label  { position:absolute; font-size:9px; color:var(--text2); white-space:nowrap; transform:translate(-50%,8px); }
+  svg.connections { position:absolute; top:0; left:0; width:100%; height:100%; pointer-events:none; }
+
+  /* SCROLLBAR for whole page */
+  html { scrollbar-width:thin; scrollbar-color:var(--border2) var(--bg); }
+
+  @media (max-width:1200px) {
+    .stats-row { grid-template-columns:repeat(3,1fr); }
+    .panels-row { grid-template-columns:1fr 1fr; }
+  }
+</style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-logo">
+    <div class="logo-icon">🛡️</div>
+    <div class="logo-text">
+      <h1>SERVERROOT.NET</h1>
+      <p>AUTONOMOUS OPERATIONS PLATFORM v2.0</p>
+    </div>
+  </div>
+  <div class="topbar-status">
+    <div class="status-pill green"><div class="pulse green"></div> LOOP ACTIVE</div>
+    <div class="status-pill green"><div class="pulse green"></div> API HEALTHY</div>
+    <div class="status-pill yellow"><div class="pulse yellow"></div> <span id="cycle-badge">CYCLE #0</span></div>
+    <div id="clock">--:--:--</div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+
+  <!-- STATS ROW -->
+  <div class="stats-row">
+    <div class="stat-card green">
+      <div class="stat-lbl">Active Agents</div>
+      <div class="stat-val green" id="stat-agents">--</div>
+      <div class="stat-sub" id="stat-agents-sub">loading...</div>
+    </div>
+    <div class="stat-card blue">
+      <div class="stat-lbl">Total Ops</div>
+      <div class="stat-val blue" id="stat-ops">--</div>
+      <div class="stat-sub" id="stat-ops-sub">loading...</div>
+    </div>
+    <div class="stat-card red">
+      <div class="stat-lbl">Vulns Found</div>
+      <div class="stat-val red" id="stat-vulns">--</div>
+      <div class="stat-sub" id="stat-vulns-sub">all-time</div>
+    </div>
+    <div class="stat-card yellow">
+      <div class="stat-lbl">Deployed</div>
+      <div class="stat-val yellow" id="stat-deployed">--</div>
+      <div class="stat-sub" id="stat-deployed-sub">agents total</div>
+    </div>
+    <div class="stat-card purple">
+      <div class="stat-lbl">CISA KEV</div>
+      <div class="stat-val purple" id="stat-kev">--</div>
+      <div class="stat-sub">known exploited</div>
+    </div>
+    <div class="stat-card cyan">
+      <div class="stat-lbl">NVD Critical</div>
+      <div class="stat-val cyan" id="stat-nvd">--</div>
+      <div class="stat-sub">7-day window</div>
+    </div>
+  </div>
+
+  <!-- CYCLE STATUS BAR -->
+  <div class="cycle-status">
+    <div class="cycle-stat">
+      <div class="cycle-val" id="cyc-cycle">0</div>
+      <div class="cycle-lbl">SCAN CYCLES</div>
+    </div>
+    <div class="cycle-stat">
+      <div class="cycle-val" id="cyc-hosts">0</div>
+      <div class="cycle-lbl">HOSTS SCANNED</div>
+    </div>
+    <div class="cycle-stat">
+      <div class="cycle-val" id="cyc-exploitable">0</div>
+      <div class="cycle-lbl">AUTO-EXPLOITABLE</div>
+    </div>
+    <div class="cycle-stat">
+      <div class="cycle-val" id="cyc-uptime">0s</div>
+      <div class="cycle-lbl">API UPTIME</div>
+    </div>
+  </div>
+
+  <!-- ROW: AGENTS + VULNS + LIVE FEED -->
+  <div class="panels-row">
+
+    <!-- AGENT FLEET -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>🤖 Agent Fleet</h3>
+        <span id="agent-count-hdr">-- online</span>
+      </div>
+      <div class="panel-body" id="agent-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Loading agents...</div>
+      </div>
+    </div>
+
+    <!-- VULNERABILITIES -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>🎯 Live Vulnerabilities</h3>
+        <span id="vuln-count-hdr">-- found</span>
+      </div>
+      <div class="panel-body" id="vuln-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Loading vulns...</div>
+      </div>
+    </div>
+
+    <!-- LIVE FEED -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>⚡ Live Operations Feed</h3>
+        <span id="feed-count">0 events</span>
+      </div>
+      <div class="panel-body" id="live-feed">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Connecting to feed...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROW: INTEL + NETWORK MAP -->
+  <div class="panels-row2">
+
+    <!-- THREAT INTEL -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>🧠 Live Threat Intel</h3>
+        <span id="intel-updated">never</span>
+      </div>
+      <div class="panel-body" id="intel-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Fetching threat intel...</div>
+      </div>
+    </div>
+
+    <!-- NETWORK MAP -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>🌐 Network Map</h3>
+        <span id="map-hosts">0 hosts</span>
+      </div>
+      <div class="panel-body" style="padding:8px;">
+        <div id="network-map">
+          <svg class="connections" id="map-svg"></svg>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- INTERNET SCAN RESULTS ROW -->
+  <div class="panels-row2">
+
+    <!-- LIVE INTERNET SCAN HOSTS -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>🌐 Live Internet Scan — Discovered Hosts</h3>
+        <span id="scan-range-display">initializing...</span>
+      </div>
+      <div class="panel-body" id="scan-hosts-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Scanning internet ranges...</div>
+      </div>
+    </div>
+
+    <!-- BEACON FEED -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>📡 C2 Beacon Feed</h3>
+        <span id="beacon-count">0 beacons</span>
+      </div>
+      <div class="panel-body" id="beacon-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Waiting for beacons...</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MESH NODES ROW -->
+  <div class="panels-row">
+    <!-- MESH NODES -->
+    <div class="panel" style="grid-column:1/-1">
+      <div class="panel-header">
+        <h3>🕸️ Mesh Nodes & Propagation Status</h3>
+        <span id="mesh-updated">never</span>
+      </div>
+      <div class="panel-body" id="mesh-list" style="max-height:200px;">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Initializing mesh...</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<script>
+const API = '';  // same-origin proxy — /api/* → Flask :5001
+const LOOP_DATA_URL = '/api/data/latest_loop';
+const CISA_URL      = '/api/data/cisa_kev';
+const NVD_URL       = '/api/data/nvd_critical';
+const MESH_URL      = '/api/data/mesh_health';
+
+let feedEvents = [];
+let allAgents  = [];
+let allVulns   = [];
+let cycleCount = 0;
+let apiUptime  = 0;
+
+// ── CLOCK ──────────────────────────────────────────────
+function updateClock() {
+  document.getElementById('clock').textContent =
+    new Date().toLocaleTimeString('en-US',{hour12:false});
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ── HELPERS ───────────────────────────────────────────
+function cvssClass(cvss) {
+  if (cvss >= 9.0) return 'cvss-critical';
+  if (cvss >= 7.0) return 'cvss-high';
+  if (cvss >= 4.0) return 'cvss-medium';
+  return 'cvss-low';
+}
+function fmtUptime(s) {
+  if (s < 60) return `${s}s`;
+  if (s < 3600) return `${Math.floor(s/60)}m ${s%60}s`;
+  return `${Math.floor(s/3600)}h ${Math.floor((s%3600)/60)}m`;
+}
+function timeNow() {
+  return new Date().toLocaleTimeString('en-US',{hour12:false});
+}
+function addFeedEvent(icon, msg, cls='info') {
+  feedEvents.unshift({time: timeNow(), icon, msg, cls});
+  if (feedEvents.length > 60) feedEvents.pop();
+  renderFeed();
+}
+
+// ── RENDER AGENTS ──────────────────────────────────────
+function renderAgents(agents) {
+  const el = document.getElementById('agent-list');
+  if (!agents || agents.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No agents data</div>';
+    return;
+  }
+  document.getElementById('agent-count-hdr').textContent = `${agents.length} online`;
+  document.getElementById('stat-agents').textContent = agents.length;
+  document.getElementById('stat-agents-sub').textContent = 'all active';
+  el.innerHTML = agents.map(a => `
+    <div class="agent-row">
+      <div class="agent-dot active"></div>
+      <div>
+        <div class="agent-name">${(a.id||a.agent_id||'agent').substring(0,18)}</div>
+        <div class="agent-type">${a.type||a.capabilities?.join(',')||'recon'}</div>
+      </div>
+      <div class="agent-target">${(a.hostname||a.target||'local').substring(0,12)}</div>
+      <div class="agent-ops">${a.operations_count||a.ops||'—'}</div>
+      <span class="tag active">ACTIVE</span>
+    </div>
+  `).join('');
+}
+
+// ── RENDER VULNS ───────────────────────────────────────
+function renderVulns(vulns) {
+  const el = document.getElementById('vuln-list');
+  if (!vulns || vulns.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No vulns yet</div>';
+    return;
+  }
+  document.getElementById('vuln-count-hdr').textContent = `${vulns.length} found`;
+  document.getElementById('stat-vulns').textContent = vulns.length;
+  el.innerHTML = vulns.slice(0,20).map(v => `
+    <div class="vuln-item">
+      <span class="cvss-badge ${cvssClass(v.cvss||0)}">${v.cvss||'?'}</span>
+      <span class="vuln-host">${v.host||'local'}:${v.port||'?'}</span>
+      <span class="vuln-id">${v.vuln_id||v.id||'UNKNOWN'}</span>
+      <span class="vuln-desc">${(v.description||v.desc||'').substring(0,40)}</span>
+    </div>
+  `).join('');
+}
+
+// ── RENDER FEED ────────────────────────────────────────
+function renderFeed() {
+  const el = document.getElementById('live-feed');
+  document.getElementById('feed-count').textContent = `${feedEvents.length} events`;
+  if (feedEvents.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Waiting for events...</div>';
+    return;
+  }
+  el.innerHTML = feedEvents.map(e => `
+    <div class="feed-item">
+      <span class="feed-time">${e.time}</span>
+      <span class="feed-icon">${e.icon}</span>
+      <span class="feed-msg ${e.cls}">${e.msg}</span>
+    </div>
+  `).join('');
+}
+
+// ── RENDER INTEL ───────────────────────────────────────
+function renderIntel(kevData, nvdData) {
+  const el = document.getElementById('intel-list');
+  let html = '';
+
+  if (kevData && kevData.latest) {
+    const entries = kevData.latest.slice(0, 8);
+    html += entries.map(v => `
+      <div class="intel-item kev">
+        <div class="intel-cve">${v.cveID||'CVE-?'} — ${(v.vulnerabilityName||'').substring(0,50)}</div>
+        <div class="intel-desc">${(v.shortDescription||v.product||'').substring(0,80)}</div>
+        <div class="intel-meta">
+          <span>📅 ${v.dateAdded||'?'}</span>
+          <span>🏢 ${(v.vendorProject||'').substring(0,20)}</span>
+          <span style="color:var(--red)">⚡ CISA KEV</span>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  if (nvdData && nvdData.cves) {
+    const cves = nvdData.cves.slice(0, 4);
+    html += cves.map(item => {
+      const cve = item.cve || item;
+      const id  = cve.id || 'CVE-?';
+      const desc = (cve.descriptions?.[0]?.value || '').substring(0,80);
+      const score = cve.metrics?.cvssMetricV31?.[0]?.cvssData?.baseScore || '?';
+      return `
+        <div class="intel-item nvd">
+          <div class="intel-cve">${id} — CVSS: ${score}</div>
+          <div class="intel-desc">${desc}</div>
+          <div class="intel-meta">
+            <span style="color:var(--red)">🔴 NVD CRITICAL</span>
+          </div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  el.innerHTML = html || '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Fetching intel...</div>';
+  document.getElementById('intel-updated').textContent = `Updated ${timeNow()}`;
+}
+
+// ── NETWORK MAP ────────────────────────────────────────
+let knownHosts = new Set();
+function renderNetworkMap(hosts) {
+  const map = document.getElementById('network-map');
+  const svg = document.getElementById('map-svg');
+  const W = map.offsetWidth || 400;
+  const H = map.offsetHeight || 200;
+
+  // Remove old nodes
+  map.querySelectorAll('.node,.node-label').forEach(e => e.remove());
+  svg.innerHTML = '';
+
+  const nodeData = [
+    {ip:'127.0.0.1', x:W*0.15, y:H*0.5, type:'self'},
+    {ip:'172.28.137.134', x:W*0.35, y:H*0.5, type:'target'},
+    ...hosts.filter(h => h !== '127.0.0.1' && h !== '172.28.137.134')
+             .slice(0,10)
+             .map((h,i) => ({ip:h, x:W*(0.5+0.08*Math.cos(i*0.8)), y:H*(0.3+0.4*Math.sin(i*0.8)), type:'target'}))
+  ];
+
+  document.getElementById('map-hosts').textContent = `${nodeData.length} hosts`;
+
+  // Draw connections
+  nodeData.slice(1).forEach(n => {
+    const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+    line.setAttribute('x1', nodeData[0].x);
+    line.setAttribute('y1', nodeData[0].y);
+    line.setAttribute('x2', n.x);
+    line.setAttribute('y2', n.y);
+    line.setAttribute('stroke', '#0066ff33');
+    line.setAttribute('stroke-width','1');
+    line.setAttribute('stroke-dasharray','4,4');
+    svg.appendChild(line);
+  });
+
+  // Draw nodes
+  nodeData.forEach(n => {
+    const dot = document.createElement('div');
+    dot.className = `node ${n.type}`;
+    dot.style.left = n.x + 'px';
+    dot.style.top  = n.y + 'px';
+    dot.title = n.ip;
+    map.appendChild(dot);
+    const lbl = document.createElement('div');
+    lbl.className = 'node-label';
+    lbl.style.left = n.x + 'px';
+    lbl.style.top  = n.y + 'px';
+    lbl.textContent = n.ip;
+    map.appendChild(lbl);
+  });
+}
+
+// ── FETCH LOOP DATA ────────────────────────────────────
+async function fetchLoopData() {
+  try {
+    const r = await fetch(LOOP_DATA_URL + '?t=' + Date.now());
+    if (!r.ok) return null;
+    return await r.json();
+  } catch(e) { return null; }
+}
+
+async function fetchIntelData() {
+  try {
+    const [kev, nvd] = await Promise.all([
+      fetch(CISA_URL + '?t=' + Date.now()).then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch(NVD_URL  + '?t=' + Date.now()).then(r => r.ok ? r.json() : null).catch(()=>null),
+    ]);
+    return {kev, nvd};
+  } catch(e) { return {}; }
+}
+
+// ── FETCH API DATA ─────────────────────────────────────
+async function fetchApiData() {
+  try {
+    const [health, status, agents, ops] = await Promise.all([
+      fetch(API + '/api/health').then(r => r.json()).catch(()=>null),
+      fetch(API + '/api/swarm/status').then(r => r.json()).catch(()=>null),
+      fetch(API + '/api/swarm/agents').then(r => r.json()).catch(()=>null),
+      fetch(API + '/api/swarm/operations').then(r => r.json()).catch(()=>null),
+    ]);
+    return {health, status, agents, ops};
+  } catch(e) { return {}; }
+}
+
+// ── MAIN UPDATE LOOP ───────────────────────────────────
+let prevOps = 0;
+let prevAgents = 0;
+
+async function update() {
+  // API data
+  const api = await fetchApiData();
+
+  if (api.status) {
+    const s = api.status.stats || {};
+    const totalOps    = s.total_operations || 0;
+    const activeAgents = s.active_agents || api.status.active_agents || 0;
+    apiUptime = s.uptime_seconds || 0;
+
+    document.getElementById('stat-ops').textContent       = totalOps;
+    document.getElementById('stat-ops-sub').textContent   = `${s.successful_operations||0} success`;
+    document.getElementById('stat-deployed').textContent  = s.targets_scanned || totalOps;
+    document.getElementById('cyc-uptime').textContent     = fmtUptime(apiUptime);
+
+    // Feed: new ops
+    if (totalOps > prevOps) {
+      addFeedEvent('⚡', `${totalOps - prevOps} new operations executed (total: ${totalOps})`, 'success');
+      prevOps = totalOps;
+    }
+    if (activeAgents > prevAgents && prevAgents > 0) {
+      addFeedEvent('🤖', `New agent joined swarm — total: ${activeAgents}`, 'deploy');
+    }
+    prevAgents = activeAgents;
+  }
+
+  if (api.agents && api.agents.agents) {
+    allAgents = api.agents.agents;
+    renderAgents(allAgents);
+  }
+
+  if (api.health) {
+    document.getElementById('stat-agents').textContent =
+      api.status?.active_agents || api.status?.agent_count || '--';
+  }
+
+  // Loop data
+  const loop = await fetchLoopData();
+  if (loop) {
+    cycleCount = loop.cycle || 0;
+    document.getElementById('cycle-badge').textContent   = `CYCLE #${cycleCount}`;
+    document.getElementById('cyc-cycle').textContent     = cycleCount;
+    document.getElementById('cyc-hosts').textContent     = loop.hosts_with_open_ports || 0;
+    document.getElementById('cyc-exploitable').textContent = loop.auto_exploitable || 0;
+    document.getElementById('stat-deployed').textContent = loop.total_deployed_all_time || 0;
+    document.getElementById('stat-deployed-sub').textContent = `cycle: +${loop.agents_deployed_this_cycle||0}`;
+    document.getElementById('stat-vulns').textContent    = loop.total_vulns_all_time || 0;
+
+    // Add feed events from loop (use real data fields)
+    if (loop.cycle > 0) {
+      const generated = loop.targets_generated || loop.targets?.length || 0;
+      const live = loop.live_hosts || 0;
+      const range = loop.target_range || 'unknown';
+      addFeedEvent('🌐', `Cycle #${loop.cycle}: ${generated} IPs → ${live} live hosts in ${loop.duration_s||0}s | Range: ${range}`, 'scan');
+      if ((loop.agents_deployed_this_cycle||0) > 0) {
+        addFeedEvent('🚀', `Deployed ${loop.agents_deployed_this_cycle} agents this cycle (${loop.total_deployed_all_time||0} total)`, 'deploy');
+      }
+      if ((loop.vulnerabilities_found||0) > 0) {
+        addFeedEvent('🎯', `${loop.vulnerabilities_found} vulns found (${loop.auto_exploitable} exploitable) — ${loop.hosts_with_open_ports} hosts with open ports`, 'warn');
+      }
+    }
+
+    // Update network map with real scan results
+    if (loop.scan_results && loop.scan_results.length > 0) {
+      renderNetworkMap(loop.scan_results.map(r => r.ip));
+      // Also render the live internet scan hosts panel
+      renderScanHosts(loop.scan_results, loop.target_range);
+    } else if (loop.targets) {
+      renderNetworkMap(loop.targets);
+    }
+
+    // Use REAL vulnerabilities from internet scan
+    if (loop.vulnerabilities && loop.vulnerabilities.length > 0) {
+      allVulns = loop.vulnerabilities.map(v => ({
+        host: v.host,
+        port: v.port,
+        vuln_id: v.vuln_id,
+        cvss: v.cvss,
+        description: v.description,
+        auto_exploit: v.auto_exploit,
+        url: v.url || null
+      }));
+      renderVulns(allVulns);
+    }
+
+    // Update live_hosts count
+    document.getElementById('cyc-hosts').textContent = loop.live_hosts || loop.hosts_with_open_ports || 0;
+
+    // Show target range being scanned
+    if (loop.target_range) {
+      const rangeEl = document.getElementById('target-range-display');
+      if (rangeEl) rangeEl.textContent = loop.target_range;
+    }
+  }
+
+  // Intel data
+  const intel = await fetchIntelData();
+  if (intel.kev || intel.nvd) {
+    if (intel.kev) {
+      document.getElementById('stat-kev').textContent = intel.kev.total || '--';
+      addFeedEvent('🧠', `CISA KEV: ${intel.kev.total||0} known exploited vulnerabilities`, 'info');
+    }
+    if (intel.nvd) {
+      document.getElementById('stat-nvd').textContent = intel.nvd.count || '--';
+    }
+    renderIntel(intel.kev, intel.nvd);
+  }
+}
+
+// ── MESH NODES RENDERER ──────────────────────────────────────────────────
+// ── RENDER LIVE INTERNET SCAN HOSTS ─────────────────────────────────────────
+function renderScanHosts(scanResults, targetRange) {
+  const el = document.getElementById('scan-hosts-list');
+  const rangeEl = document.getElementById('scan-range-display');
+  if (!el) return;
+
+  if (rangeEl && targetRange) {
+    rangeEl.textContent = targetRange;
+  }
+
+  if (!scanResults || scanResults.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No hosts discovered yet — scanning...</div>';
+    return;
+  }
+
+  // Sort by number of ports descending
+  const sorted = [...scanResults].sort((a, b) => (b.ports||[]).length - (a.ports||[]).length);
+
+  el.innerHTML = sorted.map(r => {
+    const ports = r.ports || [];
+    const hasWeb = ports.some(p => [80,443,8080,8443].includes(p));
+    const hasDb = ports.some(p => [3306,5432,27017,6379,9200].includes(p));
+    const hasSsh = ports.includes(22);
+    const hasHigh = ports.some(p => [2375,6379,27017,9200,4444,10250].includes(p));
+
+    const riskColor = hasHigh ? 'var(--red)' : hasDb ? 'var(--yellow)' : hasWeb ? 'var(--blue)' : 'var(--text2)';
+    const riskLabel = hasHigh ? '🔴 HIGH' : hasDb ? '🟡 MED' : hasWeb ? '🟢 WEB' : '⚪ LOW';
+
+    const portBadges = ports.slice(0,8).map(p => {
+      const portColors = {
+        80:'#0066ff', 443:'#00aaff', 22:'#00ff88', 3306:'#ff6600',
+        6379:'#ff3366', 27017:'#ff3366', 2375:'#ff0000', 9200:'#ff6600',
+        8080:'#0066ff', 8443:'#00aaff', 5432:'#ff6600', 21:'#888'
+      };
+      const c = portColors[p] || '#556';
+      return `<span style="background:${c}22;color:${c};border:1px solid ${c}44;padding:1px 5px;border-radius:3px;font-size:9px;margin:1px;">${p}</span>`;
+    }).join('');
+
+    return `
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 8px;border-bottom:1px solid var(--border);cursor:pointer;"
+           onclick="window.open('http://${r.ip}','_blank')">
+        <div style="width:8px;height:8px;border-radius:50%;background:${riskColor};box-shadow:0 0 6px ${riskColor};flex-shrink:0;"></div>
+        <div style="font-family:monospace;font-size:12px;color:var(--white);min-width:120px;">${r.ip}</div>
+        <div style="font-size:9px;color:${riskColor};min-width:55px;">${riskLabel}</div>
+        <div style="flex:1;display:flex;flex-wrap:wrap;gap:2px;">${portBadges}</div>
+        <div style="font-size:10px;color:var(--text2);">${ports.length} ports</div>
+      </div>`;
+  }).join('');
+}
+
+async function fetchMeshData() {
+  try {
+    const [topo, health, beacons] = await Promise.all([
+      fetch('/api/data/mesh_topology').then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch('/api/data/mesh_health').then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch('/api/beacon?limit=20').then(r => r.ok ? r.json() : null).catch(()=>null),
+    ]);
+    return { topo, health, beacons };
+  } catch(e) { return {}; }
+}
+
+function renderMeshNodes(topo, health) {
+  const el = document.getElementById('mesh-list');
+  const ts = document.getElementById('mesh-updated');
+  if (!el) return;
+
+  // Build node list from topology + health
+  const nodes = {};
+
+  // Add root from health
+  if (health) {
+    const svcs = health.services || {};
+    nodes['root'] = {
+      id: health.node_id || 'root',
+      ip: '172.28.137.134',
+      role: 'Root C2',
+      alive: svcs.flask_api?.healthy || true,
+      agents: svcs.swarm?.agents || 0,
+      checks: health.checks || 0,
+      repairs: health.repairs || 0,
+      services: Object.keys(svcs).length
+    };
+  }
+
+  // Add propagated nodes from topology
+  if (topo && topo.nodes) {
+    Object.entries(topo.nodes).forEach(([ip, node]) => {
+      if (ip !== '172.28.137.134' && ip !== 'root') {
+        nodes[ip] = {
+          id: node.agent_id || ip,
+          ip: ip,
+          role: node.role || node.method || 'propagated',
+          alive: node.alive !== false,
+          cycle: node.cycle || 0,
+          vulns: node.vulns || 0
+        };
+      }
+    });
+  }
+
+  if (Object.keys(nodes).length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No mesh nodes yet — propagating...</div>';
+    return;
+  }
+
+  el.innerHTML = Object.values(nodes).map(n => `
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);">
+      <div class="pulse ${n.alive ? 'green' : 'red'}" style="flex-shrink:0;"></div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:11px;color:var(--white);font-family:'Courier New',monospace;">${n.ip}</div>
+        <div style="font-size:10px;color:var(--text2);">${n.id}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-size:10px;color:${n.alive ? 'var(--green)' : 'var(--red)'};">${n.alive ? '● LIVE' : '○ DEAD'}</div>
+        <div style="font-size:10px;color:var(--text2);">${n.role}</div>
+      </div>
+      ${n.agents ? `<div style="font-size:10px;color:var(--blue);margin-left:4px;">${n.agents} agents</div>` : ''}
+      ${n.cycle  ? `<div style="font-size:10px;color:var(--cyan);margin-left:4px;">c${n.cycle}</div>` : ''}
+    </div>
+  `).join('');
+
+  if (ts) ts.textContent = new Date().toLocaleTimeString();
+
+  // Update stat card
+  const aliveCount = Object.values(nodes).filter(n => n.alive).length;
+  const meshStat = document.getElementById('stat-agents');
+  // Don't override agents stat — just add to feed
+  if (topo && topo.total_nodes > 1) {
+    addFeedEvent('🕸️', `Mesh topology: ${topo.total_nodes} nodes, ${topo.alive_nodes} alive`, 'info');
+  }
+}
+
+function renderBeacons(beaconData) {
+  const el = document.getElementById('beacon-list');
+  const ct = document.getElementById('beacon-count');
+  if (!el || !beaconData) return;
+
+  const beacons = beaconData.beacons || [];
+  if (ct) ct.textContent = `${beaconData.total || beacons.length} beacons`;
+
+  if (beacons.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No beacons yet</div>';
+    return;
+  }
+
+  el.innerHTML = beacons.slice(0, 15).map(b => {
+    const event = b.event || b.type || 'beacon';
+    const agent = (b.agent_id || 'unknown').substring(0, 20);
+    const ts    = b.ts ? new Date(b.ts).toLocaleTimeString() : '';
+    const color = event.includes('propagat') ? 'var(--purple)' :
+                  event.includes('scan')     ? 'var(--cyan)'   :
+                  event.includes('deploy')   ? 'var(--green)'  :
+                  event.includes('error')    ? 'var(--red)'    : 'var(--blue)';
+    const icon  = event.includes('propagat') ? '🌐' :
+                  event.includes('scan')     ? '🔍' :
+                  event.includes('heartbeat')? '📡' :
+                  event.includes('deploy')   ? '🚀' : '⚡';
+    return `
+      <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:10px;">
+        <span style="flex-shrink:0;">${icon}</span>
+        <div style="flex:1;min-width:0;">
+          <div style="color:${color};">${event}</div>
+          <div style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${agent}</div>
+        </div>
+        <div style="color:var(--text2);flex-shrink:0;">${ts}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── ENHANCED UPDATE LOOP ──────────────────────────────────────────────────
+
+// Initial event
+addFeedEvent('🛡️', 'ServerRoot.net dashboard online', 'success');
+addFeedEvent('🔄', 'Connecting to autonomous loop...', 'info');
+addFeedEvent('🧠', 'Loading threat intel feeds...', 'info');
+
+async function updateMesh() {
+  const mesh = await fetchMeshData();
+  if (mesh.health || mesh.topo) {
+    renderMeshNodes(mesh.topo, mesh.health);
+  }
+  if (mesh.beacons) {
+    renderBeacons(mesh.beacons);
+  }
+}
+
+// Run update every 5 seconds
+update();
+updateMesh();
+setInterval(update, 5000);
+setInterval(updateMesh, 8000);
+
+// Keep adding live-ish feed events
+const liveMessages = [
+  ['🔍','Network scan cycle executing...','scan'],
+  ['🎯','Vulnerability analysis in progress...','warn'],
+  ['🚀','Agent deployment check...','deploy'],
+  ['🧠','Intel feeds synchronized','info'],
+  ['✅','All sub-agents healthy','success'],
+  ['⚡','Swarm commander issued new ops','success'],
+  ['🌐','Network watcher: sweep complete','scan'],
+  ['📡','Recon agent beacon received','info'],
+];
+let msgIdx = 0;
+setInterval(() => {
+  const [icon, msg, cls] = liveMessages[msgIdx % liveMessages.length];
+  addFeedEvent(icon, msg, cls);
+  msgIdx++;
+}, 8000);
+
+// Initial map render
+renderNetworkMap(['127.0.0.1','172.28.137.134']);
+</script>
+</body>
+</html>

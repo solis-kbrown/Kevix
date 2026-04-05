@@ -1,0 +1,33 @@
+{
+  "node_id": "mesh_172.28.137.134",
+  "ts": "2026-04-05T23:23:01.298947",
+  "checks": 9,
+  "repairs": 0,
+  "services": {
+    "flask_api": {
+      "port": true,
+      "healthy": true,
+      "uptime": 15029
+    },
+    "swarm": {
+      "initialized": true,
+      "agents": 518
+    },
+    "c2": {
+      "port": true
+    },
+    "dashboard": {
+      "port": true,
+      "http": true,
+      "status_code": 200
+    },
+    "nextjs_ui": {
+      "port": true
+    },
+    "autonomous_loop": {
+      "running": true
+    },
+    "dead_peers": []
+  },
+  "peers": {}
+}

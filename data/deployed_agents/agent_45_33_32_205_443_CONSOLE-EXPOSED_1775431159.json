@@ -1,0 +1,11 @@
+{
+  "agent_id": "agent_45_33_32_205_443_CONSOLE-EXPOSED_1775431159",
+  "target": "45.33.32.205:443",
+  "vuln_id": "CONSOLE-EXPOSED",
+  "deploy_time": "2026-04-05T23:19:19.109650",
+  "success": true,
+  "data": {
+    "note": "Port 443 confirmed open \u2014 service enumerated",
+    "banner": ""
+  }
+}

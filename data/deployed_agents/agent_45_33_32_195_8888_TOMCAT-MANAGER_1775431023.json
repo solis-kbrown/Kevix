@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent_45_33_32_195_8888_TOMCAT-MANAGER_1775431023",
+  "target": "45.33.32.195:8888",
+  "vuln_id": "TOMCAT-MANAGER",
+  "deploy_time": "2026-04-05T23:17:03.745743",
+  "success": true,
+  "data": {
+    "status": 200,
+    "server": "nginx",
+    "content_length": 802,
+    "title": "\u5b89\u5168\u5165\u53e3\u6821\u9a8c\u5931\u8d25"
+  }
+}

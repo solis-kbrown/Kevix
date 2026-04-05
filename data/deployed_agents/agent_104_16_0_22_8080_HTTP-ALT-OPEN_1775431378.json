@@ -1,0 +1,13 @@
+{
+  "agent_id": "agent_104_16_0_22_8080_HTTP-ALT-OPEN_1775431378",
+  "target": "104.16.0.22:8080",
+  "vuln_id": "HTTP-ALT-OPEN",
+  "deploy_time": "2026-04-05T23:22:58.041247",
+  "success": true,
+  "data": {
+    "status": 403,
+    "server": "cloudflare",
+    "content_length": 6234,
+    "title": "Direct IP access not allowed | Cloudflare"
+  }
+}

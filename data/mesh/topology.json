@@ -1,0 +1,16 @@
+{
+  "root_node": "172.28.137.134",
+  "total_nodes": 1,
+  "alive_nodes": 1,
+  "nodes": {
+    "172.28.137.134": {
+      "agent_id": "mesh_172_28_137_134_root",
+      "ip": "172.28.137.134",
+      "role": "root_c2",
+      "alive": true,
+      "cycle": 0,
+      "vulns": 0
+    }
+  },
+  "ts": "2026-04-05T23:22:49.915853"
+}

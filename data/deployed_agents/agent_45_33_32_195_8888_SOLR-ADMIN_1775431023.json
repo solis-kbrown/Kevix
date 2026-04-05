@@ -1,0 +1,11 @@
+{
+  "agent_id": "agent_45_33_32_195_8888_SOLR-ADMIN_1775431023",
+  "target": "45.33.32.195:8888",
+  "vuln_id": "SOLR-ADMIN",
+  "deploy_time": "2026-04-05T23:17:03.746953",
+  "success": true,
+  "data": {
+    "note": "Port 8888 confirmed open \u2014 service enumerated",
+    "banner": "HTTP/1.1 302 FOUND\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 219\r\nLocation: http://target/login\r\nServer: nginx\r\nSet-Cookie: SESSIONID=; Expires=Thu, 01-Jan-1970 00:00:00 GMT; Max-Age=0;"
+  }
+}

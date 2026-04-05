@@ -1,0 +1,110 @@
+{
+  "cycle": 1,
+  "duration_s": 26.9,
+  "target_range": "['45.33.32.0/24']",
+  "targets_generated": 30,
+  "live_hosts": 4,
+  "hosts_with_open_ports": 4,
+  "vulnerabilities_found": 7,
+  "auto_exploitable": 2,
+  "agents_deployed_this_cycle": 1,
+  "total_deployed_all_time": 1,
+  "total_vulns_all_time": 7,
+  "scan_results": [
+    {
+      "ip": "45.33.32.30",
+      "ports": [
+        22,
+        80,
+        443,
+        3306,
+        6379
+      ]
+    },
+    {
+      "ip": "45.33.32.216",
+      "ports": [
+        22,
+        80
+      ]
+    },
+    {
+      "ip": "45.33.32.55",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.235",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "host": "45.33.32.30",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.30",
+      "port": 3306,
+      "vuln_id": "MYSQL-EXPOSED",
+      "description": "MySQL internet-exposed \u2014 credential attack",
+      "cvss": 8.5,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.30",
+      "port": 6379,
+      "vuln_id": "REDIS-UNAUTH",
+      "description": "Redis unauthenticated (internet-exposed)",
+      "cvss": 9.8,
+      "auto_exploit": true
+    },
+    {
+      "host": "45.33.32.216",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.216",
+      "port": 80,
+      "vuln_id": "PHPMYADMIN-OPEN",
+      "description": "phpMyAdmin accessible at /phpmyadmin",
+      "cvss": 8.5,
+      "auto_exploit": true,
+      "url": "http://45.33.32.216:80/phpmyadmin",
+      "status_code": 200,
+      "server": "Apache/2.4.18 (Ubuntu)"
+    },
+    {
+      "host": "45.33.32.55",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.235",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    }
+  ],
+  "timestamp": "2026-04-05T23:20:49.059739"
+}

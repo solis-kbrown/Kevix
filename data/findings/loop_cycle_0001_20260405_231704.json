@@ -1,0 +1,293 @@
+{
+  "cycle": 1,
+  "duration_s": 54.1,
+  "target_range": "['45.33.32.0/24']",
+  "targets_generated": 30,
+  "live_hosts": 10,
+  "hosts_with_open_ports": 10,
+  "vulnerabilities_found": 24,
+  "auto_exploitable": 4,
+  "agents_deployed_this_cycle": 4,
+  "total_deployed_all_time": 4,
+  "total_vulns_all_time": 24,
+  "scan_results": [
+    {
+      "ip": "45.33.32.49",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.156",
+      "ports": [
+        22,
+        80
+      ]
+    },
+    {
+      "ip": "45.33.32.195",
+      "ports": [
+        21,
+        22,
+        80,
+        443,
+        8888
+      ]
+    },
+    {
+      "ip": "45.33.32.64",
+      "ports": [
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.93",
+      "ports": [
+        21,
+        22,
+        53,
+        80,
+        110,
+        143,
+        443,
+        2222
+      ]
+    },
+    {
+      "ip": "45.33.32.106",
+      "ports": [
+        21,
+        22,
+        80,
+        443,
+        3306
+      ]
+    },
+    {
+      "ip": "45.33.32.170",
+      "ports": [
+        22,
+        53,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.32",
+      "ports": [
+        53,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.200",
+      "ports": [
+        21,
+        22,
+        80,
+        443
+      ]
+    },
+    {
+      "ip": "45.33.32.101",
+      "ports": [
+        22
+      ]
+    }
+  ],
+  "vulnerabilities": [
+    {
+      "host": "45.33.32.49",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.49",
+      "port": 80,
+      "vuln_id": "SWAGGER-EXPOSED",
+      "description": "Swagger UI accessible at /docs",
+      "cvss": 5.5,
+      "auto_exploit": false,
+      "url": "http://45.33.32.49:80/docs",
+      "status_code": 200,
+      "server": "cloudflare"
+    },
+    {
+      "host": "45.33.32.49",
+      "port": 443,
+      "vuln_id": "SWAGGER-EXPOSED",
+      "description": "Swagger UI accessible at /docs",
+      "cvss": 5.5,
+      "auto_exploit": false,
+      "url": "https://45.33.32.49:443/docs",
+      "status_code": 200,
+      "server": "cloudflare"
+    },
+    {
+      "host": "45.33.32.156",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 21,
+      "vuln_id": "FTP-EXPOSED",
+      "description": "FTP service internet-exposed",
+      "cvss": 6.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 8888,
+      "vuln_id": "API-HEALTH-OPEN",
+      "description": "API health endpoint unauthenticated at /api/health",
+      "cvss": 5.0,
+      "auto_exploit": false,
+      "url": "http://45.33.32.195:8888/api/health",
+      "status_code": 200,
+      "server": "nginx"
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 8888,
+      "vuln_id": "SWARM-API-OPEN",
+      "description": "Swarm API unauthenticated at /api/swarm",
+      "cvss": 8.0,
+      "auto_exploit": true,
+      "url": "http://45.33.32.195:8888/api/swarm",
+      "status_code": 200,
+      "server": "nginx"
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 8888,
+      "vuln_id": "TOMCAT-MANAGER",
+      "description": "Tomcat Manager exposed at /manager/html",
+      "cvss": 9.5,
+      "auto_exploit": true,
+      "url": "http://45.33.32.195:8888/manager/html",
+      "status_code": 200,
+      "server": "nginx"
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 8888,
+      "vuln_id": "ACTUATOR-ENV",
+      "description": "Spring Actuator /env \u2014 creds leak at /actuator/env",
+      "cvss": 8.5,
+      "auto_exploit": true,
+      "url": "http://45.33.32.195:8888/actuator/env",
+      "status_code": 200,
+      "server": "nginx"
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 8888,
+      "vuln_id": "ACTUATOR-EXPOSED",
+      "description": "Spring Actuator exposed at /actuator/health",
+      "cvss": 6.0,
+      "auto_exploit": false,
+      "url": "http://45.33.32.195:8888/actuator/health",
+      "status_code": 200,
+      "server": "nginx"
+    },
+    {
+      "host": "45.33.32.195",
+      "port": 8888,
+      "vuln_id": "SOLR-ADMIN",
+      "description": "Apache Solr admin exposed at /solr/admin",
+      "cvss": 8.0,
+      "auto_exploit": true,
+      "url": "http://45.33.32.195:8888/solr/admin",
+      "status_code": 200,
+      "server": "nginx"
+    },
+    {
+      "host": "45.33.32.64",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.93",
+      "port": 21,
+      "vuln_id": "FTP-EXPOSED",
+      "description": "FTP service internet-exposed",
+      "cvss": 6.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.93",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.106",
+      "port": 21,
+      "vuln_id": "FTP-EXPOSED",
+      "description": "FTP service internet-exposed",
+      "cvss": 6.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.106",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.106",
+      "port": 3306,
+      "vuln_id": "MYSQL-EXPOSED",
+      "description": "MySQL internet-exposed \u2014 credential attack",
+      "cvss": 8.5,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.170",
+      "port": 22,
+      "vuln_id": "SSH-EXPOSED",
+      "description": "SSH internet-exposed \u2014 bruteforce possible",
+      "cvss": 5.0,
+      "auto_exploit": false
+    },
+    {
+      "host": "45.33.32.32",
+      "port": 80,
+      "vuln_id": "SWAGGER-EXPOSED",
+      "description": "Swagger UI accessible at /docs",
+      "cvss": 5.5,
+      "auto_exploit": false,
+      "url": "http://45.33.32.32:80/docs",
+      "status_code": 200,
+      "server": "Apache/2.2.27 (Unix) mod_ssl/2.2.27 OpenSSL/1.0.2h PHP/5.2.14"
+    }
+  ],
+  "timestamp": "2026-04-05T23:17:04.653008"
+}

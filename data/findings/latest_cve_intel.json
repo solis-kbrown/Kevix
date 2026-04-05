@@ -1,5 +1,5 @@
 {
-  "timestamp": "2026-04-05T17:52:11.901922",
+  "timestamp": "2026-04-05T23:20:21.441014",
   "cves": [
     {
       "source": "CISA-KEV",
@@ -103,13 +103,6 @@
     },
     {
       "source": "NVD-CRITICAL",
-      "cve_id": "CVE-2026-0558",
-      "description": "A vulnerability in parisneo/lollms, up to and including version 2.2.0, allows unauthenticated users to upload and process files through the `/api/files/extract-text` endpoint. This endpoint does not e",
-      "cvss_score": 9.8,
-      "published": "2026-03-29"
-    },
-    {
-      "source": "NVD-CRITICAL",
       "cve_id": "CVE-2026-33030",
       "description": "Nginx UI is a web user interface for the Nginx web server. In versions 2.3.3 and prior, Nginx-UI contains an Insecure Direct Object Reference (IDOR) vulnerability that allows any authenticated user to",
       "cvss_score": 8.8,
@@ -169,6 +162,13 @@
       "cve_id": "CVE-2026-32917",
       "description": "OpenClaw before 2026.3.13 contains a remote command injection vulnerability in the iMessage attachment staging flow that allows attackers to execute arbitrary commands on configured remote hosts. The ",
       "cvss_score": 9.8,
+      "published": "2026-03-31"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-34162",
+      "description": "FastGPT is an AI Agent building platform. Prior to version 4.14.9.5, the FastGPT HTTP tools testing endpoint (/api/core/app/httpTools/runTool) is exposed without any authentication. This endpoint acts",
+      "cvss_score": 10.0,
       "published": "2026-03-31"
     }
   ]
