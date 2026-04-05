@@ -602,7 +602,7 @@ Success Rate:          {results['success_rate']:.1f}%
         """Autonomous target scanning with AI analysis"""
         try:
             # Base scan
-            scan_result = self.scanner.scan_network(target)
+            scan_result = self.scanner.scan_range(target)
             
             # Advanced detection
             if scan_result.get("hosts"):
