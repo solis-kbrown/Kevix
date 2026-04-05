@@ -1,0 +1,1538 @@
+{
+  "scan_id": "SCAN-20260405103300",
+  "targets": "192.168.1.0/24",
+  "ip_count": 254,
+  "timestamp": "2026-04-05T10:33:00.907493",
+  "hosts": [
+    {
+      "target": "192.168.1.1",
+      "timestamp": "2026-04-05T10:33:00.908118",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.2",
+      "timestamp": "2026-04-05T10:33:00.908515",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.3",
+      "timestamp": "2026-04-05T10:33:00.908878",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.4",
+      "timestamp": "2026-04-05T10:33:00.909108",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.5",
+      "timestamp": "2026-04-05T10:33:00.909322",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.6",
+      "timestamp": "2026-04-05T10:33:00.909534",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.7",
+      "timestamp": "2026-04-05T10:33:00.909727",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.8",
+      "timestamp": "2026-04-05T10:33:00.909941",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.9",
+      "timestamp": "2026-04-05T10:33:00.910138",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.10",
+      "timestamp": "2026-04-05T10:33:00.910333",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.11",
+      "timestamp": "2026-04-05T10:33:00.910526",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.12",
+      "timestamp": "2026-04-05T10:33:00.910721",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.13",
+      "timestamp": "2026-04-05T10:33:00.910953",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.14",
+      "timestamp": "2026-04-05T10:33:00.911178",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.15",
+      "timestamp": "2026-04-05T10:33:00.911387",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.16",
+      "timestamp": "2026-04-05T10:33:00.911621",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.17",
+      "timestamp": "2026-04-05T10:33:00.911836",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.18",
+      "timestamp": "2026-04-05T10:33:00.912045",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.19",
+      "timestamp": "2026-04-05T10:33:00.912318",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.20",
+      "timestamp": "2026-04-05T10:33:00.912573",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.21",
+      "timestamp": "2026-04-05T10:33:00.912832",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.22",
+      "timestamp": "2026-04-05T10:33:00.913080",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.23",
+      "timestamp": "2026-04-05T10:33:00.913325",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.24",
+      "timestamp": "2026-04-05T10:33:00.913573",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.25",
+      "timestamp": "2026-04-05T10:33:00.913817",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.26",
+      "timestamp": "2026-04-05T10:33:00.914070",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.27",
+      "timestamp": "2026-04-05T10:33:00.914315",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.28",
+      "timestamp": "2026-04-05T10:33:00.914554",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.29",
+      "timestamp": "2026-04-05T10:33:00.914810",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.30",
+      "timestamp": "2026-04-05T10:33:00.915057",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.31",
+      "timestamp": "2026-04-05T10:33:00.915309",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.32",
+      "timestamp": "2026-04-05T10:33:00.915554",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.33",
+      "timestamp": "2026-04-05T10:33:00.915781",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.34",
+      "timestamp": "2026-04-05T10:33:00.915988",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.35",
+      "timestamp": "2026-04-05T10:33:00.916193",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.36",
+      "timestamp": "2026-04-05T10:33:00.916388",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.37",
+      "timestamp": "2026-04-05T10:33:00.916586",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.38",
+      "timestamp": "2026-04-05T10:33:00.916821",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.39",
+      "timestamp": "2026-04-05T10:33:00.917059",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.40",
+      "timestamp": "2026-04-05T10:33:00.917290",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.41",
+      "timestamp": "2026-04-05T10:33:00.917531",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.42",
+      "timestamp": "2026-04-05T10:33:00.917804",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.43",
+      "timestamp": "2026-04-05T10:33:00.918032",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.44",
+      "timestamp": "2026-04-05T10:33:00.918239",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.45",
+      "timestamp": "2026-04-05T10:33:00.918501",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.46",
+      "timestamp": "2026-04-05T10:33:00.918740",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.47",
+      "timestamp": "2026-04-05T10:33:00.918992",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.48",
+      "timestamp": "2026-04-05T10:33:00.919222",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.49",
+      "timestamp": "2026-04-05T10:33:00.919423",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.50",
+      "timestamp": "2026-04-05T10:33:00.919624",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.51",
+      "timestamp": "2026-04-05T10:33:00.919852",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.52",
+      "timestamp": "2026-04-05T10:33:00.920244",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.53",
+      "timestamp": "2026-04-05T10:33:00.920612",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.54",
+      "timestamp": "2026-04-05T10:33:00.920881",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.55",
+      "timestamp": "2026-04-05T10:33:00.921110",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.56",
+      "timestamp": "2026-04-05T10:33:00.921323",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.57",
+      "timestamp": "2026-04-05T10:33:00.921561",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.58",
+      "timestamp": "2026-04-05T10:33:00.921808",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.59",
+      "timestamp": "2026-04-05T10:33:00.922048",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.60",
+      "timestamp": "2026-04-05T10:33:00.922261",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.61",
+      "timestamp": "2026-04-05T10:33:00.922488",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.62",
+      "timestamp": "2026-04-05T10:33:00.922716",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.63",
+      "timestamp": "2026-04-05T10:33:00.922958",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.64",
+      "timestamp": "2026-04-05T10:33:00.923198",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.65",
+      "timestamp": "2026-04-05T10:33:00.923408",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.66",
+      "timestamp": "2026-04-05T10:33:00.923621",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.67",
+      "timestamp": "2026-04-05T10:33:00.923883",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.68",
+      "timestamp": "2026-04-05T10:33:00.924146",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.69",
+      "timestamp": "2026-04-05T10:33:00.924416",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.70",
+      "timestamp": "2026-04-05T10:33:00.924663",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.71",
+      "timestamp": "2026-04-05T10:33:00.924930",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.72",
+      "timestamp": "2026-04-05T10:33:00.925199",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.73",
+      "timestamp": "2026-04-05T10:33:00.925464",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.74",
+      "timestamp": "2026-04-05T10:33:00.925694",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.75",
+      "timestamp": "2026-04-05T10:33:00.925916",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.76",
+      "timestamp": "2026-04-05T10:33:00.926132",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.77",
+      "timestamp": "2026-04-05T10:33:00.926360",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.78",
+      "timestamp": "2026-04-05T10:33:00.926598",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.79",
+      "timestamp": "2026-04-05T10:33:00.926840",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.80",
+      "timestamp": "2026-04-05T10:33:00.927171",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.81",
+      "timestamp": "2026-04-05T10:33:00.927414",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.82",
+      "timestamp": "2026-04-05T10:33:00.927628",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.83",
+      "timestamp": "2026-04-05T10:33:00.927850",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.84",
+      "timestamp": "2026-04-05T10:33:00.928064",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.85",
+      "timestamp": "2026-04-05T10:33:00.928796",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.86",
+      "timestamp": "2026-04-05T10:33:00.929078",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.87",
+      "timestamp": "2026-04-05T10:33:00.929306",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.88",
+      "timestamp": "2026-04-05T10:33:00.929531",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.89",
+      "timestamp": "2026-04-05T10:33:00.929746",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.90",
+      "timestamp": "2026-04-05T10:33:00.929967",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.91",
+      "timestamp": "2026-04-05T10:33:00.930169",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.92",
+      "timestamp": "2026-04-05T10:33:00.930372",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.93",
+      "timestamp": "2026-04-05T10:33:00.930588",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.94",
+      "timestamp": "2026-04-05T10:33:00.930802",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.95",
+      "timestamp": "2026-04-05T10:33:00.931023",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.96",
+      "timestamp": "2026-04-05T10:33:00.931226",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.97",
+      "timestamp": "2026-04-05T10:33:00.931442",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.98",
+      "timestamp": "2026-04-05T10:33:00.931647",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.99",
+      "timestamp": "2026-04-05T10:33:00.931863",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.100",
+      "timestamp": "2026-04-05T10:33:00.932070",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.101",
+      "timestamp": "2026-04-05T10:33:00.932721",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.102",
+      "timestamp": "2026-04-05T10:33:00.932993",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.103",
+      "timestamp": "2026-04-05T10:33:00.933211",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.104",
+      "timestamp": "2026-04-05T10:33:00.933416",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.105",
+      "timestamp": "2026-04-05T10:33:00.933625",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.106",
+      "timestamp": "2026-04-05T10:33:00.933836",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.107",
+      "timestamp": "2026-04-05T10:33:00.934032",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.108",
+      "timestamp": "2026-04-05T10:33:00.934229",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.109",
+      "timestamp": "2026-04-05T10:33:00.934428",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.110",
+      "timestamp": "2026-04-05T10:33:00.934686",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.111",
+      "timestamp": "2026-04-05T10:33:00.934945",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.112",
+      "timestamp": "2026-04-05T10:33:00.935169",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.113",
+      "timestamp": "2026-04-05T10:33:00.935868",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.114",
+      "timestamp": "2026-04-05T10:33:00.936185",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.115",
+      "timestamp": "2026-04-05T10:33:00.936568",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.116",
+      "timestamp": "2026-04-05T10:33:00.936931",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.117",
+      "timestamp": "2026-04-05T10:33:00.937135",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.118",
+      "timestamp": "2026-04-05T10:33:00.937329",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.119",
+      "timestamp": "2026-04-05T10:33:00.937523",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.120",
+      "timestamp": "2026-04-05T10:33:00.937709",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.121",
+      "timestamp": "2026-04-05T10:33:00.937900",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.122",
+      "timestamp": "2026-04-05T10:33:00.938089",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.123",
+      "timestamp": "2026-04-05T10:33:00.938280",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.124",
+      "timestamp": "2026-04-05T10:33:00.938468",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.125",
+      "timestamp": "2026-04-05T10:33:00.938674",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.126",
+      "timestamp": "2026-04-05T10:33:00.938903",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.127",
+      "timestamp": "2026-04-05T10:33:00.939111",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.128",
+      "timestamp": "2026-04-05T10:33:00.939369",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.129",
+      "timestamp": "2026-04-05T10:33:00.939571",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.130",
+      "timestamp": "2026-04-05T10:33:00.939779",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.131",
+      "timestamp": "2026-04-05T10:33:00.939975",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.132",
+      "timestamp": "2026-04-05T10:33:00.940209",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.133",
+      "timestamp": "2026-04-05T10:33:00.940404",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.134",
+      "timestamp": "2026-04-05T10:33:00.940597",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.135",
+      "timestamp": "2026-04-05T10:33:00.940790",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.136",
+      "timestamp": "2026-04-05T10:33:00.941046",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.137",
+      "timestamp": "2026-04-05T10:33:00.941296",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.138",
+      "timestamp": "2026-04-05T10:33:00.941499",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.139",
+      "timestamp": "2026-04-05T10:33:00.941690",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.140",
+      "timestamp": "2026-04-05T10:33:00.941890",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.141",
+      "timestamp": "2026-04-05T10:33:00.942083",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.142",
+      "timestamp": "2026-04-05T10:33:00.942271",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.143",
+      "timestamp": "2026-04-05T10:33:00.942459",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.144",
+      "timestamp": "2026-04-05T10:33:00.942651",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.145",
+      "timestamp": "2026-04-05T10:33:00.942859",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.146",
+      "timestamp": "2026-04-05T10:33:00.943068",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.147",
+      "timestamp": "2026-04-05T10:33:00.943272",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.148",
+      "timestamp": "2026-04-05T10:33:00.943463",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.149",
+      "timestamp": "2026-04-05T10:33:00.943650",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.150",
+      "timestamp": "2026-04-05T10:33:00.943848",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.151",
+      "timestamp": "2026-04-05T10:33:00.944077",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.152",
+      "timestamp": "2026-04-05T10:33:00.944323",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.153",
+      "timestamp": "2026-04-05T10:33:00.944574",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.154",
+      "timestamp": "2026-04-05T10:33:00.944826",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.155",
+      "timestamp": "2026-04-05T10:33:00.945045",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.156",
+      "timestamp": "2026-04-05T10:33:00.945246",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.157",
+      "timestamp": "2026-04-05T10:33:00.945477",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.158",
+      "timestamp": "2026-04-05T10:33:00.945705",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.159",
+      "timestamp": "2026-04-05T10:33:00.945951",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.160",
+      "timestamp": "2026-04-05T10:33:00.946191",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.161",
+      "timestamp": "2026-04-05T10:33:00.946433",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.162",
+      "timestamp": "2026-04-05T10:33:00.946669",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.163",
+      "timestamp": "2026-04-05T10:33:00.946910",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.164",
+      "timestamp": "2026-04-05T10:33:00.947137",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.165",
+      "timestamp": "2026-04-05T10:33:00.947373",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.166",
+      "timestamp": "2026-04-05T10:33:00.947604",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.167",
+      "timestamp": "2026-04-05T10:33:00.947835",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.168",
+      "timestamp": "2026-04-05T10:33:00.948060",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.169",
+      "timestamp": "2026-04-05T10:33:00.948395",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.170",
+      "timestamp": "2026-04-05T10:33:00.948644",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.171",
+      "timestamp": "2026-04-05T10:33:00.948886",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.172",
+      "timestamp": "2026-04-05T10:33:00.949138",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.173",
+      "timestamp": "2026-04-05T10:33:00.949372",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.174",
+      "timestamp": "2026-04-05T10:33:00.949607",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.175",
+      "timestamp": "2026-04-05T10:33:00.949833",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.176",
+      "timestamp": "2026-04-05T10:33:00.950063",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.177",
+      "timestamp": "2026-04-05T10:33:00.950289",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.178",
+      "timestamp": "2026-04-05T10:33:00.950511",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.179",
+      "timestamp": "2026-04-05T10:33:00.950734",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.180",
+      "timestamp": "2026-04-05T10:33:00.950974",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.181",
+      "timestamp": "2026-04-05T10:33:00.951208",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.182",
+      "timestamp": "2026-04-05T10:33:00.951422",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.183",
+      "timestamp": "2026-04-05T10:33:00.951660",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.184",
+      "timestamp": "2026-04-05T10:33:00.951898",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.185",
+      "timestamp": "2026-04-05T10:33:00.952118",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.186",
+      "timestamp": "2026-04-05T10:33:00.952363",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.187",
+      "timestamp": "2026-04-05T10:33:00.952596",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.188",
+      "timestamp": "2026-04-05T10:33:00.952827",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.189",
+      "timestamp": "2026-04-05T10:33:00.953079",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.190",
+      "timestamp": "2026-04-05T10:33:00.953324",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.191",
+      "timestamp": "2026-04-05T10:33:00.953554",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.192",
+      "timestamp": "2026-04-05T10:33:00.953807",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.193",
+      "timestamp": "2026-04-05T10:33:00.954060",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.194",
+      "timestamp": "2026-04-05T10:33:00.954298",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.195",
+      "timestamp": "2026-04-05T10:33:00.954544",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.196",
+      "timestamp": "2026-04-05T10:33:00.954884",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.197",
+      "timestamp": "2026-04-05T10:33:00.955162",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.198",
+      "timestamp": "2026-04-05T10:33:00.955424",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.199",
+      "timestamp": "2026-04-05T10:33:00.955656",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.200",
+      "timestamp": "2026-04-05T10:33:00.955910",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.201",
+      "timestamp": "2026-04-05T10:33:00.956377",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.202",
+      "timestamp": "2026-04-05T10:33:00.956685",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.203",
+      "timestamp": "2026-04-05T10:33:00.956932",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.204",
+      "timestamp": "2026-04-05T10:33:00.957234",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.205",
+      "timestamp": "2026-04-05T10:33:00.957634",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.206",
+      "timestamp": "2026-04-05T10:33:00.957900",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.207",
+      "timestamp": "2026-04-05T10:33:00.958131",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.208",
+      "timestamp": "2026-04-05T10:33:00.958356",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.209",
+      "timestamp": "2026-04-05T10:33:00.958600",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.210",
+      "timestamp": "2026-04-05T10:33:00.958855",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.211",
+      "timestamp": "2026-04-05T10:33:00.959114",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.212",
+      "timestamp": "2026-04-05T10:33:00.959369",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.213",
+      "timestamp": "2026-04-05T10:33:00.959630",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.214",
+      "timestamp": "2026-04-05T10:33:00.959893",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.215",
+      "timestamp": "2026-04-05T10:33:00.960145",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.216",
+      "timestamp": "2026-04-05T10:33:00.960692",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.217",
+      "timestamp": "2026-04-05T10:33:00.960968",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.218",
+      "timestamp": "2026-04-05T10:33:00.961218",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.219",
+      "timestamp": "2026-04-05T10:33:00.961457",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.220",
+      "timestamp": "2026-04-05T10:33:00.961693",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.221",
+      "timestamp": "2026-04-05T10:33:00.961949",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.222",
+      "timestamp": "2026-04-05T10:33:00.962187",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.223",
+      "timestamp": "2026-04-05T10:33:00.962404",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.224",
+      "timestamp": "2026-04-05T10:33:00.962621",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.225",
+      "timestamp": "2026-04-05T10:33:00.962832",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.226",
+      "timestamp": "2026-04-05T10:33:00.963049",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.227",
+      "timestamp": "2026-04-05T10:33:00.963263",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.228",
+      "timestamp": "2026-04-05T10:33:00.963481",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.229",
+      "timestamp": "2026-04-05T10:33:00.963694",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.230",
+      "timestamp": "2026-04-05T10:33:00.963912",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.231",
+      "timestamp": "2026-04-05T10:33:00.964111",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.232",
+      "timestamp": "2026-04-05T10:33:00.964338",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.233",
+      "timestamp": "2026-04-05T10:33:00.964551",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.234",
+      "timestamp": "2026-04-05T10:33:00.964772",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.235",
+      "timestamp": "2026-04-05T10:33:00.964983",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.236",
+      "timestamp": "2026-04-05T10:33:00.965187",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.237",
+      "timestamp": "2026-04-05T10:33:00.965388",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.238",
+      "timestamp": "2026-04-05T10:33:00.965591",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.239",
+      "timestamp": "2026-04-05T10:33:00.965797",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.240",
+      "timestamp": "2026-04-05T10:33:00.965994",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.241",
+      "timestamp": "2026-04-05T10:33:00.966190",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.242",
+      "timestamp": "2026-04-05T10:33:00.966391",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.243",
+      "timestamp": "2026-04-05T10:33:00.966595",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.244",
+      "timestamp": "2026-04-05T10:33:00.966802",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.245",
+      "timestamp": "2026-04-05T10:33:00.967016",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.246",
+      "timestamp": "2026-04-05T10:33:00.967243",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.247",
+      "timestamp": "2026-04-05T10:33:00.967454",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.248",
+      "timestamp": "2026-04-05T10:33:00.967664",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.249",
+      "timestamp": "2026-04-05T10:33:00.967874",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.250",
+      "timestamp": "2026-04-05T10:33:00.968087",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.251",
+      "timestamp": "2026-04-05T10:33:00.968342",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.252",
+      "timestamp": "2026-04-05T10:33:00.968560",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.253",
+      "timestamp": "2026-04-05T10:33:00.968797",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    },
+    {
+      "target": "192.168.1.254",
+      "timestamp": "2026-04-05T10:33:00.969018",
+      "status": "error",
+      "error": "[Errno 2] No such file or directory: 'nmap'"
+    }
+  ],
+  "statistics": {
+    "total_hosts_scanned": 254,
+    "hosts_services_found": 0,
+    "total_services_found": 0,
+    "vulnerabilities_found": 0
+  }
+}
