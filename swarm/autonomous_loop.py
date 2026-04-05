@@ -32,11 +32,17 @@ TOTAL_DEPLOYED = 0
 TOTAL_SCANNED  = 0
 
 # Expanding target list — grows each cycle
+LOCAL_IP   = '172.28.137.134'
+ALWAYS_SCAN = ['127.0.0.1', '172.28.137.134']   # always include self
+
 TARGET_RANGES = [
-    ['127.0.0.1', '172.28.137.134'],           # cycle 1: local
-    ['172.28.0.1', '172.28.1.1', '172.28.2.1'],# cycle 2: gateway sweep
-    ['172.28.137.0/28'],                        # cycle 3: /28 subnet
-    ['172.28.128.0/24'],                        # cycle 4: /24 sweep
+    ['127.0.0.1', '172.28.137.134'],                              # cycle 1: self
+    ['172.28.137.128/28'],                                        # cycle 2: our /28
+    ['172.28.137.0/24'],                                          # cycle 3: our /24
+    ['172.28.136.0/24', '172.28.138.0/24'],                      # cycle 4: neighbours
+    ['172.28.128.0/22'],                                          # cycle 5: wider /22
+    ['172.28.0.1', '172.28.64.1', '172.28.100.1', '172.28.200.1'], # cycle 6: gateways
+    ['172.28.0.0/20'],                                            # cycle 7: broad /20
 ]
 
 ALL_PORTS = [
@@ -538,11 +544,16 @@ def main():
         # PHASE 1: DISCOVER TARGETS
         log(f"Phase 1: Discovering targets...", "SCAN")
         targets = expand_targets(target_range)
-        
-        # On every 4th cycle, do a live ping sweep for new hosts
-        if CYCLE % 4 == 0:
+
+        # Always include self + localhost in every cycle
+        for always_ip in ALWAYS_SCAN:
+            if always_ip not in targets:
+                targets.insert(0, always_ip)
+
+        # On every 3rd cycle, do a live ping sweep for new hosts
+        if CYCLE % 3 == 0:
             log("Phase 1b: Ping sweep for new hosts...", "SCAN")
-            live = ping_sweep('172.28.137.0/24', max_hosts=30)
+            live = ping_sweep('172.28.137.0/24', max_hosts=50)
             new = [h for h in live if h not in targets]
             if new:
                 log(f"  New hosts discovered: {new}", "FOUND")

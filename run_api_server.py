@@ -455,6 +455,58 @@ def get_intel_feeds():
     return jsonify(result)
 
 # ============================================================
+# DATA FILE ENDPOINTS (for dashboard)
+# ============================================================
+
+@app.route('/api/data/latest_loop', methods=['GET'])
+def get_latest_loop():
+    """Return latest scan loop results"""
+    import json as _json, os as _os
+    path = '/workspace/data/findings/latest_loop.json'
+    try:
+        if _os.path.exists(path):
+            with open(path) as f:
+                return jsonify(_json.load(f))
+    except: pass
+    return jsonify({'error': 'no data yet', 'cycle': 0, 'vulns_found': 0, 'agents_deployed': 0})
+
+@app.route('/api/data/cisa_kev', methods=['GET'])
+def get_cisa_kev():
+    """Return CISA KEV data"""
+    import json as _json, os as _os
+    path = '/workspace/data/findings/cisa_kev_live.json'
+    try:
+        if _os.path.exists(path):
+            with open(path) as f:
+                return jsonify(_json.load(f))
+    except: pass
+    return jsonify({'vulnerabilities': [], 'count': 0})
+
+@app.route('/api/data/nvd_critical', methods=['GET'])
+def get_nvd_critical():
+    """Return NVD critical CVE data"""
+    import json as _json, os as _os
+    path = '/workspace/data/findings/nvd_critical_live.json'
+    try:
+        if _os.path.exists(path):
+            with open(path) as f:
+                return jsonify(_json.load(f))
+    except: pass
+    return jsonify({'vulnerabilities': [], 'count': 0})
+
+@app.route('/api/data/mesh_health', methods=['GET'])
+def get_mesh_health():
+    """Return mesh guardian health status"""
+    import json as _json, os as _os
+    path = '/workspace/data/mesh/health.json'
+    try:
+        if _os.path.exists(path):
+            with open(path) as f:
+                return jsonify(_json.load(f))
+    except: pass
+    return jsonify({'node_id': 'unknown', 'services': {}, 'checks': 0, 'repairs': 0})
+
+# ============================================================
 # WEBSOCKET EVENTS
 # ============================================================
 

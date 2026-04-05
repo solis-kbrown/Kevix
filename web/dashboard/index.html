@@ -355,10 +355,11 @@
 </div><!-- /main -->
 
 <script>
-const API = 'http://localhost:5001';
-const LOOP_DATA_URL = '/data/findings/latest_loop.json';
-const CISA_URL = '/data/findings/cisa_kev_live.json';
-const NVD_URL  = '/data/findings/nvd_critical_live.json';
+const API = '';  // same-origin proxy — /api/* → Flask :5001
+const LOOP_DATA_URL = '/api/data/latest_loop';
+const CISA_URL      = '/api/data/cisa_kev';
+const NVD_URL       = '/api/data/nvd_critical';
+const MESH_URL      = '/api/data/mesh_health';
 
 let feedEvents = [];
 let allAgents  = [];
