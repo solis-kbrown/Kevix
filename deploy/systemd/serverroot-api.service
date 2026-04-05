@@ -1,0 +1,18 @@
+[Unit]
+Description=ServerRoot.net Flask API Server
+After=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/serverroot
+ExecStart=/usr/bin/python3 run_api_server.py
+Restart=always
+RestartSec=5
+StandardOutput=append:/var/log/serverroot/api.log
+StandardError=append:/var/log/serverroot/api.log
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

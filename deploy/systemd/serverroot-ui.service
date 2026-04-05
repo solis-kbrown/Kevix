@@ -1,0 +1,20 @@
+[Unit]
+Description=ServerRoot.net Next.js UI Server
+After=network.target serverroot-api.service
+Wants=serverroot-api.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/serverroot/web/serverroot-ui
+ExecStartPre=/usr/bin/npm run build
+ExecStart=/usr/bin/npm start -- --port 3000
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/serverroot/ui.log
+StandardError=append:/var/log/serverroot/ui.log
+Environment=NODE_ENV=production
+Environment=NEXT_PUBLIC_API_URL=
+
+[Install]
+WantedBy=multi-user.target

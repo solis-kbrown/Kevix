@@ -1,0 +1,17 @@
+[Unit]
+Description=ServerRoot.net Task Scheduler
+After=network.target serverroot-api.service
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/opt/serverroot
+ExecStart=/usr/bin/python3 automation/scheduler.py
+Restart=always
+RestartSec=10
+StandardOutput=append:/var/log/serverroot/scheduler.log
+StandardError=append:/var/log/serverroot/scheduler.log
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

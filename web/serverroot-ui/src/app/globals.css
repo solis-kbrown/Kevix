@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gray-900 text-white;
+  }
+}
+
+@layer components {
+  .cyber-card {
+    @apply bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-lg p-6;
+  }
+  
+  .cyber-button {
+    @apply bg-serverroot-600 hover:bg-serverroot-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200;
+  }
+  
+  .cyber-input {
+    @apply bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 text-white focus:outline-none focus:border-serverroot-500;
+  }
+}
+
+.glow-effect {
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+}
+
+.pulse-animation {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.scanner-line {
+  animation: scan 3s linear infinite;
+}
+
+@keyframes scan {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+.typewriter {
+  overflow: hidden;
+  border-right: 2px solid #00ff41;
+  white-space: nowrap;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: #00ff41;
+  }
+}

@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+venv/
+env/
+.venv/
+
+# Logs & outputs
+logs/
+outputs/
+*.log
+*.log.*
+
+# Environment & secrets
+.env
+.env.local
+.env.production
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+web/serverroot-ui/node_modules/
+web/serverroot-ui/.next/
+web/serverroot-ui/out/
+
+# Data & runtime
+data/*.json
+data/*.db
+data/*.sqlite
+swarm_data/
+*.pid
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Archives & temp
+archive/
+tmp/
+*.zip
+*.tar.gz
+summarized_conversations/
+outputs/
+.screenshots/
+.browser_data/
+
+# Build artifacts & backups
+*.backup
+*.pre_final_integration
+update_build_status.py
+update_dashboard.py
+update_swarm.py
+add_deployment_init.py
+add_deployment_to_swarmagent.py
+clean_integration.py
+complete_integration.py
+final_integrate.py
+final_integration.py
+integrate_attack_chain.py
+manual_integration.py
+quick_integrate.py
+patch_coordinator_integration.py
+remove_old_scan.py
+extract_methods.py
+generate_dashboard_demo.py
+validate_reporting.py
+validate_swarm_coordinator.py
+run_ai_tests.py
+run_reporting_tests.py
+dashboard_demo.html
