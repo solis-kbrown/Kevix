@@ -1,0 +1,1001 @@
+{
+  "scan_id": "SCAN-20260405-212537",
+  "start_time": "2026-04-05T21:25:37.079064",
+  "targets": [],
+  "local_recon": {
+    "hostname": "172.28.137.134",
+    "timestamp": "2026-04-05T21:25:37.079125",
+    "network_interfaces": [
+      "127.0.0.1/8",
+      "172.28.137.134/16"
+    ],
+    "open_ports": [
+      {
+        "address": "0.0.0.0:8002",
+        "process": "users:((\"python\",pid=661,fd=6))"
+      },
+      {
+        "address": "0.0.0.0:5901",
+        "process": "users:((\"x11vnc\",pid=648,fd=8))"
+      },
+      {
+        "address": "0.0.0.0:6080",
+        "process": "users:((\"python3\",pid=1027,fd=3))"
+      },
+      {
+        "address": "0.0.0.0:8080",
+        "process": "users:((\"python\",pid=803,fd=3),(\"python\",pid=663,fd=3))"
+      },
+      {
+        "address": "127.0.0.1:2222",
+        "process": "users:((\"ttyd\",pid=666,fd=12))"
+      },
+      {
+        "address": "0.0.0.0:3222",
+        "process": "users:((\"nginx\",pid=641,fd=5),(\"nginx\",pid=640,fd=5),(\"nginx\",pid=639,fd=5))"
+      },
+      {
+        "address": "0.0.0.0:3003",
+        "process": "users:((\"python3\",pid=362227,fd=3))"
+      },
+      {
+        "address": "0.0.0.0:5000",
+        "process": "users:((\"nginx\",pid=641,fd=7),(\"nginx\",pid=640,fd=7),(\"nginx\",pid=639,fd=7))"
+      },
+      {
+        "address": "0.0.0.0:5001",
+        "process": "users:((\"python\",pid=379316,fd=4))"
+      },
+      {
+        "address": "127.0.0.1:4000",
+        "process": "users:((\"node\",pid=799,fd=22))"
+      },
+      {
+        "address": "0.0.0.0:22",
+        "process": "users:((\"sshd\",pid=638,fd=3))"
+      },
+      {
+        "address": "0.0.0.0:8443",
+        "process": "users:((\"python\",pid=671,fd=5))"
+      },
+      {
+        "address": "127.0.0.1:18080",
+        "process": "users:((\"psiphon-tunnel-\",pid=660,fd=7))"
+      },
+      {
+        "address": "127.0.0.1:18081",
+        "process": "users:((\"psiphon-tunnel-\",pid=660,fd=6))"
+      },
+      {
+        "address": "[::]:5900",
+        "process": "users:((\"x11vnc\",pid=648,fd=9))"
+      },
+      {
+        "address": "[::]:5901",
+        "process": "users:((\"x11vnc\",pid=648,fd=10))"
+      },
+      {
+        "address": "[::]:3222",
+        "process": "users:((\"nginx\",pid=641,fd=6),(\"nginx\",pid=640,fd=6),(\"nginx\",pid=639,fd=6))"
+      },
+      {
+        "address": "*:9084",
+        "process": "users:((\"github-mcp-serv\",pid=204514,fd=3))"
+      },
+      {
+        "address": "*:3002",
+        "process": "users:((\"next-server"
+      },
+      {
+        "address": "[::]:5000",
+        "process": "users:((\"nginx\",pid=641,fd=8),(\"nginx\",pid=640,fd=8),(\"nginx\",pid=639,fd=8))"
+      },
+      {
+        "address": "[::]:22",
+        "process": "users:((\"sshd\",pid=638,fd=4))"
+      }
+    ],
+    "running_services": [
+      "root         633  0.1  0.8  39844 33480 ?        Ss   17:16   0:17 /usr/bin/python3 /usr/bin/supervisord -n -c /etc/supe",
+      "root         639  0.0  0.0  10636  1352 ?        Ss   17:16   0:00 nginx: master process /usr/sbin/nginx -g daemon on; m",
+      "www-data     640  0.0  0.1  12248  4192 ?        S    17:16   0:00 nginx: worker process",
+      "www-data     641  0.0  0.1  12248  4192 ?        S    17:16   0:00 nginx: worker process",
+      "root         661  0.1  1.4 146232 60252 ?        Sl   17:16   0:24 python /app/browser_api.py",
+      "root         663  0.1  1.0  50136 43820 ?        S    17:16   0:28 python /app/server.py",
+      "root         667  0.0  1.5 1115156 61852 ?       Sl   17:16   0:00 /usr/lib/code-server/lib/node /usr/lib/code-server --",
+      "root         671  0.0  0.6 312340 25360 ?        Sl   17:16   0:01 python run_c2_server.py",
+      "root         799  0.0  1.6 1051256 64916 ?       Sl   17:16   0:00 /usr/lib/code-server/lib/node /usr/lib/code-server/ou",
+      "root         801  0.0  0.2  15612 11756 ?        S    17:16   0:00 /usr/local/bin/python -c from multiprocessing.resourc",
+      "root         803  0.1  1.1 201068 46516 ?        Sl   17:16   0:28 /usr/local/bin/python -c from multiprocessing.spawn i",
+      "root         826  0.2  2.4 1472684 99904 ?       Sl   17:16   0:36 /usr/local/lib/python3.11/site-packages/playwright/dr",
+      "root         886  0.1  5.8 51185816 234404 ?     S<sl 17:16   0:28 /root/.cache/ms-playwright/chromium-1208/chrome-linux",
+      "root         926  0.0  2.7 50735344 112468 ?     Sl   17:16   0:00 /root/.cache/ms-playwright/chromium-1208/chrome-linux",
+      "root         935  0.0  1.2 51052036 49432 ?      Sl   17:16   0:00 /root/.cache/ms-playwright/chromium-1208/chrome-linux",
+      "root        1027  0.0  0.5  28028 21852 ?        S    17:16   0:01 python3 -m websockify --web /opt/novnc 0.0.0.0:6080 l",
+      "root        9869  0.0  0.0   4352  3280 ?        S    17:31   0:00 bash -lc  cd /workspace && python automation/watchdog",
+      "root        9876  0.0  0.7  36904 30096 ?        S    17:31   0:01 python automation/watchdog.py",
+      "root        9884  0.0  0.3  91180 12972 ?        S    17:31   0:00 /usr/local/bin/python /workspace/run_c2_server.py",
+      "root        9936  0.0  0.0   4352  3248 ?        S    17:31   0:00 bash -lc  cd /workspace && python automation/schedule",
+      "root        9943  0.0  0.8 256436 32836 ?        S    17:31   0:03 python automation/scheduler.py",
+      "root      170742  0.0  0.5  25532 20380 ?        Ss   18:07   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      170744  0.0  0.3 1031884 15040 ?       Ss   18:07   0:09 python3 /workspace/agents/net_watcher_001.py",
+      "root      170745  0.0  0.8  39108 34968 ?        Ss   18:07   0:03 python3 /workspace/agents/intel_harvester_001.py",
+      "root      216920  0.0  0.5  25560 20340 ?        Ss   18:43   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      216925  0.0  0.3 1031860 15096 ?       Ss   18:43   0:07 python3 /workspace/agents/net_watcher_001.py",
+      "root      216931  0.0  0.8  39108 34924 ?        Ss   18:43   0:02 python3 /workspace/agents/intel_harvester_001.py",
+      "root      225507  0.0  0.5  25592 20356 ?        Ss   18:47   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      225508  0.0  0.3 1031964 15248 ?       Ss   18:47   0:07 python3 /workspace/agents/net_watcher_001.py",
+      "root      225510  0.0  0.8  39328 34988 ?        Ss   18:47   0:02 python3 /workspace/agents/intel_harvester_001.py",
+      "root      235963  0.0  0.5  25536 20244 ?        Ss   18:50   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      235966  0.0  0.3 1031980 15120 ?       Ss   18:50   0:07 python3 /workspace/agents/net_watcher_001.py",
+      "root      235972  0.0  0.8  39312 35024 ?        Ss   18:50   0:02 python3 /workspace/agents/intel_harvester_001.py",
+      "root      256504  0.0  0.5  25468 20228 ?        Ss   18:55   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      256506  0.0  0.3 1031940 15188 ?       Ss   18:55   0:07 python3 /workspace/agents/net_watcher_001.py",
+      "root      256511  0.0  0.8  39316 34972 ?        Ss   18:55   0:02 python3 /workspace/agents/intel_harvester_001.py",
+      "root      293152  0.0  0.5  25480 20268 ?        Ss   19:05   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      293153  0.0  0.3 1031940 15012 ?       Ss   19:05   0:06 python3 /workspace/agents/net_watcher_001.py",
+      "root      293156  0.0  0.8  39304 35104 ?        Ss   19:05   0:02 python3 /workspace/agents/intel_harvester_001.py",
+      "root      337323  0.0  0.3  91116 13276 ?        S    19:10   0:00 python run_c2_server.py",
+      "root      337325  0.5  1.3 1086824 53324 ?       Sl   19:10   0:46 python3 swarm/autonomous_loop.py",
+      "root      337326  0.0  0.7  35684 29344 ?        S    19:10   0:04 python3 swarm/mesh_guardian.py",
+      "root      337327  0.2  0.6 251752 25796 ?        Sl   19:10   0:22 python3 swarm/mesh_propagator.py",
+      "root      337332  0.0  0.8  40336 36044 ?        S    19:10   0:04 python3 swarm/continuous_ops.py",
+      "root      337342  0.0  0.5  25628 20424 ?        S    19:10   0:00 python3 agents/recon_agent_001.py",
+      "root      337343  0.0  0.3 1031940 14984 ?       S    19:10   0:06 python3 agents/net_watcher_001.py",
+      "root      337372  0.0  0.8  39328 35044 ?        S    19:10   0:02 python3 agents/intel_harvester_001.py",
+      "root      337373  0.0  0.7  36904 30248 ?        S    19:10   0:00 python automation/watchdog.py",
+      "root      337375  0.0  0.8 256432 32960 ?        S    19:10   0:02 python automation/scheduler.py",
+      "root      337828  0.0  0.5  25496 20276 ?        Ss   19:10   0:00 python3 /workspace/agents/recon_agent_001.py",
+      "root      337845  0.0  0.3 1031940 15164 ?       Ss   19:10   0:06 python3 /workspace/agents/net_watcher_001.py",
+      "root      337856  0.0  0.8  39328 35092 ?        Ss   19:10   0:02 python3 /workspace/agents/intel_harvester_001.py",
+      "root      338136  0.0  0.3  91116 13192 ?        S    19:10   0:00 /usr/local/bin/python /workspace/run_c2_server.py",
+      "root      362227  0.2  0.5 517908 21896 ?        Sl   19:11   0:21 python3 /workspace/web/dashboard/server.py 3003",
+      "root      379316  0.5  1.5 569244 64552 ?        Sl   19:12   0:40 python run_api_server.py",
+      "root     1695389 23.9  0.7  36148 29556 ?        S    21:25   0:00 /usr/local/bin/python3 /workspace/swarm/real_scanner_"
+    ],
+    "os_info": {
+      "PRETTY_NAME": "Debian GNU/Linux 12 (bookworm)",
+      "NAME": "Debian GNU/Linux",
+      "VERSION_ID": "12",
+      "VERSION": "12 (bookworm)",
+      "VERSION_CODENAME": "bookworm",
+      "ID": "debian",
+      "HOME_URL": "https://www.debian.org/",
+      "SUPPORT_URL": "https://www.debian.org/support",
+      "BUG_REPORT_URL": "https://bugs.debian.org/"
+    },
+    "users": [],
+    "interesting_files": [
+      {
+        "path": "/etc/passwd",
+        "size": 1307,
+        "readable": true,
+        "writable": true
+      },
+      {
+        "path": "/etc/shadow",
+        "size": 672,
+        "readable": true,
+        "writable": true
+      },
+      {
+        "path": "/root/.ssh/authorized_keys",
+        "size": 102,
+        "readable": true,
+        "writable": true
+      },
+      {
+        "path": "/home",
+        "size": 4096,
+        "readable": true,
+        "writable": true
+      },
+      {
+        "path": "/opt",
+        "size": 4096,
+        "readable": true,
+        "writable": true
+      },
+      {
+        "path": "/srv",
+        "size": 4096,
+        "readable": true,
+        "writable": true
+      }
+    ],
+    "network_interfaces_raw": "1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000\n    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00\n    inet 127.0.0.1/8 scope host lo\n       valid_lft forever preferred_lft forever\n    inet6 ::1/128 scope host \n       valid_lft forever preferred_lft forever\n2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast state UP group default qlen 1000\n    link/ether aa:fc:09:a1:70:f1 brd ff:ff:ff:ff:ff:ff\n    inet 172.28.137.134/16 brd 172.28.255.255 scope global eth0\n       valid_lft forever preferred_lft forever\n    inet6 fe80::a8fc:9ff:fea1:70f1/64 scope link \n       valid_lft forever preferred_lft forever\n"
+  },
+  "network_hosts": [
+    "172.28.137.134"
+  ],
+  "open_services": [
+    {
+      "ip": "172.28.137.134",
+      "open_ports": {
+        "22": {
+          "service": "SSH",
+          "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u7",
+          "state": "open"
+        },
+        "8080": {
+          "service": "HTTP-alt",
+          "banner": "HTTP/1.1 404 Not Found\r\ndate: Sun, 05 Apr 2026 21:27:13 GMT\r\nserver: uvicorn\r\ncontent-length: 22\r\ncontent-type: application/json\r\nConnection: close\r\n\r\n{\"detail\":\"Not Found\"}",
+          "state": "open"
+        },
+        "8443": {
+          "service": "HTTPS-alt",
+          "banner": "",
+          "state": "open"
+        },
+        "5001": {
+          "service": "Flask",
+          "banner": "HTTP/1.1 404 NOT FOUND\r\nServer: Werkzeug/3.1.8 Python/3.11.14\r\nDate: Sun, 05 Apr 2026 21:27:14 GMT\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 207\r\nConnection: close\r\n\r\n<!doctype html>\n<h",
+          "state": "open"
+        }
+      },
+      "scan_time": "2026-04-05T21:27:14.049832"
+    },
+    {
+      "ip": "127.0.0.1",
+      "open_ports": {
+        "8443": {
+          "service": "HTTPS-alt",
+          "banner": "",
+          "state": "open"
+        },
+        "22": {
+          "service": "SSH",
+          "banner": "SSH-2.0-OpenSSH_9.2p1 Debian-2+deb12u7",
+          "state": "open"
+        },
+        "5001": {
+          "service": "Flask",
+          "banner": "HTTP/1.1 404 NOT FOUND\r\nServer: Werkzeug/3.1.8 Python/3.11.14\r\nDate: Sun, 05 Apr 2026 21:27:14 GMT\r\nContent-Type: text/html; charset=utf-8\r\nContent-Length: 207\r\nConnection: close",
+          "state": "open"
+        },
+        "2222": {
+          "service": "SSH-alt",
+          "banner": "",
+          "state": "open"
+        },
+        "8080": {
+          "service": "HTTP-alt",
+          "banner": "HTTP/1.1 404 Not Found\r\ndate: Sun, 05 Apr 2026 21:27:14 GMT\r\nserver: uvicorn\r\ncontent-length: 22\r\ncontent-type: application/json\r\nConnection: close\r\n\r\n{\"detail\":\"Not Found\"}",
+          "state": "open"
+        }
+      },
+      "scan_time": "2026-04-05T21:27:14.510149"
+    }
+  ],
+  "vulnerabilities": [],
+  "web_findings": [
+    {
+      "url": "http://172.28.137.134:8080",
+      "endpoints": [
+        {
+          "path": "/",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/admin",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api/v1",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/login",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/dashboard",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/health",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/status",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/metrics",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/robots.txt",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/.env",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/config",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/backup",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/wp-admin",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/phpmyadmin",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        }
+      ],
+      "headers": {
+        "date": "Sun, 05 Apr 2026 21:27:13 GMT",
+        "server": "uvicorn",
+        "content-length": "22",
+        "content-type": "application/json"
+      },
+      "technologies": [
+        "uvicorn"
+      ]
+    },
+    {
+      "url": "http://172.28.137.134:5001",
+      "endpoints": [
+        {
+          "path": "/",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/admin",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api/v1",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/login",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/dashboard",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/health",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/status",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/metrics",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/robots.txt",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/.env",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/config",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/backup",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/wp-admin",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/phpmyadmin",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        }
+      ],
+      "headers": {
+        "Server": "Werkzeug/3.1.8 Python/3.11.14",
+        "Date": "Sun, 05 Apr 2026 21:27:14 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": "207",
+        "Connection": "close"
+      },
+      "technologies": [
+        "Werkzeug/3.1.8 Python/3.11.14"
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:5001",
+      "endpoints": [
+        {
+          "path": "/",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/admin",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api/v1",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/login",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/dashboard",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/health",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/status",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/metrics",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/robots.txt",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/.env",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/config",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/backup",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/wp-admin",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/phpmyadmin",
+          "status": 404,
+          "size": 207,
+          "content_type": "text/html; charset=utf-8",
+          "server": "Werkzeug/3.1.8 Python/3.11.14",
+          "x_powered_by": ""
+        }
+      ],
+      "headers": {
+        "Server": "Werkzeug/3.1.8 Python/3.11.14",
+        "Date": "Sun, 05 Apr 2026 21:27:14 GMT",
+        "Content-Type": "text/html; charset=utf-8",
+        "Content-Length": "207",
+        "Connection": "close"
+      },
+      "technologies": [
+        "Werkzeug/3.1.8 Python/3.11.14"
+      ]
+    },
+    {
+      "url": "http://127.0.0.1:8080",
+      "endpoints": [
+        {
+          "path": "/",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/admin",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/api/v1",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/login",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/dashboard",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/health",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/status",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/metrics",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/robots.txt",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/sitemap.xml",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/.env",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/config",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/backup",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/wp-admin",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        },
+        {
+          "path": "/phpmyadmin",
+          "status": 404,
+          "size": 22,
+          "content_type": "application/json",
+          "server": "uvicorn",
+          "x_powered_by": ""
+        }
+      ],
+      "headers": {
+        "date": "Sun, 05 Apr 2026 21:27:14 GMT",
+        "server": "uvicorn",
+        "content-length": "22",
+        "content-type": "application/json"
+      },
+      "technologies": [
+        "uvicorn"
+      ]
+    }
+  ],
+  "dns_findings": [
+    {
+      "target": "serverroot.net",
+      "records": {
+        "MX": [
+          "0 serverroot-net.mail.protection.outlook.com."
+        ],
+        "NS": [
+          "ns1.bdm.microsoftonline.com.",
+          "ns2.bdm.microsoftonline.com.",
+          "ns3.bdm.microsoftonline.com.",
+          "ns4.bdm.microsoftonline.com."
+        ],
+        "TXT": [
+          "\"mscid=5ShpUCvtSiHsxhD7ilu271jLB6Q71rnpAY7f8x5ELhFFVKhZdvNOM/xXKoY0xwzrDhr9hVe6rC6NVydG2Y129g==\"",
+          "\"v=spf1 include:spf.protection.outlook.com -all\""
+        ]
+      },
+      "subdomains": []
+    },
+    {
+      "target": "github.com",
+      "records": {
+        "A": [
+          "140.82.116.4"
+        ],
+        "MX": [
+          "0 github-com.mail.protection.outlook.com."
+        ],
+        "NS": [
+          "dns1.p08.nsone.net.",
+          "dns2.p08.nsone.net.",
+          "dns3.p08.nsone.net.",
+          "dns4.p08.nsone.net.",
+          "ns-1283.awsdns-32.org.",
+          "ns-1707.awsdns-21.co.uk.",
+          "ns-421.awsdns-52.com.",
+          "ns-520.awsdns-01.net."
+        ],
+        "TXT": [
+          "\"MS=6BF03E6AF5CB689E315FB6199603BABF2C88D805\"",
+          "\"MS=ms44452932\"",
+          "\"MS=ms58704441\"",
+          "\"TAILSCALE-xOzoDvFUzZr5YYVCQFuD\"",
+          "\"adobe-idp-site-verification=b92c9e999aef825edc36e0a3d847d2dbad5b2fc0e05c79ddd7a16139b48ecf4b\"",
+          "\"apple-domain-verification=RyQhdzTl6Z6x8ZP4\"",
+          "\"atlassian-domain-verification=jjgw98AKv2aeoYFxiL/VFaoyPkn3undEssTRuMg6C/3Fp/iqhkV4HVV7WjYlVeF8\"",
+          "\"calendly-site-verification=at0DQARi7IZvJtXQAWhMqpmIzpvoBNF7aam5VKKxP\"",
+          "\"docusign=087098e3-3d46-47b7-9b4e-8a23028154cd\"",
+          "\"facebook-domain-verification=39xu4jzl7roi7x0n93ldkxjiaarx50\"",
+          "\"google-site-verification=82Le34Flgtd15ojYhHlGF_6g72muSjamlMVThBOJpks\"",
+          "\"google-site-verification=UTM-3akMgubp6tQtgEuAkYNYLyYAvpTnnSrDMWoDR3o\"",
+          "\"jamf-site-verification=XtaPNIYghF_e_xRDI8CjgQ\"",
+          "\"krisp-domain-verification=ZlyiK7XLhnaoUQb2hpak1PLY7dFkl1WE\"",
+          "\"loom-site-verification=f3787154f1154b7880e720a511ea664d\"",
+          "\"miro-verification=d2e174fdb00c71e0bcf58f8e58c3da2dd80dcfa9\"",
+          "\"shopify-verification-code=t1YPwcmvnxZyBycaCpk1MPyWoFs72o\"",
+          "\"stripe-verification=f88ef17321660a01bab1660454192e014defa29ba7b8de9633c69d6b4912217f\"",
+          "\"v=spf1 ip4:192.30.252.0/22 include:spf.protection.outlook.com include:_netblocks.google.com include:_netblocks2.google.com include:mail.zendesk.com include:_spf.salesforce.com include:servers.mcsv.net include:mktomail.com include:sendgrid.net ip4:62.253.2\" \"27.114 ip4:166.78.69.169 ip4:166.78.69.170 ip4:166.78.71.131 ~all\""
+        ]
+      },
+      "subdomains": [
+        {
+          "subdomain": "www.github.com",
+          "ip": "140.82.116.4"
+        },
+        {
+          "subdomain": "api.github.com",
+          "ip": "140.82.116.5"
+        },
+        {
+          "subdomain": "admin.github.com",
+          "ip": "140.82.112.24"
+        },
+        {
+          "subdomain": "test.github.com",
+          "ip": "192.0.2.1"
+        }
+      ]
+    },
+    {
+      "target": "google.com",
+      "records": {
+        "A": [
+          "172.253.117.138",
+          "172.253.117.139",
+          "172.253.117.113",
+          "172.253.117.101",
+          "172.253.117.100",
+          "172.253.117.102"
+        ],
+        "AAAA": [
+          "2607:f8b0:400e:c1b::65",
+          "2607:f8b0:400e:c1b::64",
+          "2607:f8b0:400e:c1b::71",
+          "2607:f8b0:400e:c1b::8b"
+        ],
+        "MX": [
+          "10 smtp.google.com."
+        ],
+        "NS": [
+          "ns1.google.com.",
+          "ns4.google.com.",
+          "ns3.google.com.",
+          "ns2.google.com."
+        ],
+        "TXT": [
+          "\"google-site-verification=wD8N7i1JTNTkezJ49swvWW48f8_9xveREV4oB-0Hf5o\"",
+          "\"docusign=05958488-4752-4ef2-95eb-aa7ba8a3bd0e\"",
+          "\"google-site-verification=4ibFUgB-wXLQ_S7vsXVomSTVamuOXBiVAzpR5IZ87D0\"",
+          "\"cisco-ci-domain-verification=47c38bc8c4b74b7233e9053220c1bbe76bcc1cd33c7acf7acd36cd6a5332004b\"",
+          "\"docusign=1b0a6754-49b1-4db5-8540-d2c12664b289\"",
+          "\"globalsign-smime-dv=CDYX+XFHUw2wml6/Gb8+59BsH31KzUr6c1l2BPvqKX8=\"",
+          "\"onetrust-domain-verification=6d685f1d41a94696ad7ef771f68993e0\"",
+          "\"onetrust-domain-verification=0d477fe608074e6f9c12bca7826035cc\"",
+          "\"facebook-domain-verification=22rm551cu4k0ab0bxsw536tlds4h95\"",
+          "\"google-site-verification=TV9-DBe4R80X4v0M4U_bd_J9cpOJM0nikft0jAgjmsQ\"",
+          "\"MS=E4A68B9AB2BB9670BCE15412F62916164C0B20BB\"",
+          "\"apple-domain-verification=30afIBcvSuDV2PLX\"",
+          "\"v=spf1 include:_spf.google.com ~all\""
+        ]
+      },
+      "subdomains": [
+        {
+          "subdomain": "www.google.com",
+          "ip": "142.251.151.119"
+        },
+        {
+          "subdomain": "mail.google.com",
+          "ip": "142.250.107.17"
+        },
+        {
+          "subdomain": "api.google.com",
+          "ip": "173.194.203.103"
+        },
+        {
+          "subdomain": "admin.google.com",
+          "ip": "142.250.107.113"
+        },
+        {
+          "subdomain": "vpn.google.com",
+          "ip": "64.9.224.69"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "scan_id": "SCAN-20260405-212537",
+    "hosts_discovered": 1,
+    "hosts_scanned": 2,
+    "open_services_found": 9,
+    "vulnerabilities_found": 0,
+    "critical_findings": 0,
+    "high_findings": 0,
+    "web_services_probed": 4,
+    "dns_targets_recon": 3
+  },
+  "end_time": "2026-04-05T21:27:16.457880"
+}

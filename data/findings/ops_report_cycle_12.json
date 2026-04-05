@@ -1,0 +1,17 @@
+{
+  "cycle": 12,
+  "timestamp": "2026-04-05T20:07:15.605992",
+  "scan_duration_seconds": 99.23652172088623,
+  "swarm": {
+    "active_agents": 100,
+    "successful_operations": 438,
+    "targets_scanned": 0,
+    "total_agents": 100,
+    "total_operations": 555,
+    "uptime_seconds": 3284,
+    "vulnerabilities_found": 0
+  },
+  "cves_collected": 20,
+  "threat_feeds": [],
+  "status": "operational"
+}

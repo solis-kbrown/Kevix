@@ -1,0 +1,11 @@
+{
+  "agent_id": "agent_172_28_137_134_5901_VNC-EXPOSED_1775421934",
+  "target": "172.28.137.134:5901",
+  "vuln_id": "VNC-EXPOSED",
+  "deploy_time": "2026-04-05T20:45:34.144713",
+  "success": true,
+  "data": {
+    "vnc_banner": "RFB 003.008",
+    "novnc_url": "http://172.28.137.134:6080"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "agent_id": "agent_127_0_0_1_8443_C2-PORT_1775427391",
+  "target": "127.0.0.1:8443",
+  "vuln_id": "C2-PORT",
+  "deploy_time": "2026-04-05T22:16:31.513408",
+  "success": true,
+  "data": {
+    "c2_response": ""
+  }
+}

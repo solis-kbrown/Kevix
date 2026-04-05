@@ -1,17 +1,17 @@
 {
   "node_id": "mesh_172.28.137.134",
-  "ts": "2026-04-05T19:12:36.888639",
-  "checks": 7,
+  "ts": "2026-04-05T23:10:29.770476",
+  "checks": 718,
   "repairs": 2,
   "services": {
     "flask_api": {
       "port": true,
       "healthy": true,
-      "uptime": 5
+      "uptime": 14278
     },
     "swarm": {
-      "initialized": false,
-      "agents": 0
+      "initialized": true,
+      "agents": 380
     },
     "c2": {
       "port": true

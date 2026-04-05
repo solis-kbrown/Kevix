@@ -1,0 +1,175 @@
+{
+  "timestamp": "2026-04-05T22:25:36.226762",
+  "cves": [
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-3502",
+      "description": "TrueConf Client contains a download of code without integrity check vulnerability. An attacker who is able to influence the update delivery path can substitute a tampered update payload. If the payloa",
+      "vendor": "TrueConf",
+      "product": "Client",
+      "date_added": "2026-04-02",
+      "due_date": "2026-04-16",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-5281",
+      "description": "Google Dawn contains an use-after-free vulnerability that could allow a remote attacker who had compromised the renderer process to execute arbitrary code via a crafted HTML page. This vulnerability c",
+      "vendor": "Google",
+      "product": "Dawn",
+      "date_added": "2026-04-01",
+      "due_date": "2026-04-15",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-3055",
+      "description": "Citrix NetScaler ADC (formerly Citrix ADC), NetScaler Gateway (formerly Citrix Gateway) and NetScaler ADC FIPS and NDcPP contain an out-of-bounds reads vulnerability when configured as a SAML IDP lead",
+      "vendor": "Citrix",
+      "product": "NetScaler",
+      "date_added": "2026-03-30",
+      "due_date": "2026-04-02",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-53521",
+      "description": "F5 BIG-IP APM contains a stack-based buffer overflow vulnerability that could allow a threat actor to achieve remote code execution.",
+      "vendor": "F5",
+      "product": "BIG-IP",
+      "date_added": "2026-03-27",
+      "due_date": "2026-03-30",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-33634",
+      "description": "Aquasecurity Trivy contains an embedded malicious code vulnerability that could allow an attacker to gain access to everything in the CI/CD environment, including all tokens, SSH keys, cloud credentia",
+      "vendor": "Aquasecurity",
+      "product": "Trivy",
+      "date_added": "2026-03-26",
+      "due_date": "2026-04-09",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2026-33017",
+      "description": "Langflow contains a code injection vulnerability that could allow building public flows without requiring authentication.",
+      "vendor": "Langflow",
+      "product": "Langflow",
+      "date_added": "2026-03-25",
+      "due_date": "2026-04-08",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-32432",
+      "description": "Craft CMS contains a code injection vulnerability that allows a remote attacker to execute arbitrary code.",
+      "vendor": "Craft CMS",
+      "product": "Craft CMS",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-54068",
+      "description": "Laravel Livewire contain a code injection vulnerability that could allow unauthenticated attackers to achieve remote command execution in specific scenarios.",
+      "vendor": "Laravel",
+      "product": "Livewire",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-43510",
+      "description": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain an improper locking vulnerability that could allow a malicious application to cause unexpected changes in memory shared between processes.",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "CISA-KEV",
+      "cve_id": "CVE-2025-43520",
+      "description": "Apple watchOS, iOS, iPadOS, macOS, visionOS, and tvOS contain a classic buffer overflow vulnerability which could allow a malicious application to cause unexpected system termination or write kernel m",
+      "vendor": "Apple",
+      "product": "Multiple Products",
+      "date_added": "2026-03-20",
+      "due_date": "2026-04-03",
+      "cvss_score": "EXPLOITED"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-33030",
+      "description": "Nginx UI is a web user interface for the Nginx web server. In versions 2.3.3 and prior, Nginx-UI contains an Insecure Direct Object Reference (IDOR) vulnerability that allows any authenticated user to",
+      "cvss_score": 8.8,
+      "published": "2026-03-30"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-28505",
+      "description": "Tautulli is a Python based monitoring and tracking tool for Plex Media Server. Prior to version 2.17.0, the str_eval() function in notification_handler.py implements a sandboxed eval() for notificatio",
+      "cvss_score": 10.0,
+      "published": "2026-03-30"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-33026",
+      "description": "Nginx UI is a web user interface for the Nginx web server. Prior to version 2.3.4, the nginx-ui backup restore mechanism allows attackers to tamper with encrypted backup archives and inject malicious ",
+      "cvss_score": 9.1,
+      "published": "2026-03-30"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-4257",
+      "description": "The Contact Form by Supsystic plugin for WordPress is vulnerable to Server-Side Template Injection (SSTI) leading to Remote Code Execution (RCE) in all versions up to, and including, 1.7.36. This is d",
+      "cvss_score": 9.8,
+      "published": "2026-03-30"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-27697",
+      "description": "baserCMS is a website development framework. Prior to version 5.2.3, baserCMS has a SQL injection vulnerability in blog posts. This issue has been patched in version 5.2.3.",
+      "cvss_score": 9.8,
+      "published": "2026-03-31"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-30880",
+      "description": "baserCMS is a website development framework. Prior to version 5.2.3, baserCMS has an OS command injection vulnerability in the installer. This issue has been patched in version 5.2.3.",
+      "cvss_score": 9.8,
+      "published": "2026-03-31"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-3300",
+      "description": "The Everest Forms Pro plugin for WordPress is vulnerable to Remote Code Execution via PHP Code Injection in all versions up to, and including, 1.9.12. This is due to the Calculation Addon's process_fi",
+      "cvss_score": 9.8,
+      "published": "2026-03-31"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-32916",
+      "description": "OpenClaw versions 2026.3.7 before 2026.3.11 contain an authorization bypass vulnerability where plugin subagent routes execute gateway methods through a synthetic operator client with broad administra",
+      "cvss_score": 9.4,
+      "published": "2026-03-31"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-32917",
+      "description": "OpenClaw before 2026.3.13 contains a remote command injection vulnerability in the iMessage attachment staging flow that allows attackers to execute arbitrary commands on configured remote hosts. The ",
+      "cvss_score": 9.8,
+      "published": "2026-03-31"
+    },
+    {
+      "source": "NVD-CRITICAL",
+      "cve_id": "CVE-2026-34162",
+      "description": "FastGPT is an AI Agent building platform. Prior to version 4.14.9.5, the FastGPT HTTP tools testing endpoint (/api/core/app/httpTools/runTool) is exposed without any authentication. This endpoint acts",
+      "cvss_score": 10.0,
+      "published": "2026-03-31"
+    }
+  ]
+}
