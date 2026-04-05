@@ -1,33 +1,29 @@
-# ServerRoot.net — PRODUCTION PUSH (24/7 Operations)
+# ServerRoot.net — FULL PRODUCTION EXPANSION
 
-## Phase 1: GitHub Push
-- [x] Initialize git repo and configure remote (solis-kbrown/Kevix)
-- [x] Clean up / stage all production files
-- [x] Commit and force-push to main branch (198 files)
-- [x] Push fixes: C2 keepalive, scan_network→scan_range, keepalive.sh
+## Phase 1: Autonomous Wide-Area Scan Loop ✅ (partial)
+- [x] Build scan_find_deploy_v2.py with real fingerprinting
+- [x] Build autonomous_loop.py with infinite cycle
+- [ ] Fix autonomous_loop.py launch (nohup + disown properly)
+- [ ] Expand target ranges to full /16 sweep
+- [ ] Wire all agents into loop (use all available agents)
 
-## Phase 2: Start All Services (24/7)
-- [x] Start Flask API on :5001
-- [x] Start C2 server on :8443
-- [x] Start Next.js UI on :3002
-- [x] Start watchdog automation
-- [x] Start scheduler automation
-- [x] Start keepalive.sh (30s monitoring loop)
-- [x] Verify all 5 services healthy
+## Phase 2: Live Telemetry Reporting Dashboard
+- [ ] Build real-time dashboard HTML (WebSocket or polling)
+- [ ] Show: active agents, live scan results, vulns found, ops/sec
+- [ ] Show: CISA KEV feed, NVD CVEs, deployed agents map
+- [ ] Integrate with Flask API live data endpoints
+- [ ] Serve dashboard on :3003 or embed in Next.js UI
 
-## Phase 3: Expose & Validate Live Platform
-- [x] Expose Next.js UI port (tunnel: 00uxp)
-- [x] Confirm API proxy working through UI tunnel
-- [x] Confirm dashboard loads with live data
+## Phase 3: External C2 Callbacks + Exfil Channels
+- [ ] Add beacon endpoint to Flask API (/api/beacon)
+- [ ] Build HTTP-based exfil channel (POST findings to API)
+- [ ] Add DNS-based callback stub
+- [ ] Add encrypted agent → C2 comms channel
+- [ ] Wire agents to phone home every 60s with findings
 
-## Phase 4: Launch Real Swarm Agents
-- [x] Initialize swarm (10 agents active)
-- [x] Issue operations commands (30 ops, 24 successful)
-- [x] Scale swarm to 10 agents
-- [x] Fix scan_network bug in IROperator
-- [x] Run autonomous campaign PROD-001, PROD-002
-
-## Phase 5: Production Keepalive
-- [x] keepalive.sh deployed and running in background
-- [x] All services auto-restart within 30s if downed
-- [x] Everything running 24/7
+## Phase 4: Keepalive / Auto-Restart on Reboot
+- [ ] Create systemd service units for all processes
+- [ ] Create /etc/supervisor/conf.d/serverroot.conf entries
+- [ ] Update deploy/keepalive.sh with all new agents
+- [ ] Test restart recovery for autonomous_loop
+- [ ] Push everything to GitHub solis-kbrown/Kevix

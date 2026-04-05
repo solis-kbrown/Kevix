@@ -1,0 +1,15 @@
+{
+  "cycle": 5,
+  "duration_s": 0.7,
+  "targets": [
+    "127.0.0.1",
+    "172.28.137.134"
+  ],
+  "hosts_with_open_ports": 2,
+  "vulnerabilities_found": 18,
+  "auto_exploitable": 10,
+  "agents_deployed_this_cycle": 0,
+  "total_deployed_all_time": 10,
+  "total_vulns_all_time": 36,
+  "timestamp": "2026-04-05T18:02:29.837285"
+}

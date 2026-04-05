@@ -1,0 +1,375 @@
+{
+  "agent_id": "agent_172_28_137_134_5001_FLASK-UNAUTH_1775412000",
+  "target": "172.28.137.134:5001",
+  "vuln_id": "FLASK-UNAUTH",
+  "deploy_time": "2026-04-05T18:00:00.942411",
+  "success": true,
+  "data": {
+    "harvested": {
+      "/api/health": {
+        "service": "ServerRoot.net API",
+        "status": "healthy",
+        "timestamp": "2026-04-05T18:00:00.953855",
+        "uptime_seconds": 2584,
+        "version": "1.0.0"
+      },
+      "/api/swarm/status": {
+        "active_agents": 10,
+        "agent_count": 10,
+        "initialized": true,
+        "stats": {
+          "active_agents": 10,
+          "successful_operations": 183,
+          "targets_scanned": 0,
+          "total_agents": 10,
+          "total_operations": 235,
+          "uptime_seconds": 2583,
+          "vulnerabilities_found": 0
+        },
+        "timestamp": "2026-04-05T18:00:00.961263"
+      },
+      "/api/swarm/agents": {
+        "agents": [
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-001.internal",
+            "id": "agent_1995740d",
+            "ip": "10.38.122.100",
+            "last_seen": "2026-04-05T17:59:59.457404",
+            "load": 0.95,
+            "platform": "windows",
+            "registered_at": "2026-04-05T17:32:43.021059",
+            "role": "leader",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-002.internal",
+            "id": "agent_7b0500e7",
+            "ip": "10.16.213.190",
+            "last_seen": "2026-04-05T17:59:59.457423",
+            "load": 0.95,
+            "platform": "router",
+            "registered_at": "2026-04-05T17:32:43.021074",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-003.internal",
+            "id": "agent_0bd7b749",
+            "ip": "10.89.130.93",
+            "last_seen": "2026-04-05T17:59:59.457426",
+            "load": 0.95,
+            "platform": "router",
+            "registered_at": "2026-04-05T17:32:43.021084",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-004.internal",
+            "id": "agent_4a29be32",
+            "ip": "10.206.118.11",
+            "last_seen": "2026-04-05T17:59:59.457428",
+            "load": 0.95,
+            "platform": "router",
+            "registered_at": "2026-04-05T17:32:43.021094",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-005.internal",
+            "id": "agent_eb60f6f2",
+            "ip": "10.200.151.107",
+            "last_seen": "2026-04-05T17:59:59.457430",
+            "load": 0.95,
+            "platform": "linux",
+            "registered_at": "2026-04-05T17:32:43.021103",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-006.internal",
+            "id": "agent_c688df95",
+            "ip": "10.100.233.67",
+            "last_seen": "2026-04-05T17:59:59.457431",
+            "load": 0.95,
+            "platform": "linux",
+            "registered_at": "2026-04-05T17:32:43.021111",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-007.internal",
+            "id": "agent_a32c6c31",
+            "ip": "10.153.165.220",
+            "last_seen": "2026-04-05T17:59:59.457433",
+            "load": 0.95,
+            "platform": "linux",
+            "registered_at": "2026-04-05T17:32:43.021122",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-008.internal",
+            "id": "agent_58a49a02",
+            "ip": "10.202.210.8",
+            "last_seen": "2026-04-05T17:59:59.457434",
+            "load": 0.95,
+            "platform": "linux",
+            "registered_at": "2026-04-05T17:32:43.021137",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-009.internal",
+            "id": "agent_0ad0392b",
+            "ip": "10.207.231.77",
+            "last_seen": "2026-04-05T17:59:59.457436",
+            "load": 0.95,
+            "platform": "windows",
+            "registered_at": "2026-04-05T17:32:43.021148",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          },
+          {
+            "capabilities": [
+              "scan",
+              "exploit",
+              "persist"
+            ],
+            "hostname": "host-010.internal",
+            "id": "agent_bba415dc",
+            "ip": "10.250.64.11",
+            "last_seen": "2026-04-05T17:59:59.457437",
+            "load": 0.95,
+            "platform": "windows",
+            "registered_at": "2026-04-05T17:32:43.021160",
+            "role": "worker",
+            "status": "active",
+            "tasks_completed": 546
+          }
+        ],
+        "count": 10,
+        "timestamp": "2026-04-05T18:00:00.965153"
+      },
+      "/api/swarm/operations": {
+        "operations": [
+          {
+            "agent_id": "agent_4a29be32",
+            "id": "7e3be81a",
+            "platform": "router",
+            "status": "failed",
+            "timestamp": "2026-04-05T17:59:59.457489",
+            "type": "exploit"
+          },
+          {
+            "agent_id": "agent_0ad0392b",
+            "id": "75cbc380",
+            "platform": "vpn",
+            "status": "success",
+            "timestamp": "2026-04-05T17:59:56.457157",
+            "type": "scan"
+          },
+          {
+            "agent_id": "agent_1995740d",
+            "id": "163089cb",
+            "platform": "windows",
+            "status": "success",
+            "timestamp": "2026-04-05T17:59:41.456103",
+            "type": "persist"
+          },
+          {
+            "agent_id": "agent_58a49a02",
+            "id": "756102ee",
+            "platform": "vpn",
+            "status": "failed",
+            "timestamp": "2026-04-05T17:59:32.452205",
+            "type": "exploit"
+          },
+          {
+            "agent_id": "agent_0bd7b749",
+            "id": "8d65c0f7",
+            "platform": "windows",
+            "status": "success",
+            "timestamp": "2026-04-05T17:59:29.451480",
+            "type": "recon"
+          },
+          {
+            "agent_id": "agent_a32c6c31",
+            "id": "51e1e5f5",
+            "platform": "linux",
+            "status": "success",
+            "timestamp": "2026-04-05T17:59:26.451141",
+            "type": "exfil"
+          },
+          {
+            "agent_id": "agent_7b0500e7",
+            "id": "0d3bee47",
+            "platform": "linux",
+            "status": "failed",
+            "timestamp": "2026-04-05T17:59:20.450774",
+            "type": "scan"
+          },
+          {
+            "agent_id": "agent_1995740d",
+            "id": "9e01d729",
+            "platform": "linux",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:53.440928",
+            "type": "recon"
+          },
+          {
+            "agent_id": "agent_0bd7b749",
+            "id": "77800d89",
+            "platform": "windows",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:50.440703",
+            "type": "exfil"
+          },
+          {
+            "agent_id": "agent_a32c6c31",
+            "id": "6de48fa2",
+            "platform": "router",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:41.435178",
+            "type": "exfil"
+          },
+          {
+            "agent_id": "agent_58a49a02",
+            "id": "6a5d79b7",
+            "platform": "windows",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:32.434549",
+            "type": "lateral_move"
+          },
+          {
+            "agent_id": "agent_eb60f6f2",
+            "id": "9a8148a6",
+            "platform": "router",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:29.434046",
+            "type": "exploit"
+          },
+          {
+            "agent_id": "agent_0bd7b749",
+            "id": "8c41d7e5",
+            "platform": "windows",
+            "status": "failed",
+            "timestamp": "2026-04-05T17:58:26.433831",
+            "type": "exploit"
+          },
+          {
+            "agent_id": "agent_4a29be32",
+            "id": "93c38bfc",
+            "platform": "router",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:23.432740",
+            "type": "persist"
+          },
+          {
+            "agent_id": "agent_0bd7b749",
+            "id": "02239a1d",
+            "platform": "windows",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:20.432493",
+            "type": "recon"
+          },
+          {
+            "agent_id": "agent_c688df95",
+            "id": "f387e2af",
+            "platform": "linux",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:11.426973",
+            "type": "lateral_move"
+          },
+          {
+            "agent_id": "agent_58a49a02",
+            "id": "3648ab09",
+            "platform": "windows",
+            "status": "success",
+            "timestamp": "2026-04-05T17:58:02.426305",
+            "type": "exfil"
+          },
+          {
+            "agent_id": "agent_4a29be32",
+            "id": "28bb9eec",
+            "platform": "linux",
+            "status": "success",
+            "timestamp": "2026-04-05T17:57:59.426081",
+            "type": "recon"
+          },
+          {
+            "agent_id": "agent_1995740d",
+            "id": "4dd07dfc",
+            "platform": "linux",
+            "status": "failed",
+            "timestamp": "2026-04-05T17:57:35.422958",
+            "type": "recon"
+          },
+          {
+            "agent_id": "agent_eb60f6f2",
+            "id": "ef066934",
+            "platform": "linux",
+            "status": "failed",
+            "timestamp": "2026-04-05T17:57:20.418048",
+            "type": "exfil"
+          }
+        ],
+        "timestamp": "2026-04-05T18:00:00.972183",
+        "total": 50
+      }
+    }
+  }
+}

