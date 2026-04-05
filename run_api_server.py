@@ -506,6 +506,32 @@ def get_mesh_health():
     except: pass
     return jsonify({'node_id': 'unknown', 'services': {}, 'checks': 0, 'repairs': 0})
 
+@app.route('/api/data/mesh_topology', methods=['GET'])
+def get_mesh_topology():
+    """Return full mesh network topology"""
+    import json as _json, os as _os
+    path = '/workspace/data/mesh/topology.json'
+    try:
+        if _os.path.exists(path):
+            with open(path) as f:
+                return jsonify(_json.load(f))
+    except: pass
+    # Build basic topology from known data
+    return jsonify({
+        'root_node': '172.28.137.134',
+        'total_nodes': 1,
+        'alive_nodes': 1,
+        'nodes': {
+            '172.28.137.134': {
+                'agent_id': 'mesh_172_28_137_134_root',
+                'ip': '172.28.137.134',
+                'role': 'root_c2',
+                'alive': True
+            }
+        },
+        'ts': datetime.now().isoformat()
+    })
+
 # ============================================================
 # WEBSOCKET EVENTS
 # ============================================================

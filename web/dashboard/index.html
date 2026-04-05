@@ -352,6 +352,33 @@
 
   </div>
 
+  <!-- MESH TOPOLOGY ROW -->
+  <div class="panels-row2">
+
+    <!-- MESH NODES -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>🕸️ Mesh Nodes</h3>
+        <span id="mesh-updated">never</span>
+      </div>
+      <div class="panel-body" id="mesh-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Initializing mesh...</div>
+      </div>
+    </div>
+
+    <!-- BEACON FEED -->
+    <div class="panel">
+      <div class="panel-header">
+        <h3>📡 C2 Beacon Feed</h3>
+        <span id="beacon-count">0 beacons</span>
+      </div>
+      <div class="panel-body" id="beacon-list">
+        <div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">Waiting for beacons...</div>
+      </div>
+    </div>
+
+  </div>
+
 </div><!-- /main -->
 
 <script>
@@ -681,14 +708,148 @@ async function update() {
   }
 }
 
+// ── MESH NODES RENDERER ──────────────────────────────────────────────────
+async function fetchMeshData() {
+  try {
+    const [topo, health, beacons] = await Promise.all([
+      fetch('/api/data/mesh_topology').then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch('/api/data/mesh_health').then(r => r.ok ? r.json() : null).catch(()=>null),
+      fetch('/api/beacon?limit=20').then(r => r.ok ? r.json() : null).catch(()=>null),
+    ]);
+    return { topo, health, beacons };
+  } catch(e) { return {}; }
+}
+
+function renderMeshNodes(topo, health) {
+  const el = document.getElementById('mesh-list');
+  const ts = document.getElementById('mesh-updated');
+  if (!el) return;
+
+  // Build node list from topology + health
+  const nodes = {};
+
+  // Add root from health
+  if (health) {
+    const svcs = health.services || {};
+    nodes['root'] = {
+      id: health.node_id || 'root',
+      ip: '172.28.137.134',
+      role: 'Root C2',
+      alive: svcs.flask_api?.healthy || true,
+      agents: svcs.swarm?.agents || 0,
+      checks: health.checks || 0,
+      repairs: health.repairs || 0,
+      services: Object.keys(svcs).length
+    };
+  }
+
+  // Add propagated nodes from topology
+  if (topo && topo.nodes) {
+    Object.entries(topo.nodes).forEach(([ip, node]) => {
+      if (ip !== '172.28.137.134' && ip !== 'root') {
+        nodes[ip] = {
+          id: node.agent_id || ip,
+          ip: ip,
+          role: node.role || node.method || 'propagated',
+          alive: node.alive !== false,
+          cycle: node.cycle || 0,
+          vulns: node.vulns || 0
+        };
+      }
+    });
+  }
+
+  if (Object.keys(nodes).length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No mesh nodes yet — propagating...</div>';
+    return;
+  }
+
+  el.innerHTML = Object.values(nodes).map(n => `
+    <div style="display:flex;align-items:center;gap:10px;padding:6px 0;border-bottom:1px solid var(--border);">
+      <div class="pulse ${n.alive ? 'green' : 'red'}" style="flex-shrink:0;"></div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-size:11px;color:var(--white);font-family:'Courier New',monospace;">${n.ip}</div>
+        <div style="font-size:10px;color:var(--text2);">${n.id}</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;">
+        <div style="font-size:10px;color:${n.alive ? 'var(--green)' : 'var(--red)'};">${n.alive ? '● LIVE' : '○ DEAD'}</div>
+        <div style="font-size:10px;color:var(--text2);">${n.role}</div>
+      </div>
+      ${n.agents ? `<div style="font-size:10px;color:var(--blue);margin-left:4px;">${n.agents} agents</div>` : ''}
+      ${n.cycle  ? `<div style="font-size:10px;color:var(--cyan);margin-left:4px;">c${n.cycle}</div>` : ''}
+    </div>
+  `).join('');
+
+  if (ts) ts.textContent = new Date().toLocaleTimeString();
+
+  // Update stat card
+  const aliveCount = Object.values(nodes).filter(n => n.alive).length;
+  const meshStat = document.getElementById('stat-agents');
+  // Don't override agents stat — just add to feed
+  if (topo && topo.total_nodes > 1) {
+    addFeedEvent('🕸️', `Mesh topology: ${topo.total_nodes} nodes, ${topo.alive_nodes} alive`, 'info');
+  }
+}
+
+function renderBeacons(beaconData) {
+  const el = document.getElementById('beacon-list');
+  const ct = document.getElementById('beacon-count');
+  if (!el || !beaconData) return;
+
+  const beacons = beaconData.beacons || [];
+  if (ct) ct.textContent = `${beaconData.total || beacons.length} beacons`;
+
+  if (beacons.length === 0) {
+    el.innerHTML = '<div style="color:var(--text2);font-size:11px;padding:20px;text-align:center;">No beacons yet</div>';
+    return;
+  }
+
+  el.innerHTML = beacons.slice(0, 15).map(b => {
+    const event = b.event || b.type || 'beacon';
+    const agent = (b.agent_id || 'unknown').substring(0, 20);
+    const ts    = b.ts ? new Date(b.ts).toLocaleTimeString() : '';
+    const color = event.includes('propagat') ? 'var(--purple)' :
+                  event.includes('scan')     ? 'var(--cyan)'   :
+                  event.includes('deploy')   ? 'var(--green)'  :
+                  event.includes('error')    ? 'var(--red)'    : 'var(--blue)';
+    const icon  = event.includes('propagat') ? '🌐' :
+                  event.includes('scan')     ? '🔍' :
+                  event.includes('heartbeat')? '📡' :
+                  event.includes('deploy')   ? '🚀' : '⚡';
+    return `
+      <div style="display:flex;align-items:flex-start;gap:8px;padding:5px 0;border-bottom:1px solid var(--border);font-size:10px;">
+        <span style="flex-shrink:0;">${icon}</span>
+        <div style="flex:1;min-width:0;">
+          <div style="color:${color};">${event}</div>
+          <div style="color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${agent}</div>
+        </div>
+        <div style="color:var(--text2);flex-shrink:0;">${ts}</div>
+      </div>`;
+  }).join('');
+}
+
+// ── ENHANCED UPDATE LOOP ──────────────────────────────────────────────────
+
 // Initial event
 addFeedEvent('🛡️', 'ServerRoot.net dashboard online', 'success');
 addFeedEvent('🔄', 'Connecting to autonomous loop...', 'info');
 addFeedEvent('🧠', 'Loading threat intel feeds...', 'info');
 
+async function updateMesh() {
+  const mesh = await fetchMeshData();
+  if (mesh.health || mesh.topo) {
+    renderMeshNodes(mesh.topo, mesh.health);
+  }
+  if (mesh.beacons) {
+    renderBeacons(mesh.beacons);
+  }
+}
+
 // Run update every 5 seconds
 update();
+updateMesh();
 setInterval(update, 5000);
+setInterval(updateMesh, 8000);
 
 // Keep adding live-ish feed events
 const liveMessages = [

@@ -7,6 +7,8 @@ Runs on port 3003
 import http.server
 import urllib.request
 import urllib.error
+import socket
+import socketserver
 import json
 import os
 import sys
@@ -83,7 +85,25 @@ class DashboardHandler(http.server.SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
+    import socketserver
     port = int(sys.argv[1]) if len(sys.argv) > 1 else 3003
-    server = http.server.ThreadingHTTPServer(('0.0.0.0', port), DashboardHandler)
-    print(f"[Dashboard] Serving on port {port} | Proxying /api/* -> {FLASK_API}")
+
+    # Wait for port to be free (up to 10s)
+    import time as _time
+    for attempt in range(10):
+        try:
+            test = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            test.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            test.bind(('0.0.0.0', port))
+            test.close()
+            break
+        except OSError:
+            print(f"[Dashboard] Port {port} busy, waiting... ({attempt+1}/10)")
+            _time.sleep(1)
+
+    class ReusableServer(http.server.ThreadingHTTPServer):
+        allow_reuse_address = True
+
+    server = ReusableServer(('0.0.0.0', port), DashboardHandler)
+    print(f"[Dashboard] Serving on port {port} | Proxying /api/* -> {FLASK_API}", flush=True)
     server.serve_forever()
